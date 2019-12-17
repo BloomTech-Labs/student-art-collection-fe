@@ -26,7 +26,7 @@ const Login = () => {
 
     return (
         <>
-          <form onSubmit={onSubmit()}>
+              <form onSubmit={onSubmit}>
               <input
                 type='email'
                 name='email'

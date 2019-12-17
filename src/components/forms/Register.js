@@ -59,7 +59,7 @@ const Register = () => {
   }
   return (
     <>
-      <form onSubmit={onSubmit()}>
+      <form onSubmit={onSubmit}>
         <input
           type='text'
           name='email'

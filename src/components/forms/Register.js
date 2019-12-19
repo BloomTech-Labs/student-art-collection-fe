@@ -48,11 +48,11 @@ const Register = () => {
 
   if (error) {
     //? if server returns an error...
-    <div>Error....</div>;
+    return <div>Error....</div>;
   }
   if (loading) {
     //? while user is being registered
-    <div>Loading...</div>;
+    return <div>Loading...</div>;
   }
   if (data) {
     //todo redirect upon successful registration

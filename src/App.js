@@ -1,9 +1,16 @@
 import React from 'react';
+import { firebaseConfig } from './firebaseConfig';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import withFirebaseAuth from 'react-with-firebase-auth';
+import { Register } from './components'
+import { Login } from './components'
 
 function App() {
   return (
     <div>
-      <h1>Test</h1>
+      <Register />
+      <Login />
     </div>
   );
 }

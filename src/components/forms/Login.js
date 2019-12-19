@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from 'react-apollo';
+import firebaseApp from '../auth/firebaseApp'
 
 const LOGIN_USER = gql`
     query loginUser($email: String!, $password: String!){
@@ -19,8 +20,11 @@ const Login = () => {
 
     const [ loginUser, {data, loading, error} ] = useMutation(LOGIN_USER);
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
+        
+        await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+
         loginUser({ variables: {email, password} })
     };
 

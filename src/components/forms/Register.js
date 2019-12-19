@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import firebaseApp from '../auth/firebaseApp';
 
 const REGISTER_USER = gql`
   mutation registerUser(
@@ -39,8 +40,9 @@ const Register = () => {
 
   const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER);
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
+    await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
     registerUser({
       variables: { email, password, address, city, state, zipcode }
     });

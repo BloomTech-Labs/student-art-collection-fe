@@ -42,7 +42,9 @@ const Register = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
+    //This newUser object needs to be added to the request to the backend to connect
+    //the firebase user to the app user account
+    const newUser = await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
     registerUser({
       variables: { email, password, address, city, state, zipcode }
     });

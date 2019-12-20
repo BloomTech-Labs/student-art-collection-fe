@@ -4,49 +4,85 @@ import { gql } from 'apollo-boost';
 import firebaseApp from '../auth/firebaseApp';
 
 const REGISTER_USER = gql`
-  mutation registerUser(
+mutation 
+  addSchool(
+    $school_id: ID!
+    $school_name: String!
     $email: String!
-    $password: String!
     $address: String!
     $city: String!
-    $state: String!
     $zipcode: String!
   ) {
-    registerUser(
-      email: $email
-      password: $password
-      address: $address
-      city: $city
-      state: $state
-      zipcode: $zipcode
+    addSchool (
+    school_id: $school_id
+    school_name: $school_name
+    email: $email
+    address: $address
+    city: $city
+    zipcode: $zipcode
     ) {
+      school_id
+      school_name
       email
-      password
       address
       city
-      state
       zipcode
     }
   }
-`;
+`
+
+// `
+//   mutation addSchool(
+//     $school_id: ID!
+//     $email: String!
+//     $school_name: String!
+//     $address: String!
+//     $city: String!
+//     $zipcode: String!
+//   ) {
+//     addSchool(
+//       school_id: ID!
+//       email: String!
+//       school_name: String!
+//       address: String!
+//       city: String!
+//       zipcode: String!
+//     ) {
+//       email
+//       password
+//       school_name
+//       address
+//       city
+//       zipcode
+//     }
+//   }
+// `;
 
 const Register = () => {
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [schoolName, setSchoolName] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
-  const [state, setState] = useState('');
   const [zipcode, setZipcode] = useState('');
 
-  const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER);
+  const [addSchool, { data, loading, error }] = useMutation(REGISTER_USER);
 
   const onSubmit = async e => {
     e.preventDefault();
     //This newUser object needs to be added to the request to the backend to connect
     //the firebase user to the app user account
     const newUser = await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
-    registerUser({
-      variables: { email, password, address, city, state, zipcode }
+    // setSchoolId(newUser.uid)
+    console.log(newUser)
+    addSchool({
+      variables: { 
+        school_id: newUser.user.uid, 
+        email, 
+        school_name: schoolName, 
+        address, 
+        city, 
+        zipcode }
     });
   };
 
@@ -68,6 +104,7 @@ const Register = () => {
           type='text'
           name='email'
           value={email}
+          placeholder='email'
           onChange={e => setEmail(e.target.value)}
           required
         />
@@ -75,13 +112,23 @@ const Register = () => {
           type='text'
           name='password'
           value={password}
+          placeholder='password'
           onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type='text'
+          name='school name'
+          value={schoolName}
+          placeholder='school name'
+          onChange={e => setSchoolName(e.target.value)}
           required
         />
         <input
           type='text'
           name='address'
           value={address}
+          placeholder='address'
           onChange={e => setAddress(e.target.value)}
           required
         />
@@ -89,20 +136,15 @@ const Register = () => {
           type='text'
           name='city'
           value={city}
+          placeholder='city'
           onChange={e => setCity(e.target.value)}
-          required
-        />
-        <input
-          type='text'
-          name='state'
-          value={state}
-          onChange={e => setState(e.target.value)}
           required
         />
         <input
           type='text'
           name='zipcode'
           value={zipcode}
+          placeholder='zipcode'
           onChange={e => setZipcode(e.target.value)}
           required
         />

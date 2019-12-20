@@ -1,11 +1,20 @@
 import React from 'react';
+import { AuthProvider } from './components/auth/Auth';
+import { Register } from './components'
+import { Login } from './components'
+
 
 function App() {
   return (
     <div>
-      <h1>Test</h1>
+      <AuthProvider>
+        <Register />
+        <Login />
+      </AuthProvider>
     </div>
   );
 }
+
+
 
 export default App;

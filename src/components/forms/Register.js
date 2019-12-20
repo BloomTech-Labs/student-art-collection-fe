@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import firebaseApp from '../auth/firebaseApp';
 
 const REGISTER_USER = gql`
   mutation registerUser(
@@ -39,8 +40,11 @@ const Register = () => {
 
   const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER);
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
+    //This newUser object needs to be added to the request to the backend to connect
+    //the firebase user to the app user account
+    const newUser = await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
     registerUser({
       variables: { email, password, address, city, state, zipcode }
     });
@@ -48,11 +52,11 @@ const Register = () => {
 
   if (error) {
     //? if server returns an error...
-    <div>Error....</div>;
+    return <div>Error....</div>;
   }
   if (loading) {
     //? while user is being registered
-    <div>Loading...</div>;
+    return <div>Loading...</div>;
   }
   if (data) {
     //todo redirect upon successful registration

@@ -67,7 +67,7 @@ Student ArtCo is an application to help schools raise money to fund their art pr
 
 ## Firebase Authentication
 
-Firebase Authentication provides backend services to authenticate users. Our users are authenticated through Firebase while the data for things like art listings will be stored on our own database.
+Firebase Authentication allows for us to have secure access to our application by our users. The users all get unique identifiers set for them that we can connect to their data in our database.
 
 ## Stripe
 
@@ -81,16 +81,14 @@ Media management API will be used to upload images of the artwork
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-## Firebase Variables
-
-    REACT_APP_FIREBASE_API_KEY
-    REACT_APP_FIREBASE_AUTH_DOMAIN
-    REACT_APP_FIREBASE_DATABASE_URL
-    REACT_APP_FIREBASE_PROJECT_ID
-    REACT_APP_FIREBASE_STORAGE_BUCKET
-    REACT_APP_FIREBASE_MESSAGING_SENDER_ID
-    REACT_APP_FIREBASE_APP_ID
-    REACT_APP_FIREBASE_MEASUREMENT_ID
+    * REACT_APP_FIREBASE_API_KEY - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_AUTH_DOMAIN - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_DATABASE_URL - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_PROJECT_ID - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_STORAGE_BUCKET - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_MESSAGING_SENDER_ID - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_APP_ID - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_FIREBASE_MEASUREMENT_ID - Info found from Firebase App Config for your Firebase project
 
 # Content Licenses
 

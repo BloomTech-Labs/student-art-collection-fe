@@ -36,115 +36,85 @@ You can find the deployed project at [Student ArtCo](https://studentartco.netlif
 
 Student ArtCo is an application to help schools raise money to fund their art programs by offering student art in exchange for donations. Many art students have said their finished projects end up in the garbage or collecting dust. With our app schools or art teachers can accept art donations from students and list them for sale. Family, members of the community, and art lovers can browse the art listings and connect with the school to make a donation and collect the art.
 
-### 4️⃣ Key Features
+### Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Schools can create accounts and list art created by students for sale.
+-    Buyers can browse art and find pieces they like and then contact the school to make a purchase.
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React
 
-🚫 Why did you choose this framework?
+-    State management is helpful in creating the user interface and interactions we are looking for.
+-    Lots of great packages to do things effeciently.
 
--    point one
--    point two
--    point three
--    point four
+#### Front end deployed to Netlify
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### [Back end](https://github.com/Lambda-School-Labs/student-art-collection-be) built using:
 
-#### Front end deployed to `🚫insert service here`
+#### Node and PostgreSQL
 
-#### [Back end](🚫link to back end repo here) built using:
+-    Relational database structure will make for a clean and effecient database and schema that makes sense.
 
-#### 🚫 back end framework goes here
+#### GraphQL
 
--    point one
--    point two
--    point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+-    Allows us to get just the data we need.
+-    Requests are easy to make for web, iOS, and Android so they can all get the info they would like for their needs.
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Firebase Authentication
 
-🚫Replace text below with a description of the API
+Firebase Authentication provides backend services to authenticate users. Our users are authenticated through Firebase while the data for things like art listings will be stored on our own database.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Stripe
 
-## 2️⃣ Payment API here
+Industry standart for payments. Safe and secure, easy to set up, will allow customers to purchase art work easily.
 
-🚫Replace text below with a description of the API
+## Cloudinary
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+Media management API will be used to upload images of the artwork
 
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+## Firebase Variables
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    REACT_APP_FIREBASE_API_KEY
+    REACT_APP_FIREBASE_AUTH_DOMAIN
+    REACT_APP_FIREBASE_DATABASE_URL
+    REACT_APP_FIREBASE_PROJECT_ID
+    REACT_APP_FIREBASE_STORAGE_BUCKET
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID
+    REACT_APP_FIREBASE_APP_ID
+    REACT_APP_FIREBASE_MEASUREMENT_ID
 
-# 5️⃣ Content Licenses
+# Content Licenses
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+Front end testing done with React Testing Libarary. Backend testing was done with Jest.
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+In the project folder run `yarn` or `npm i` to get dependencies.
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    build - creates a build of the application
+    start - starts the production server after a build is created
+    test - runs frontend tests
+    eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
@@ -184,4 +154,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/student-art-collection-be) for details on the backend of our project.

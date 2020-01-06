@@ -1,85 +1,67 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Student ArtCo
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at [Student ArtCo](https://studentartco.netlify.com/).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
+|                                       [Ami Scott](https://github.com/Memitaru)                                        |                                       [dAVE Inden](https://github.com/daveskull81)                                        |                                       [Jason Loomis](https://github.com/jrloom)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
+|                      [<img src="https://avatars1.githubusercontent.com/u/43873460?s=460&v=4" width = "200" />](https://github.com/Memitaru)                       |                      [<img src="https://avatars1.githubusercontent.com/u/3360264?s=460&v=4" width = "200" />](https://github.com/daveskull81)                       |                      [<img src="https://media.licdn.com/dms/image/C4E03AQGlvn65v10N_A/profile-displayphoto-shrink_200_200/0?e=1582156800&v=beta&t=yg9kB-YWn0tG2MsDu_f3af626N4hIKf6uUeBCanmzAk" width = "200" />](https://github.com/jrloom)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Memitaru)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/daveskull81)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ami-scott/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/davidinden/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/jason-r-loomis) |
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
-## 4️⃣ Contributors
+|                                       [Ian Schwartz](https://github.com/ian-schwartz)                                        |                                       [Grissobel Payonk](https://github.com/gspayonk)                                        |                                       [Mackenzie Weber](https://github.com/MWeberLambdaweb19)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="https://avatars1.githubusercontent.com/u/53659667?s=460&v=4" width = "200" />](https://github.com/ian-schwartz)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/gspayonk)                       |                      [<img src="https://avatars0.githubusercontent.com/u/48688377?s=460&v=4" width = "200" />](https://github.com/MWeberLambdaweb19)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ian-schwartz)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/gspayonk)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MWeberLambdaweb19)            |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ian-schwartz-277bb857/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/gspayonk/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mackenzie-weber-a1906a186/) |
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://studentartco.netlify.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/mOvtOPY4/labs-19-student-art-collection)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/Student-Art-Collection-Labs-19-d3b6e9472d72453f9b21b8604c94bb97)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://www.figma.com/file/KXwyQsMXcwXTqZNQT7bKuW/Student-Art-Collection-Imani-Russ?node-id=122%3A2)
 
-🚫 Replace lorem ipsum with a description of your project
+Student ArtCo is an application to help schools raise money to fund their art programs by offering student art in exchange for donations. Many art students have said their finished projects end up in the garbage or collecting dust. With our app schools or art teachers can accept art donations from students and list them for sale. Family, members of the community, and art lovers can browse the art listings and connect with the school to make a donation and collect the art.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+### Key Features
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+-    Schools can create accounts and list art created by students for sale.
+-    Buyers can browse art and find pieces they like and then contact the school to make a purchase.
 
-
-### 4️⃣ Key Features
-
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
-
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React
 
-🚫 Why did you choose this framework?
+-    State management is helpful in creating the user interface and interactions we are looking for.
+-    Lots of great packages to do things effeciently.
 
--    point one
--    point two
--    point three
--    point four
+#### Front end deployed to Netlify
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### [Back end](https://github.com/Lambda-School-Labs/student-art-collection-be) built using:
 
-#### Front end deployed to `🚫insert service here`
+#### Node and PostgreSQL
 
-#### [Back end](🚫link to back end repo here) built using:
+-    Relational database structure will make for a clean and effecient database and schema that makes sense.
 
-#### 🚫 back end framework goes here
+#### GraphQL
 
--    point one
--    point two
--    point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+-    Allows us to get just the data we need.
+-    Requests are easy to make for web, iOS, and Android so they can all get the info they would like for their needs.
 
 # APIs
 
@@ -87,31 +69,15 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 Firebase Authentication allows for us to have secure access to our application by our users. The users all get unique identifiers set for them that we can connect to their data in our database.
 
-## 2️⃣ Payment API here
+## Stripe
 
-🚫Replace text below with a description of the API
+Industry standart for payments. Safe and secure, easy to set up, will allow customers to purchase art work easily.
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+## Cloudinary
 
-## 3️⃣ Misc API here
+Media management API will be used to upload images of the artwork
 
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
@@ -124,31 +90,29 @@ In order for the app to function correctly, the user must set up their own envir
     * REACT_APP_FIREBASE_APP_ID - Info found from Firebase App Config for your Firebase project
     * REACT_APP_FIREBASE_MEASUREMENT_ID - Info found from Firebase App Config for your Firebase project
 
-# 5️⃣ Content Licenses
+# Content Licenses
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+Front end testing done with React Testing Libarary. Backend testing was done with Jest.
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+In the project folder run `yarn` or `npm i` to get dependencies.
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    build - creates a build of the application
+    start - starts the production server after a build is created
+    test - runs frontend tests
+    eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
@@ -188,4 +152,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/student-art-collection-be) for details on the backend of our project.

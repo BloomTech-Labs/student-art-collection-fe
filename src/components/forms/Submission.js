@@ -39,7 +39,7 @@ const SUBMISSION = gql`
         const onSubmit = e => {
             e.preventDefault();
             submitArt({
-                variables: {category, price, artist_name, description}
+                variables: {category, price, artistName, description}
             });
         };
 

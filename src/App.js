@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 // import { Register } from './components'
 // import { Login } from './components'
@@ -7,10 +8,10 @@ import { BrowseListings } from './views'
 
 function App() {
   return (
-    <div>
+    <Container>
       <AuthProvider></AuthProvider>
       <BrowseListings />
-    </div>
+    </Container>
   )
 }
 

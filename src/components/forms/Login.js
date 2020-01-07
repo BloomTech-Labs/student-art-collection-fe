@@ -4,6 +4,8 @@ import { useQuery, useMutation } from 'react-apollo';
 import firebaseApp from '../auth/firebaseApp';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import styled from 'styled-components';
 
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
@@ -30,50 +32,66 @@ const Login = () => {
 
   return (
     <>
-      <h2 style={styles.heading}>Sign Into Student ArtCo!</h2>
+    <Box display='flex' justifyContent='center'>
+    <h2 style={styles.heading}>Login to Student ArtCo!</h2>
+    </Box>
+    <Box display='flex' justifyContent='center'>
       <form onSubmit={onSubmit}>
         <TextField
           variant='outlined'
           label='Email'
-          margin='normal'
           style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='email'
           name='email'
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
+        <br/>
         <TextField
           variant='outlined'
           label='Password'
-          margin='normal'
           style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='password'
           name='password'
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
+        </form>
+        <br/>
+        </Box>
+        <Box display='flex' justifyContent='center'  alignItems='center'>
         <Button
-          variant='contained'
+          variant='outlined'
           style={styles.button}
           color='primary'
           type='submit'
         >
           Login
         </Button>
-      </form>
+        </Box>
+        <LoginP>No Account? Sign Up <a href="">Here</a></LoginP>
     </>
+    // "Here" will link to register component
   );
 };
 
+const LoginP = styled.p`
+    text-align: center;
+`
+
 const styles = {
   heading: {
-    margin: 10,
+    margin: '80px 15px 15px 15px',
   },
   textfield: {
-    margin: 10,
+    margin: 15,
   },
   button: {
-    margin: 10,
+    margin: 15,
   },
 };
 

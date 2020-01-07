@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { Navigation } from '../components'
+// import { Navigation } from '../components'
 
 const BrowseListings = () => {
   return (
     <div>
-      <Navigation />
+      {/* <Navigation /> */}
       <div>DIV!</div>
     </div>
   )

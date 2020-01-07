@@ -8,9 +8,9 @@ import { Images } from './components/images/images'
 function App() {
   return (
     <div>
-      <p>hi</p>
+      {/* <p>hi</p> */}
       <AuthProvider>
-        <Register />
+        {/* <Register /> */}
         <Login />
       </AuthProvider>
       <Images />

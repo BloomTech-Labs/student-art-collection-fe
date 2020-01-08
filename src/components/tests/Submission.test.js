@@ -3,6 +3,7 @@ import { MockedProvider } from '@apollo/react-testing';
 import { render, fireEvent, wait } from '@testing-library/react';
 import Submission, { SUBMISSION } from '../forms/Submission';
 
+describe('routes using memory router', () => {
 it('should render without crashing', () => {
     render(
         <MockedProvider mocks={[]}>
@@ -11,53 +12,33 @@ it('should render without crashing', () => {
     );
 });
 
-  it("mutation should be called when clicking the button", async () => {
-    const listingMock = {
-      request: { query: SUBMISSION },
-      result: { data: { listing: [{ category: "testcategory" }] } }
+it("should render products", async () => {
+    const mocks = {
+        request: { query: 'SUBMISSION' },
+        result: {
+            data: {
+                listing: [
+                {
+                    id: 100,
+                    category: "Test",
+                    price: "20",
+                    artistName: 'test name',
+                    description: 'test description'
+                }
+                ]
+            }
+        }
     };
-  
+
     const component = render(
-      <MockedProvider mocks={[listingMock]} addTypename={false}>
-        <Submission />
-      </MockedProvider>
+        <MockedProvider mocks={[mocks]} addTypename={false}>
+            <Submission />
+        </MockedProvider>
     );
-  
-    await wait(0); // wait for response
-  
-    const p = component.root.findByType("p");
-    expect(p.children).toContain("testcategory");
-  });
 
-// const mocks = [
-//     {
-//         request: {
-//             query: SUBMISSION,
-//             variables: {
-//                 category: 'testing'
-//             },
-//         },
+    await wait(5);
 
-//         newData: jest.fn(() => ({
-//             data: {
-//                 addListing: {
-//                     category: 'testing'
-//                 },
-//             },
-//         })),
-//     },
-// ];
-
-// test('mutation should be called when clicking the button', async () => {
-//     const { findByText } = render(
-//         <MockedProvider mocks={mocks} addTypename={false}>
-//             <Submission />
-//         </MockedProvider>
-//     );
-
-//     const addListingButton = await findByText('Create Art Listing');
-//     fireEvent.click(addListingButton);
-//     const addListingMutationMock = mocks[0].newData;
-
-//     await wait(() => expect(addListingMutationMock).toHaveBeenCalled());
-// });
+    const h3 = component.root.findByType("h3");
+    expect(h3.children).toContain("Test");
+    });
+});

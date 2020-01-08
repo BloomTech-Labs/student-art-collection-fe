@@ -27,6 +27,8 @@ const SUBMISSION = gql`
     } 
     `;
 
+    export {SUBMISSION};
+
     const Submission = () => {
         const [category, setCategory] = useState('');
         const [price, setPrice] = useState('');

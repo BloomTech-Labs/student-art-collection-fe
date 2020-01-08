@@ -30,7 +30,7 @@ mutation
     }
   }
 `
-
+export {REGISTER_USER};
 // `
 //   mutation addSchool(
 //     $school_id: ID!

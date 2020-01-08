@@ -1,23 +1,19 @@
-import React from 'react';
-import { AuthProvider } from './components/auth/Auth';
-import { Register } from './components'
-import { Login } from './components'
-import { Images } from './components/images/images'
-
+import React from 'react'
+import { Container } from '@material-ui/core'
+import { AuthProvider } from './components/auth/Auth'
+// import { Register } from './components'
+// import { Login } from './components'
+// import { Images } from './components/images/images'
+import { BrowseListings } from './views'
+import Contact from './components/forms/Contact.js';
 
 function App() {
   return (
-    <div>
-      {/* <p>hi</p> */}
-      <AuthProvider>
-        {/* <Register /> */}
-        <Login />
-      </AuthProvider>
-      {/* <Images /> */}
-    </div>
-  );
+    <Container>
+      <AuthProvider></AuthProvider>
+      <BrowseListings />
+    </Container>
+  )
 }
 
-
-
-export default App;
+export default App

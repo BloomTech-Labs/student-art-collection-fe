@@ -63,7 +63,7 @@ const Login = () => {
         </form>
         <br/>
         </Box>
-        <Box display='flex' justifyContent='center'  alignItems='center'>
+        <Box display='flex' justifyContent='center'>
         <Button
           variant='outlined'
           style={styles.button}
@@ -81,11 +81,13 @@ const Login = () => {
 
 const LoginP = styled.p`
     text-align: center;
+    font-family: 'Nunito';
 `
 
 const styles = {
   heading: {
-    margin: '80px 15px 15px 15px',
+    fontFamily: 'Barlow',
+    margin: '80px 15px 15px 45px',
   },
   textfield: {
     margin: 15,

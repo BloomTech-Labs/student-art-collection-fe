@@ -13,8 +13,9 @@ const BrowseListings = () => {
             <Navigation />
           </Grid>
           <Grid item>
-            <Typography variant='h1' component='h1' gutterBottom>
-              Welcome
+            <Typography variant='h3' component='h1' gutterBottom>
+              Browse beautiful art and support
+              <br /> your community!
             </Typography>
           </Grid>
         </Grid>

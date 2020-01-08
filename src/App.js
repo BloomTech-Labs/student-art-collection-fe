@@ -5,7 +5,7 @@ import { AuthProvider } from './components/auth/Auth'
 import { Register } from './components'
 import { Login } from './components'
 // import { Images } from './components/images/images'
-import { BrowseListings } from './views'
+import { BrowseListings, MainPage } from './views'
 import Contact from './components/forms/Contact.js';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
       <AuthProvider>
         <Router>
           <Switch>
+            <Route exact path='/' component={MainPage} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />

@@ -27,6 +27,8 @@ const SUBMISSION = gql`
     } 
     `;
 
+    export {SUBMISSION};
+
     const Submission = () => {
         const [category, setCategory] = useState('');
         const [price, setPrice] = useState('');
@@ -39,7 +41,7 @@ const SUBMISSION = gql`
         const onSubmit = e => {
             e.preventDefault();
             submitArt({
-                variables: {category, price, artist_name, description}
+                variables: {category, price, artistName, description}
             });
         };
 
@@ -60,6 +62,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'category'
                         value = {category}
+                        placeholder='category'
                         onChange = {e => setCategory(e.target.value)}
                         required
                     />
@@ -68,6 +71,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'price'
                         value = {price}
+                        placeholder='price'
                         onChange = {e => setPrice(e.target.value)}
                         required
                     />
@@ -76,6 +80,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'artistName'
                         value = {artistName}
+                        placeholder='artist name'
                         onChange = {e => setArtistName(e.target.value)}
                         required
                     />
@@ -84,6 +89,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'description'
                         value = {description}
+                        placeholder='description'
                         onChange = {e => setDescription(e.target.value)}
                         required
                     />

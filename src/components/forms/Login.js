@@ -32,9 +32,7 @@ const Login = () => {
 
   return (
     <>
-    <Box display='flex' justifyContent='center'>
     <h2 style={styles.heading}>Login to Student ArtCo!</h2>
-    </Box>
     <Box display='flex' justifyContent='center'>
       <form onSubmit={onSubmit}>
         <TextField
@@ -65,7 +63,7 @@ const Login = () => {
         </Box>
         <Box display='flex' justifyContent='center'>
         <Button
-          variant='outlined'
+          variant='contained'
           style={styles.button}
           color='primary'
           type='submit'
@@ -88,6 +86,7 @@ const styles = {
   heading: {
     fontFamily: 'Barlow',
     margin: '80px 15px 15px 45px',
+    textAlign: 'center'
   },
   textfield: {
     margin: 15,

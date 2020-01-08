@@ -62,6 +62,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'category'
                         value = {category}
+                        placeholder='category'
                         onChange = {e => setCategory(e.target.value)}
                         required
                     />
@@ -70,6 +71,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'price'
                         value = {price}
+                        placeholder='price'
                         onChange = {e => setPrice(e.target.value)}
                         required
                     />
@@ -78,6 +80,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'artistName'
                         value = {artistName}
+                        placeholder='artist name'
                         onChange = {e => setArtistName(e.target.value)}
                         required
                     />
@@ -86,6 +89,7 @@ const SUBMISSION = gql`
                         type = 'text'
                         name = 'description'
                         value = {description}
+                        placeholder='description'
                         onChange = {e => setDescription(e.target.value)}
                         required
                     />

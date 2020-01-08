@@ -13,31 +13,32 @@ describe('<Login />', () => {
         );
     });
 
-    it('should redirect user to links page on login', async () => {
-        const mockLoginVariables = {
-            email: 'me@gmail.com',
-            password: 'jdp123',
-        };
-    
-        const mockLoginResults = {
-            data: {
-                login: {
-                    token: 'mockToken',
-                },
-            },
-        };
+    const mockLoginVariables = {
+        email: 'me@gmail.com',
+        password: 'jdp123',
+    };
 
+    const mockLoginResults = {
+        data: {
+            login: {
+                token: 'mockToken',
+            },
+        },
+    };
+
+    it('should successfully login user', async () => {
+
+    const result = mockLoginResults;
     const request = {
         query: LOGIN_USER,
         variables: mockLoginVariables,
     };
-    const result = mockLoginResults;
     const push = jest.fn();
 
     const { getByPlaceholderText, getByValue } = render(
         <MemoryRouter>
             <MockedProvider mocks={[{ request, result }]}>
-                <Login history={{ push }} />
+                <Login />
             </MockedProvider>
         </MemoryRouter>,
     );
@@ -58,51 +59,7 @@ describe('<Login />', () => {
 
     submitButton.click();
     await wait();
-
     expect(push).toHaveBeenCalled();
-    });
-
-    it('should render loader', async () => {
-        const mockLoginVariables = {
-            email: 'me@gmail.com',
-            password: 'jdp123',
-        };
-    
-        const mockLoginResults = {
-            data: {
-                login: {
-                    token: 'mockToken',
-                },
-            },
-        };
-
-        const request = {
-        query: LOGIN_USER,
-        variables: mockLoginVariables,
-    };
-    const result = mockLoginResults;
-    const push = jest.fn();
-
-    const { getByType } = render(
-        <MemoryRouter>
-            <MockedProvider mocks={[{ request, result }]} addTypename={false}>
-                <Login history={{ push }} />
-            </MockedProvider>
-        </MemoryRouter>,
-    );
-
-    const inputElement = getByType('email');
-    const passwordInput = getByType('password');
-
-    fireEvent.change(inputElement, {
-        target: { name: 'email', value: mockLoginVariables.username },
-    });
-    expect(inputElement.value).toBe(mockLoginVariables.username);
-
-    fireEvent.change(passwordInput, {
-        target: { name: 'password', value: mockLoginVariables.password },
-    });
-    expect(passwordInput.value).toBe(mockLoginVariables.password);
     });
 
 });

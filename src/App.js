@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 // import { Register } from './components'
 // import { Login } from './components'
@@ -8,11 +9,10 @@ import Contact from './components/forms/Contact.js';
 
 function App() {
   return (
-    <div>
+    <Container>
       <AuthProvider></AuthProvider>
       <BrowseListings />
-      <Contact />
-    </div>
+    </Container>
   )
 }
 

@@ -1,9 +1,9 @@
 import React from 'react'
+import { ImageMasonry } from '../components'
 import { Grid, Typography } from '@material-ui/core'
 
-// import { Navigation } from '../components'
-
-//todo uncomment { Navigation } import and <Navigation /> when ready
+//todo import Navigation from components
+//todo uncomment <Navigation /> when ready
 //todo heading should be all caps i.e. text-transform: uppercase
 
 const BrowseListings = () => {
@@ -16,13 +16,15 @@ const BrowseListings = () => {
             <div>Placeholder for navbar</div>
           </Grid>
           <Grid item>
-            <Typography variant='h1' component='h1' gutterBottom={true}>
+            <Typography variant='h1' component='h1' gutterBottom>
               Welcome
             </Typography>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>Images go here</Grid>
+      <Grid item>
+        <ImageMasonry />
+      </Grid>
     </Grid>
   )
 }

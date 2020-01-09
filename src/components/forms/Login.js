@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
@@ -72,9 +73,8 @@ const Login = () => {
         </form>
         <br/>
         </Box>
-        <LoginP>No Account? Sign Up <a href="">Here</a></LoginP>
+        <LoginP>No Account? Sign Up <Link to='/register'>Here</Link></LoginP>
     </>
-    // "Here" will link to register component
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Grid, Button } from '@material-ui/core'
 
 //todo uncomment { Link } import and <Link> when router is set up
@@ -11,25 +11,30 @@ import { Grid, Button } from '@material-ui/core'
 const Navigation = () => {
   return (
     <Grid container justify='space-between'>
-      <Grid item>Logo</Grid>
+      <Grid item>
+        <Link to='/'>Logo</Link>
+      </Grid>
       <Grid item>
         <Grid container spacing={5}>
           <Grid item>
-            {/* <Link> */}
-            <Button>Browse</Button>
-            {/* </Link> */}
+            <Button component={Link} to='/browse'>
+              Browse
+            </Button>
           </Grid>
           <Grid item>
-            {/* <Link> */}
-            <Button>Sign In</Button>
-            {/* </Link> */}
+            <Button component={Link} to='/login'>
+              Sign In
+            </Button>
           </Grid>
           <Grid item>
-            {/* <Link> */}
-            <Button variant='contained' disableElevation>
+            <Button
+              component={Link}
+              to='/register'
+              variant='contained'
+              disableElevation
+            >
               Join
             </Button>
-            {/* </Link> */}
           </Grid>
         </Grid>
       </Grid>

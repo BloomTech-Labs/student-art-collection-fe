@@ -116,6 +116,7 @@ const Register = () => {
           name='email'
           value={email}
           onChange={e => setEmail(e.target.value)}
+          required={true}
         />
         <TextField
           variant='outlined'
@@ -127,6 +128,7 @@ const Register = () => {
           name='password'
           value={password}
           onChange={e => setPassword(e.target.value)}
+          required={true}
         />
         <TextField
           variant='outlined'
@@ -138,6 +140,7 @@ const Register = () => {
           name='school name'
           value={schoolName}
           onChange={e => setSchoolName(e.target.value)}
+          required={true}
         />
         <TextField
           variant='outlined'
@@ -149,6 +152,7 @@ const Register = () => {
           name='address'
           value={address}
           onChange={e => setAddress(e.target.value)}
+          required={true}
         />
         <TextField
           variant='outlined'
@@ -160,6 +164,7 @@ const Register = () => {
           name='city'
           value={city}
           onChange={e => setCity(e.target.value)}
+          required={true}
         />
         <TextField
           variant='outlined'
@@ -171,6 +176,7 @@ const Register = () => {
           name='zipcode'
           value={zipcode}
           onChange={e => setZipcode(e.target.value)}
+          required={true}
         />
         </form>
         </Box>

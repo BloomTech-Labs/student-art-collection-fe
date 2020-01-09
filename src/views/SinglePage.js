@@ -6,14 +6,18 @@ import {
   CardContent,
   CardActions,
   Collapse,
+  Container,
   Button,
-  Grid,
   makeStyles,
-  Typography,
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Contact, Navigation } from '../components'
-// import { Contact, ImageCard } from '../components'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { Contact, ArtInfo, ImageCarousel, Navigation } from '../components'
+
+//todo art(id: ) needs to take in the id set into state by the user clicking on an
+//todo artwork on the browse page
+//todo image carousel
+//todo functional back button
 
 const GET_ART = gql`
   query art {
@@ -27,6 +31,7 @@ const GET_ART = gql`
       description
       date_posted
       school {
+        school_name
         email
         address
         city
@@ -63,30 +68,40 @@ const SinglePage = () => {
     return <div>Loading...</div>
   }
   if (data) {
+    // console.log(`singlepage data >>>`, data)
     return (
-      // <Grid container direction='column' alignItems='center'>
       <>
         <Navigation />
-        <Card>
-          <CardActions disableSpacing>
-            <Button
-              endIcon={<ExpandMoreIcon />}
-              className={classes.expand}
-              onClick={() => setExpanded(!expanded)}
-              aria-expanded={expanded}
-              aria-label='Contact school about purchase'
-            >
-              Contact school about purchase
-            </Button>
-          </CardActions>
-          <Collapse in={expanded} timeout='auto' unmountOnExit>
+        <Container>
+          <Card>
+            <CardActions>
+              <ArrowBackIcon />
+            </CardActions>
             <CardContent>
-              <Contact />
+              <ImageCarousel info={data.art.images} />
             </CardContent>
-          </Collapse>
-        </Card>
+            <CardContent>
+              <ArtInfo info={data.art} />
+            </CardContent>
+            <CardActions>
+              <Button
+                endIcon={<ExpandMoreIcon />}
+                className={classes.expand}
+                onClick={() => setExpanded(!expanded)}
+                aria-expanded={expanded}
+                aria-label='Contact school about purchasing'
+              >
+                Contact school about purchasing
+              </Button>
+            </CardActions>
+            <Collapse in={expanded} timeout='auto' unmountOnExit>
+              <CardContent>
+                <Contact info={data.art.school} />
+              </CardContent>
+            </Collapse>
+          </Card>
+        </Container>
       </>
-      // </Grid>
     )
   }
 }

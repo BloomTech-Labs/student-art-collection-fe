@@ -4,27 +4,30 @@ import { useQuery } from 'react-apollo'
 import InfoIcon from '@material-ui/icons/Info'
 import {
   makeStyles,
-  // Paper,
   Grid,
   Card,
   CardActionArea,
   CardActions,
-  // CardContent,
   CardMedia,
-  IconButton,
   Typography,
 } from '@material-ui/core'
 
-//todo grab title and school associated with image, add to map
 //todo clicking image takes user to the artwork's page
 //todo maybe tweak the text overlay
 //todo maybe change the info icon
 
-const GET_IMAGES = gql`
+const GET_ALL_ART = gql`
   query {
-    allImages {
+    allArts {
       id
-      image_url
+      title
+      artist_name
+      school {
+        school_name
+      }
+      images {
+        image_url
+      }
     }
   }
 `
@@ -56,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const { error, loading, data } = useQuery(GET_IMAGES)
+  const { error, loading, data } = useQuery(GET_ALL_ART)
   const classes = useStyles()
 
   if (error) {
@@ -69,15 +72,15 @@ const ImageMasonry = () => {
     return (
       <main className={classes.root}>
         <Grid container spacing={3} alignItems='center' justify='center'>
-          {data.allImages.map(img => (
-            <Grid item key={img.id}>
+          {data.allArts.map(art => (
+            <Grid item key={art.id}>
               <Card>
                 <CardActionArea className={classes.actionArea}>
                   <CardMedia
                     component='img'
-                    src={img.image_url}
-                    alt={img.image_url}
-                    title={img.image_url}
+                    src={art.images[0].image_url}
+                    alt={art.title === '' ? 'Untitled' : art.title}
+                    title={art.title === '' ? 'Untitled' : art.title}
                     className={classes.image}
                   />
                   <Grid
@@ -91,15 +94,24 @@ const ImageMasonry = () => {
                         component='h3'
                         className={classes.title}
                       >
-                        <p>Title</p>
-                        <p>School</p>
+                        <p>
+                          {art.title === '' ? 'Untitled' : art.title}
+                          {/* <br />
+                          &nbsp;by&nbsp;
+                          {art.artist_name === ''
+                            ? 'Artist Name'
+                            : art.artist_name} */}
+                        </p>
+                        <p>
+                          {art.school === ''
+                            ? 'School Name Needed'
+                            : art.school.school_name}
+                        </p>
                       </Typography>
                     </Grid>
                     <Grid item>
                       <CardActions>
-                        <IconButton>
-                          <InfoIcon className={classes.icon} />
-                        </IconButton>
+                        <InfoIcon className={classes.icon} />
                       </CardActions>
                     </Grid>
                   </Grid>

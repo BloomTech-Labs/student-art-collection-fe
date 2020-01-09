@@ -1,18 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Grid, Button } from '@material-ui/core'
+import { Grid, Button, makeStyles, Typography } from '@material-ui/core'
 
-//todo uncomment { Link } import and <Link> when router is set up
-//todo add to='...' in <Link>
-//todo customize buttons to not use all caps - i.e. text-transform: none
-//todo possibly pull out buttons into separate style file
 //todo colors & fonts
 
+const useStyles = makeStyles(theme => ({
+  space: {
+    marginBottom: theme.spacing(3),
+    marginTop: theme.spacing(2),
+  },
+  logo: {
+    textDecoration: 'none',
+    color: 'black',
+  },
+}))
+
 const Navigation = () => {
+  const classes = useStyles()
+
   return (
-    <Grid container justify='space-between'>
+    <Grid
+      container
+      alignItems='center'
+      justify='space-between'
+      className={classes.space}
+    >
       <Grid item>
-        <Link to='/'>Logo</Link>
+        <Link to='/' className={classes.logo}>
+          <Typography variant='h4'>SA</Typography>
+        </Link>
       </Grid>
       <Grid item>
         <Grid container spacing={5}>

@@ -10,8 +10,8 @@ function App() {
   return (
     <Container>
       <AuthProvider>
-        <Navigation />
         <Router>
+          <Navigation />
           <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/login' component={Login} />

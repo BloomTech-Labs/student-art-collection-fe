@@ -104,14 +104,14 @@ const Register = () => {
   return (
     <>
     <h2 style={styles.heading}>Register for Student ArtCo!</h2>
-     <Box display='flex' justifyContent='center'>
+     <Box display='flex' style={styles.textfieldbox}>
       <form onSubmit={onSubmit}>
         <TextField
           variant='outlined'
           label='Email'
           style={styles.textfield}
           size='small'
-          fullWidth={true}
+          fullWidth={false}
           type='text'
           name='email'
           value={email}
@@ -123,7 +123,7 @@ const Register = () => {
           label='Password'
           style={styles.textfield}
           size='small'
-          fullWidth={true}
+          fullWidth={false}
           type='text'
           name='password'
           value={password}
@@ -135,7 +135,7 @@ const Register = () => {
           label='School Name'
           style={styles.textfield}
           size='small'
-          fullWidth={true}
+          fullWidth={false}
           type='text'
           name='school name'
           value={schoolName}
@@ -147,7 +147,7 @@ const Register = () => {
           label='Address'
           style={styles.textfield}
           size='small'
-          fullWidth={true}
+          fullWidth={false}
           type='text'
           name='address'
           value={address}
@@ -159,7 +159,7 @@ const Register = () => {
           label='City'
           style={styles.textfield}
           size='small'
-          fullWidth={true}
+          fullWidth={false}
           type='text'
           name='city'
           value={city}
@@ -168,10 +168,10 @@ const Register = () => {
         />
         <TextField
           variant='outlined'
-          label='Zipcode'
+          label='ZIP Code'
           style={styles.textfield}
           size='small'
-          fullWidth={true}
+          fullWidth={false}
           type='text'
           name='zipcode'
           value={zipcode}
@@ -180,7 +180,16 @@ const Register = () => {
         />
         </form>
         </Box>
-        <button type='submit'>Submit</button>
+        <Box display='flex' justifyContent='center'>
+        <Button
+          variant='contained'
+          style={styles.button}
+          color='primary'
+          type='submit'
+        >
+          Register
+        </Button>
+        </Box>
     </>
   );
 };
@@ -201,6 +210,9 @@ const styles = {
   },
   button: {
     margin: 15,
+  },
+  textfieldbox: {
+    marginLeft: 100,
   },
 };
 

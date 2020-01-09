@@ -40,6 +40,10 @@ class Dashboard extends Component {
             <div>
                 Welcome, {this.state.user.artistName}
             </div>
+
+            <div>
+                
+            </div>
             </>
 
         )

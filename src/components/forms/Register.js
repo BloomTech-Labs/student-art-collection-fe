@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import firebaseApp from '../auth/firebaseApp';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import styled from 'styled-components';
 
 const REGISTER_USER = gql`
 mutation 
@@ -99,8 +103,10 @@ const Register = () => {
   }
   return (
     <>
+    <h2 style={styles.heading}>Register for Student ArtCo!</h2>
+     <Box display='flex' justifyContent='center'>
       <form onSubmit={onSubmit}>
-        <input
+        <TextField
           type='text'
           name='email'
           value={email}
@@ -108,7 +114,7 @@ const Register = () => {
           onChange={e => setEmail(e.target.value)}
           required
         />
-        <input
+        <TextField
           type='text'
           name='password'
           value={password}
@@ -116,7 +122,7 @@ const Register = () => {
           onChange={e => setPassword(e.target.value)}
           required
         />
-        <input
+        <TextField
           type='text'
           name='school name'
           value={schoolName}
@@ -124,7 +130,7 @@ const Register = () => {
           onChange={e => setSchoolName(e.target.value)}
           required
         />
-        <input
+        <TextField
           type='text'
           name='address'
           value={address}
@@ -132,7 +138,7 @@ const Register = () => {
           onChange={e => setAddress(e.target.value)}
           required
         />
-        <input
+        <TextField
           type='text'
           name='city'
           value={city}
@@ -140,7 +146,7 @@ const Register = () => {
           onChange={e => setCity(e.target.value)}
           required
         />
-        <input
+        <TextField
           type='text'
           name='zipcode'
           value={zipcode}
@@ -148,10 +154,30 @@ const Register = () => {
           onChange={e => setZipcode(e.target.value)}
           required
         />
+        </form>
+        </Box>
         <button type='submit'>Submit</button>
-      </form>
     </>
   );
+};
+
+const LoginP = styled.p`
+    text-align: center;
+    font-family: 'Nunito';
+`
+
+const styles = {
+  heading: {
+    fontFamily: 'Barlow',
+    margin: '80px 15px 15px 45px',
+    textAlign: 'center'
+  },
+  textfield: {
+    margin: 15,
+  },
+  button: {
+    margin: 15,
+  },
 };
 
 export default Register;

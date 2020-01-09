@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 import PrivateRoute from './components/auth/PrivateRoute'
-import { Register, Login } from './components'
-// import { Images } from './components/images/images'
+import { Register, Login, Navigation } from './components'
 import { BrowseListings, MainPage } from './views'
-import Contact from './components/forms/Contact.js'
 
 function App() {
   return (
     <Container>
       <AuthProvider>
+        <Navigation />
         <Router>
           <Switch>
             <Route exact path='/' component={MainPage} />

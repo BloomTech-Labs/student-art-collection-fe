@@ -7,6 +7,7 @@ import { Register, Login } from './components'
 // import { Images } from './components/images/images'
 import { BrowseListings, MainPage } from './views'
 import Contact from './components/forms/Contact.js'
+import Dashboard from './components/Dashboard'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />
+            <PrivateRoute path='/dashboard' component={Dashboard} />
             {/* Example PrivateRoute usage */}
             {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
           </Switch>

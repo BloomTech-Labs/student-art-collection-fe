@@ -17,11 +17,10 @@ import { Contact, ArtInfo, ImageCarousel } from '../components'
 //todo art(id: ) needs to take in the id set into state by the user clicking on an
 //todo artwork on the browse page
 //todo image carousel
-//todo functional back button
 
 const GET_ART = gql`
-  query art {
-    art(id: 1) {
+  query art($id: ID!) {
+    art(id: $id) {
       id
       school_id
       price
@@ -54,10 +53,15 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
+  back: {
+    padding: theme.spacing(1),
+    backgroundColor: 'rgba(0,0,0,.1)',
+    borderRadius: '50%',
+  },
 }))
 
-const SinglePage = () => {
-  const { error, loading, data } = useQuery(GET_ART)
+const SinglePage = ({ history, id }) => {
+  const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
   const [expanded, setExpanded] = useState(false)
   const classes = useStyles()
 
@@ -68,12 +72,14 @@ const SinglePage = () => {
     return <div>Loading...</div>
   }
   if (data) {
-    // console.log(`singlepage data >>>`, data)
     return (
       <Container>
         <Card>
           <CardActions>
-            <ArrowBackIcon />
+            <ArrowBackIcon
+              onClick={() => history.goBack()}
+              className={classes.back}
+            />
           </CardActions>
           <CardContent>
             <ImageCarousel info={data.art.images} />
@@ -83,11 +89,11 @@ const SinglePage = () => {
           </CardContent>
           <CardActions>
             <Button
-              endIcon={<ExpandMoreIcon />}
-              className={classes.expand}
               onClick={() => setExpanded(!expanded)}
               aria-expanded={expanded}
               aria-label='Contact school about purchasing'
+              className={classes.expand}
+              endIcon={<ExpandMoreIcon />}
             >
               Contact school about purchasing
             </Button>

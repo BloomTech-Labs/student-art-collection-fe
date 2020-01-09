@@ -107,52 +107,76 @@ const Register = () => {
      <Box display='flex' justifyContent='center'>
       <form onSubmit={onSubmit}>
         <TextField
+          variant='outlined'
+          label='Email'
+          style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='text'
           name='email'
           value={email}
           placeholder='email'
           onChange={e => setEmail(e.target.value)}
-          required
         />
         <TextField
+          variant='outlined'
+          label='Password'
+          style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='text'
           name='password'
           value={password}
           placeholder='password'
           onChange={e => setPassword(e.target.value)}
-          required
         />
         <TextField
+          variant='outlined'
+          label='School Name'
+          style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='text'
           name='school name'
           value={schoolName}
           placeholder='school name'
           onChange={e => setSchoolName(e.target.value)}
-          required
         />
         <TextField
+          variant='outlined'
+          label='Address'
+          style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='text'
           name='address'
           value={address}
           placeholder='address'
           onChange={e => setAddress(e.target.value)}
-          required
         />
         <TextField
+          variant='outlined'
+          label='City'
+          style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='text'
           name='city'
           value={city}
           placeholder='city'
           onChange={e => setCity(e.target.value)}
-          required
         />
         <TextField
+          variant='outlined'
+          label='Zipcode'
+          style={styles.textfield}
+          size='small'
+          fullWidth={true}
           type='text'
           name='zipcode'
           value={zipcode}
           placeholder='zipcode'
           onChange={e => setZipcode(e.target.value)}
-          required
         />
         </form>
         </Box>

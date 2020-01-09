@@ -46,7 +46,6 @@ const Login = () => {
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        <br/>
         <TextField
           variant='outlined'
           label='Password'

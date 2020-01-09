@@ -112,7 +112,7 @@ const Register = () => {
           style={styles.textfield}
           size='small'
           fullWidth={false}
-          type='text'
+          type='email'
           name='email'
           value={email}
           onChange={e => setEmail(e.target.value)}
@@ -124,7 +124,7 @@ const Register = () => {
           style={styles.textfield}
           size='small'
           fullWidth={false}
-          type='text'
+          type='password'
           name='password'
           value={password}
           onChange={e => setPassword(e.target.value)}

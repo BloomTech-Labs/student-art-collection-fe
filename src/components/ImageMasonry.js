@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
 import InfoIcon from '@material-ui/icons/Info'
@@ -12,16 +14,11 @@ import {
   Typography,
 } from '@material-ui/core'
 
-//todo clicking image takes user to the artwork's page
-//todo maybe tweak the text overlay
-//todo maybe change the info icon
-
 const GET_ALL_ART = gql`
   query {
     allArts {
       id
       title
-      artist_name
       school {
         school_name
       }
@@ -60,6 +57,7 @@ const useStyles = makeStyles(theme => ({
 
 const ImageMasonry = () => {
   const { error, loading, data } = useQuery(GET_ALL_ART)
+  const [artId, setArtId] = useState()
   const classes = useStyles()
 
   if (error) {
@@ -69,13 +67,20 @@ const ImageMasonry = () => {
     return <div>Loading....</div>
   }
   if (data) {
+    console.log(`browse data >>>`, data)
+    console.log(`browse artId >>>`, artId)
     return (
       <main className={classes.root}>
         <Grid container spacing={3} alignItems='center' justify='center'>
           {data.allArts.map(art => (
             <Grid item key={art.id}>
               <Card>
-                <CardActionArea className={classes.actionArea}>
+                <CardActionArea
+                  onClick={() => setArtId(art.id)}
+                  component={Link}
+                  to='/artwork'
+                  className={classes.actionArea}
+                >
                   <CardMedia
                     component='img'
                     src={art.images[0].image_url}

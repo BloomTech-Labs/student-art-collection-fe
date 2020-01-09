@@ -17,10 +17,11 @@ function App() {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />
-            <Route
+            <Route path='/artwork/:id' component={SinglePage} />
+            {/* <Route
               path='/artwork'
               render={props => <SinglePage {...props} id={1} />}
-            />
+            /> */}
             {/* Example PrivateRoute usage */}
             {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
           </Switch>

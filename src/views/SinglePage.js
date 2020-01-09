@@ -14,8 +14,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { Contact, ArtInfo, ImageCarousel } from '../components'
 
-//todo art(id: ) needs to take in the id set into state by the user clicking on an
-//todo artwork on the browse page
 //todo image carousel
 
 const GET_ART = gql`
@@ -60,7 +58,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const SinglePage = ({ history, id }) => {
+const SinglePage = props => {
+  const id = props.match.params.id //? probably not the best way to do this...
   const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
   const [expanded, setExpanded] = useState(false)
   const classes = useStyles()
@@ -77,7 +76,7 @@ const SinglePage = ({ history, id }) => {
         <Card>
           <CardActions>
             <ArrowBackIcon
-              onClick={() => history.goBack()}
+              onClick={() => props.history.goBack()}
               className={classes.back}
             />
           </CardActions>

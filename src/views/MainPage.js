@@ -4,7 +4,7 @@ const MainPage = () => {
     return (
         <div>
             <h1>Student Art Co</h1>
-            <p>Placeholder for maketing content.</p>
+            <p>Placeholder for marketing content.</p>
         </div>
     )
 }

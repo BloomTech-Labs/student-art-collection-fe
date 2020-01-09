@@ -1,3 +1,7 @@
 import BrowseListings from './BrowseListings'
+import MainPage from './MainPage'
 
-export { BrowseListings }
+export { 
+    BrowseListings,
+    MainPage
+ }

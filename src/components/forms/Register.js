@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import firebaseApp from '../auth/firebaseApp';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import styled from 'styled-components';
 
 const REGISTER_USER = gql`
 mutation 
@@ -99,59 +103,117 @@ const Register = () => {
   }
   return (
     <>
+    <h2 style={styles.heading}>Register for Student ArtCo!</h2>
+     <Box display='flex' style={styles.textfieldbox}>
       <form onSubmit={onSubmit}>
-        <input
-          type='text'
+        <TextField
+          variant='outlined'
+          label='Email'
+          style={styles.textfield}
+          size='small'
+          fullWidth={false}
+          type='email'
           name='email'
           value={email}
-          placeholder='email'
           onChange={e => setEmail(e.target.value)}
-          required
+          required={true}
         />
-        <input
-          type='text'
+        <TextField
+          variant='outlined'
+          label='Password'
+          style={styles.textfield}
+          size='small'
+          fullWidth={false}
+          type='password'
           name='password'
           value={password}
-          placeholder='password'
           onChange={e => setPassword(e.target.value)}
-          required
+          required={true}
         />
-        <input
+        <TextField
+          variant='outlined'
+          label='School Name'
+          style={styles.textfield}
+          size='small'
+          fullWidth={false}
           type='text'
           name='school name'
           value={schoolName}
-          placeholder='school name'
           onChange={e => setSchoolName(e.target.value)}
-          required
+          required={true}
         />
-        <input
+        <TextField
+          variant='outlined'
+          label='Address'
+          style={styles.textfield}
+          size='small'
+          fullWidth={false}
           type='text'
           name='address'
           value={address}
-          placeholder='address'
           onChange={e => setAddress(e.target.value)}
-          required
+          required={true}
         />
-        <input
+        <TextField
+          variant='outlined'
+          label='City'
+          style={styles.textfield}
+          size='small'
+          fullWidth={false}
           type='text'
           name='city'
           value={city}
-          placeholder='city'
           onChange={e => setCity(e.target.value)}
-          required
+          required={true}
         />
-        <input
+        <TextField
+          variant='outlined'
+          label='ZIP Code'
+          style={styles.textfield}
+          size='small'
+          fullWidth={false}
           type='text'
           name='zipcode'
           value={zipcode}
-          placeholder='zipcode'
           onChange={e => setZipcode(e.target.value)}
-          required
+          required={true}
         />
-        <button type='submit'>Submit</button>
-      </form>
+        </form>
+        </Box>
+        <Box display='flex' justifyContent='center'>
+        <Button
+          variant='contained'
+          style={styles.button}
+          color='primary'
+          type='submit'
+        >
+          Register
+        </Button>
+        </Box>
     </>
   );
+};
+
+const LoginP = styled.p`
+    text-align: center;
+    font-family: 'Nunito';
+`
+
+const styles = {
+  heading: {
+    fontFamily: 'Barlow',
+    margin: '80px 15px 15px 45px',
+    textAlign: 'center'
+  },
+  textfield: {
+    margin: 15,
+  },
+  button: {
+    margin: 15,
+  },
+  textfieldbox: {
+    marginLeft: 100,
+  },
 };
 
 export default Register;

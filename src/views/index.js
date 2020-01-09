@@ -1,4 +1,4 @@
 import BrowseListings from './BrowseListings'
-import SinglePage from './SinglePage'
+import MainPage from './MainPage'
 
-export { BrowseListings, SinglePage }
+export { BrowseListings, MainPage }

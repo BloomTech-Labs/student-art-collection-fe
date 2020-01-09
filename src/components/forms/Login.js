@@ -45,6 +45,7 @@ const Login = () => {
           name='email'
           value={email}
           onChange={e => setEmail(e.target.value)}
+          required={true}
         />
         <TextField
           variant='outlined'
@@ -56,10 +57,8 @@ const Login = () => {
           name='password'
           value={password}
           onChange={e => setPassword(e.target.value)}
+          required={true}
         />
-        </form>
-        <br/>
-        </Box>
         <Box display='flex' justifyContent='center'>
         <Button
           variant='contained'
@@ -69,6 +68,9 @@ const Login = () => {
         >
           Login
         </Button>
+        </Box>
+        </form>
+        <br/>
         </Box>
         <LoginP>No Account? Sign Up <a href="">Here</a></LoginP>
     </>

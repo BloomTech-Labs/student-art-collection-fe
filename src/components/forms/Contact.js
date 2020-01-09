@@ -26,8 +26,8 @@ const SEND_MAIL = gql`
         }
 `
 
-const Contact = () => {
-    const [sendto] = useState('mack.webb37@gmail.com')
+const Contact = (props) => {
+    const [sendto] = useState(props.info.email)
     const [name, setName] = useState('')
     const [fromUser, setFromUser] = useState('')
     const [subject, setSubject] = useState('')

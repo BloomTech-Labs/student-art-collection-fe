@@ -115,7 +115,6 @@ const Register = () => {
           type='text'
           name='email'
           value={email}
-          placeholder='email'
           onChange={e => setEmail(e.target.value)}
         />
         <TextField
@@ -127,7 +126,6 @@ const Register = () => {
           type='text'
           name='password'
           value={password}
-          placeholder='password'
           onChange={e => setPassword(e.target.value)}
         />
         <TextField
@@ -139,7 +137,6 @@ const Register = () => {
           type='text'
           name='school name'
           value={schoolName}
-          placeholder='school name'
           onChange={e => setSchoolName(e.target.value)}
         />
         <TextField
@@ -151,7 +148,6 @@ const Register = () => {
           type='text'
           name='address'
           value={address}
-          placeholder='address'
           onChange={e => setAddress(e.target.value)}
         />
         <TextField
@@ -163,7 +159,6 @@ const Register = () => {
           type='text'
           name='city'
           value={city}
-          placeholder='city'
           onChange={e => setCity(e.target.value)}
         />
         <TextField
@@ -175,7 +170,6 @@ const Register = () => {
           type='text'
           name='zipcode'
           value={zipcode}
-          placeholder='zipcode'
           onChange={e => setZipcode(e.target.value)}
         />
         </form>

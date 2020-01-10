@@ -6,6 +6,7 @@ import ImageMasonry from './ImageMasonry'
 import ImageCarousel from './ImageCarousel'
 import ArtInfo from './ArtInfo'
 import Spinner from './GraphLoading'
+import ErrorMessage from './GraphErrors'
 
 export {
   Register,
@@ -16,4 +17,5 @@ export {
   ImageCarousel,
   ArtInfo,
   Spinner,
+  ErrorMessage,
 }

@@ -13,6 +13,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
+import ErrorMessage from './GraphErrors'
 
 const GET_ALL_ART = gql`
   query {
@@ -60,7 +61,7 @@ const ImageMasonry = () => {
   const classes = useStyles()
 
   if (error) {
-    return <div>Error...</div>
+    return <ErrorMessage />
   }
   if (loading) {
     return <Spinner />

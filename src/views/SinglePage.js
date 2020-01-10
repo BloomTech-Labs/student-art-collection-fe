@@ -8,11 +8,18 @@ import {
   Collapse,
   Container,
   Button,
+  IconButton,
   makeStyles,
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { BackButton } from '../styles/muiButtons'
-import { Contact, ArtInfo, ImageCarousel, Spinner } from '../components'
+import {
+  Contact,
+  ArtInfo,
+  ImageCarousel,
+  Spinner,
+  ErrorMessage,
+} from '../components'
 
 //todo image carousel
 
@@ -60,7 +67,7 @@ const SinglePage = props => {
   const classes = useStyles()
 
   if (error) {
-    return <div>Error...</div>
+    return <ErrorMessage />
   }
   if (loading) {
     return <Spinner />
@@ -70,7 +77,11 @@ const SinglePage = props => {
       <Container>
         <Card>
           <CardActions>
-            <BackButton onClick={() => props.history.goBack()} />
+            <IconButton
+              size='small'
+              children={<BackButton />}
+              onClick={() => props.history.goBack()}
+            />
           </CardActions>
           <CardContent>
             <ImageCarousel info={data.art.images} />

@@ -1,27 +1,34 @@
 import React , { useEffect, useState } from 'react';
 import firebaseApp from './firebaseApp';
 
-export const AuthContext = React.createContext(null);
+export const AuthContext = React.createContext();
+
+export const AuthConsumer =AuthContext.Consumer;
 
 export const AuthProvider = ({ children }) => {
-    const [ currentUser, setCurrentUser ] = useState(null);
+    const [ currentUser, setCurrentUser ] = useState(null)
+    const [ loading, setLoading ] = useState(true)
+    const [ authenticated, setAuthenticated ] = useState(false)
 
-    function authChange(user) {
-        console.log('auth context updated', user)
-        setCurrentUser(user)
-    }
-    // useEffect(() => {
-    //     async function authChange() {
-    //         await firebaseApp.auth().onAuthStateChanged(function(user) {
-    //             setCurrentUser(user)
-    //         });
-    //     }
-    //     authChange()
-    // }, []);
+    useEffect(() => {
+        async function authChange() {
+            await firebaseApp.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    setCurrentUser(user)
+                    setAuthenticated(true)
+                    setLoading(false)
+                } else {
+                    setAuthenticated(false)
+                    setLoading(false)
+                }
+            });
+        }
+        authChange()
+    }, []);
 
     return (
         <AuthContext.Provider
-            value={{ currentUser, authChange }}
+            value={{ currentUser, loading, authenticated }}
         >
             {children}
         </AuthContext.Provider>

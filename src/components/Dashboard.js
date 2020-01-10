@@ -23,7 +23,8 @@ query school ($id: ID!){
 `
 const Dashboard = props => {
 
-    const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {variables: { id }})
+    
+    const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {variables: { id:1 }})
 
     if(error) {
         return <div> Error Loading Dashboard...</div>

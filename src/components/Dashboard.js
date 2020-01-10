@@ -1,87 +1,82 @@
-import React, { Component } from 'react';
-import currentUser from './auth/Auth';
-import Navigation from './Navigation';
-import {gql} from 'apollo-boost';
-import {useQuery, Query} from 'react-apollo';
-import Divider from '@material-ui/core/Divider'
+import React from 'react';
+import { gql } from 'apollo-boost';
+import { useQuery } from 'react-apollo';
+import { Card, Grid, CardActionArea, CardMedia } from '@material-ui/core'
+import { Link } from 'react-router-dom';
 
-const GET_USER_LISTINGS = gql`
-query {
-    artBySchool {
+const GET_SCHOOL_INFO = gql`
+query school ($id: ID!){
+    school(id: $id){
+        school_name
+        city
         art {
-            title
+            id
             artist_name
-            images
+            title
+            images {
+                id
+                image_url
+            }
         }
     }
 }
 `
-const GET_USER = gql`
-query {
-    schoolBySchoolID {
-        school_id
-        school_name
+const Dashboard = props => {
+
+    const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {variables: { id }})
+
+    if(error) {
+        return <div> Error Loading Dashboard...</div>
     }
-}
-`
-class Dashboard extends Component {
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //         user: {},
-    //         welcome: true
-
-    //     };
-    // }
-
-    // componentDidMount(){
-    //     const userInfo = currentUser;
-    //     this.setState({
-    //         user: userInfo
-    //     });
-    //     if(userInfo){
-    //         this.props.setAuthState(userInfo);
-    //     }
-    //     setTimeout(
-    //         function(){
-    //             this.setState({
-    //                 welcome: false
-    //             });
-    //         }.bind(this),
-    //         5000
-    //     );
-    // }
-
-    render(){
-        return(
+    if(loading) {
+        return <div> Loading Dashboard...</div>
+    }
+    if(data){
+        console.log(data);
+        return (
             <>
             <div>
-                <Navigation />
+                Welcome, {data.school.school_name}
+                <div>
+                {data.school.city}    || Grades 9-12
+                </div>
+                {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
             </div>
 
-            <Query query = {GET_USER}>
-                {({ loading, error, data }) => {
-                    if (loading) return <div> Fetching </div>
-                    if (error) return <div> Error </div>
+            <div>
+                School Artwork
 
-                    const welcomeUser = data.schoolBySchoolID.school_id
+                {data.school.art.map(listings => (
 
-                    return (
-                        <div>
-                            {welcomeUser.map(welcome => <Divider key={welcome.school_name} welcome={welcome} /> )}
-                        </div>
-                    )
-                }}
-            </Query>
+                    <Grid item key={listings.id}>
+                    <Card>
+                        <CardActionArea
+                            component={Link}
+                            to={`/artwork/${listings.id}`}
+                        >
+                        
+                        <CardMedia
+                            component='img'
+                            src={listings.images[0].image_url}
+                            alt={listings.title === '' ? 'Untitled' : listings.title}
+                            title={listings.title === '' ? 'Untitled' : listings.title}
+                        />
 
-            <Query query = {GET_USER_LISTINGS}>
-                
-            </Query>
+                        <Grid item>
+                            <p>
+                                {listings.title === '' ? 'Untitled' : listings.title}
+                                {listings.artist_name === '' ? 'Untitled' : listings.artist_name}
+                            </p>
+                        </Grid>
 
+                    </CardActionArea>
+
+                    </Card>
+                </Grid>
+                ))}
+            </div>
             </>
-
-        )
-    }
+        )}
 }
 
 export default Dashboard;

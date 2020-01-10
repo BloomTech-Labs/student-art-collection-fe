@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 import PrivateRoute from './components/auth/PrivateRoute'
-import { Register, Login } from './components'
 // import { Images } from './components/images/images'
-import { BrowseListings, MainPage } from './views'
 import Contact from './components/forms/Contact.js'
 import Dashboard from './components/Dashboard'
 import { Register, Login, Navigation } from './components'
@@ -22,7 +20,8 @@ function App() {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />
-            <PrivateRoute path='/dashboard' component={Dashboard} />
+            <Route path='/dashboard' component={Dashboard} />
+            {/* <PrivateRoute path='/dashboard' component={Dashboard} /> */}
             <Route path='/artwork/:id' component={SinglePage} />
             {/* <Route
               path='/artwork'

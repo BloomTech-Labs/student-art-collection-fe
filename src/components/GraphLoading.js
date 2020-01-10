@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import {
   Card,
-  CardActions,
   CircularProgress,
   Container,
   Grid,
   Typography,
   CardContent,
 } from '@material-ui/core'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
-export const Spinner = () => {
+const Spinner = () => {
   const [loading, setLoading] = useState(0)
 
   useEffect(() => {
@@ -22,9 +20,6 @@ export const Spinner = () => {
   return (
     <Container>
       <Card>
-        <CardActions>
-          <ArrowBackIcon />
-        </CardActions>
         <CardContent>
           <Grid container spacing={3} alignItems='center' justify='center'>
             <Grid item>
@@ -41,3 +36,5 @@ export const Spinner = () => {
     </Container>
   )
 }
+
+export default Spinner

@@ -12,7 +12,7 @@ import {
   CardMedia,
   Typography,
 } from '@material-ui/core'
-import { Spinner } from './GraphLoading'
+import Spinner from './GraphLoading'
 
 const GET_ALL_ART = gql`
   query {

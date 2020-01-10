@@ -11,9 +11,8 @@ import {
   makeStyles,
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { BackButton } from '../styles/muiButtons'
-import { Contact, ArtInfo, ImageCarousel } from '../components'
+import { Contact, ArtInfo, ImageCarousel, Spinner } from '../components'
 
 //todo image carousel
 
@@ -52,11 +51,6 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  back: {
-    padding: theme.spacing(1),
-    backgroundColor: 'rgba(0,0,0,.1)',
-    borderRadius: '50%',
-  },
 }))
 
 const SinglePage = props => {
@@ -69,17 +63,14 @@ const SinglePage = props => {
     return <div>Error...</div>
   }
   if (loading) {
-    return <div>Loading...</div>
+    return <Spinner />
   }
   if (data) {
     return (
       <Container>
         <Card>
           <CardActions>
-            <ArrowBackIcon
-              onClick={() => props.history.goBack()}
-              className={classes.back}
-            />
+            <BackButton onClick={() => props.history.goBack()} />
           </CardActions>
           <CardContent>
             <ImageCarousel info={data.art.images} />

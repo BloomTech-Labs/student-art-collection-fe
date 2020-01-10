@@ -5,6 +5,7 @@ import Navigation from './Navigation'
 import ImageMasonry from './ImageMasonry'
 import ImageCarousel from './ImageCarousel'
 import ArtInfo from './ArtInfo'
+import Spinner from './GraphLoading'
 
 export {
   Register,
@@ -14,4 +15,5 @@ export {
   ImageMasonry,
   ImageCarousel,
   ArtInfo,
+  Spinner,
 }

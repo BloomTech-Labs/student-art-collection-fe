@@ -64,6 +64,7 @@ const Contact = props => {
           type='text'
           value={name}
           name='name'
+          placeholder='Name'
           required={true}
           onChange={e => setName(e.target.value)}
         ></TextField>
@@ -76,6 +77,7 @@ const Contact = props => {
           type='email'
           value={fromUser}
           name='email'
+          placeholder='Email'
           required={true}
           onChange={e => setFromUser(e.target.value)}
         ></TextField>
@@ -88,6 +90,7 @@ const Contact = props => {
           type='text'
           value={subject}
           name='subject line'
+          placeholder='Subject'
           required={true}
           onChange={e => setSubject(e.target.value)}
         ></TextField>
@@ -100,6 +103,7 @@ const Contact = props => {
           type='text'
           value={message}
           name='message'
+          placeholder='Message'
           required={true}
           onChange={e => setMessage(e.target.value)}
         ></TextField>

@@ -31,7 +31,7 @@ const SEND_MAIL = gql`
 describe('<Contact />', () => {
 
     const infoProps = {
-        email: 'mack.webb37@gmail.com'
+        email: 'test@example.com'
     }
     
     const mockEmailVariables = {

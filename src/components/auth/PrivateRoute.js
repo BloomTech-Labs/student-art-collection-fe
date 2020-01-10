@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Component, ...rest}) => {
                         if (context.authenticated) {
                             return (
                                 <Route {...rest} render={props => {
-                                    return <Component {...props} />
+                                    return <Component {...props} schoolId={context.currentUser.uid}/>
                                 }} />
                             )
                         } else {

@@ -74,6 +74,10 @@ class Dashboard extends Component {
                 }}
             </Query>
 
+            <Query query = {GET_USER_LISTINGS}>
+                
+            </Query>
+
             </>
 
         )

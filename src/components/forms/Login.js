@@ -25,9 +25,9 @@ const Login = () => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    await firebaseApp.auth().signInWithEmailAndPassword(email, password);
-
-    loginUser({ variables: { email, password } })
+    const user = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+    console.log('User from Firebase', user)
+    //loginUser({ variables: { email, password } })
   };
 
   return (
@@ -57,10 +57,6 @@ const Login = () => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        </form>
-        <br/>
-        </Box>
-        <Box display='flex' justifyContent='center'>
         <Button
           variant='contained'
           style={styles.button}
@@ -69,6 +65,18 @@ const Login = () => {
         >
           Login
         </Button>
+        </form>
+        <br/>
+        </Box>
+        <Box display='flex' justifyContent='center'>
+        {/* <Button
+          variant='contained'
+          style={styles.button}
+          color='primary'
+          type='submit'
+        >
+          Login
+        </Button> */}
         </Box>
         <LoginP>No Account? Sign Up <a href="">Here</a></LoginP>
     </>

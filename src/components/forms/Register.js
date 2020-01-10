@@ -178,8 +178,6 @@ const Register = () => {
           onChange={e => setZipcode(e.target.value)}
           required={true}
         />
-        </form>
-        </Box>
         <Box display='flex' justifyContent='center'>
         <Button
           variant='contained'
@@ -190,6 +188,9 @@ const Register = () => {
           Register
         </Button>
         </Box>
+        </form>
+        </Box>
+        
     </>
   );
 };

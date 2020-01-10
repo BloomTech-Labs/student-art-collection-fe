@@ -8,20 +8,24 @@ import {
   Collapse,
   Container,
   Button,
+  IconButton,
   makeStyles,
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import { Contact, ArtInfo, ImageCarousel } from '../components'
+import { BackButton } from '../styles/muiButtons'
+import {
+  Contact,
+  ArtInfo,
+  ImageCarousel,
+  Spinner,
+  ErrorMessage,
+} from '../components'
 
-//todo art(id: ) needs to take in the id set into state by the user clicking on an
-//todo artwork on the browse page
 //todo image carousel
-//todo functional back button
 
 const GET_ART = gql`
-  query art {
-    art(id: 1) {
+  query art($id: ID!) {
+    art(id: $id) {
       id
       school_id
       price
@@ -56,24 +60,28 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const SinglePage = () => {
-  const { error, loading, data } = useQuery(GET_ART)
+const SinglePage = props => {
+  const id = props.match.params.id //? probably not the best way to do this...
+  const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
   const [expanded, setExpanded] = useState(false)
   const classes = useStyles()
 
   if (error) {
-    return <div>Error...</div>
+    return <ErrorMessage />
   }
   if (loading) {
-    return <div>Loading...</div>
+    return <Spinner />
   }
   if (data) {
-    // console.log(`singlepage data >>>`, data)
     return (
       <Container>
         <Card>
           <CardActions>
-            <ArrowBackIcon />
+            <IconButton
+              size='small'
+              children={<BackButton />}
+              onClick={() => props.history.goBack()}
+            />
           </CardActions>
           <CardContent>
             <ImageCarousel info={data.art.images} />
@@ -83,11 +91,11 @@ const SinglePage = () => {
           </CardContent>
           <CardActions>
             <Button
-              endIcon={<ExpandMoreIcon />}
-              className={classes.expand}
               onClick={() => setExpanded(!expanded)}
               aria-expanded={expanded}
               aria-label='Contact school about purchasing'
+              className={classes.expand}
+              endIcon={<ExpandMoreIcon />}
             >
               Contact school about purchasing
             </Button>

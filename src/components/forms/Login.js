@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
@@ -20,6 +20,7 @@ const LOGIN_USER = gql`
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory()
 
   const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER);
 
@@ -27,8 +28,10 @@ const Login = () => {
     e.preventDefault();
 
     const user = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
-    console.log('User from Firebase', user)
-    //loginUser({ variables: { email, password } })
+    
+    loginUser({ variables: { email, password } })
+
+    history.push('/dashboard')
   };
 
   return (

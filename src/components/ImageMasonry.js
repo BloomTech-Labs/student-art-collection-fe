@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
 import InfoIcon from '@material-ui/icons/Info'
@@ -13,16 +14,11 @@ import {
 } from '@material-ui/core'
 import { Spinner } from './GraphLoading'
 
-//todo clicking image takes user to the artwork's page
-//todo maybe tweak the text overlay
-//todo maybe change the info icon
-
 const GET_ALL_ART = gql`
   query {
     allArts {
       id
       title
-      artist_name
       school {
         school_name
       }
@@ -76,7 +72,11 @@ const ImageMasonry = () => {
           {data.allArts.map(art => (
             <Grid item key={art.id}>
               <Card>
-                <CardActionArea className={classes.actionArea}>
+                <CardActionArea
+                  component={Link}
+                  to={`/artwork/${art.id}`}
+                  className={classes.actionArea}
+                >
                   <CardMedia
                     component='img'
                     src={art.images[0].image_url}
@@ -95,14 +95,7 @@ const ImageMasonry = () => {
                         component='h3'
                         className={classes.title}
                       >
-                        <p>
-                          {art.title === '' ? 'Untitled' : art.title}
-                          {/* <br />
-                          &nbsp;by&nbsp;
-                          {art.artist_name === ''
-                            ? 'Artist Name'
-                            : art.artist_name} */}
-                        </p>
+                        <p>{art.title === '' ? 'Untitled' : art.title}</p>
                         <p>
                           {art.school === ''
                             ? 'School Name Needed'

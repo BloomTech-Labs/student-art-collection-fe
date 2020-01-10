@@ -40,7 +40,6 @@ const Contact = (props) => {
         sendMail({variables: {sendto, name, fromUser, subject, message}})
         if (data) {
             console.log('data', data)
-            alert('Your message has been sent!')
         } 
         else if (loading) {
             console.log('Loading')
@@ -55,10 +54,10 @@ const Contact = (props) => {
         <div>
             <h2>Contact The Seller</h2>
             <form onSubmit={onSubmit}>
-                <input type="text" value={name} placeholder="Your Name" onChange={e => setName(e.target.value)}></input>
-                <input type="text" value={fromUser} placeholder="Your email" onChange={e => setFromUser(e.target.value)}></input>
-                <input type="text" value={subject} placeholder="Your Subject Line" onChange={e => setSubject(e.target.value)}></input>
-                <input type="text" value={message} placeholder="Your Message" onChange={e => setMessage(e.target.value)}></input>
+                <input type='text' value={name} name='Your Name' placeholder='Your Name' onChange={e => setName(e.target.value)}></input>
+                <input type='text' value={fromUser} name='Your Email' placeholder='Your Email' onChange={e => setFromUser(e.target.value)}></input>
+                <input type='text' value={subject} name='Your Subject Line' placeholder='Your Subject Line' onChange={e => setSubject(e.target.value)}></input>
+                <input type='text' value={message} name='Your Message' placeholder='Your Message' onChange={e => setMessage(e.target.value)}></input>
                 <button type='submit'>Send Email!</button>
             </form>
         </div>

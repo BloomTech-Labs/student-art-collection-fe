@@ -61,14 +61,14 @@ const Login = () => {
           required={true}
         />
         <Box display='flex' justifyContent='center'>
-        {/* <Button
+        <Button
           variant='contained'
           style={styles.button}
           color='primary'
           type='submit'
         >
           Login
-        </Button> */}
+        </Button>
         </Box>
         </form>
         <br/>

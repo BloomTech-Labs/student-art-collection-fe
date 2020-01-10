@@ -178,8 +178,6 @@ const Register = () => {
           onChange={e => setZipcode(e.target.value)}
           required={true}
         />
-        </form>
-        </Box>
         <Box display='flex' justifyContent='center'>
         <Button
           variant='contained'
@@ -189,6 +187,8 @@ const Register = () => {
         >
           Register
         </Button>
+        </Box>
+        </form>
         </Box>
     </>
   );
@@ -202,14 +202,14 @@ const LoginP = styled.p`
 const styles = {
   heading: {
     fontFamily: 'Barlow',
-    margin: '80px 15px 15px 45px',
+    margin: '80px 15px 25px 45px',
     textAlign: 'center'
   },
   textfield: {
     margin: 15,
   },
   button: {
-    margin: 15,
+    margin: '25px 45px 15px 15px',
   },
   textfieldbox: {
     marginLeft: 100,

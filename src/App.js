@@ -8,18 +8,26 @@ import { Register, Login } from './components'
 import { BrowseListings, MainPage } from './views'
 import Contact from './components/forms/Contact.js'
 import Dashboard from './components/Dashboard'
+import { Register, Login, Navigation } from './components'
+import { BrowseListings, MainPage, SinglePage } from './views'
 
 function App() {
   return (
     <Container>
       <AuthProvider>
         <Router>
+          <Navigation />
           <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />
             <PrivateRoute path='/dashboard' component={Dashboard} />
+            <Route path='/artwork/:id' component={SinglePage} />
+            {/* <Route
+              path='/artwork'
+              render={props => <SinglePage {...props} id={1} />}
+            /> */}
             {/* Example PrivateRoute usage */}
             {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
           </Switch>

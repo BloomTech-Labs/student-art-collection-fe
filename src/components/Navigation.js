@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Grid, Button, makeStyles, Typography } from '@material-ui/core'
+import firebaseApp from './auth/firebaseApp'
 
 //todo colors & fonts
 
@@ -17,6 +18,13 @@ const useStyles = makeStyles(theme => ({
 
 const Navigation = () => {
   const classes = useStyles()
+  const history = useHistory()
+
+  const signOut = () => {
+    firebaseApp.auth().signOut().then(() => {
+      history.push('/login')
+    })
+  }
 
   return (
     <Grid
@@ -35,6 +43,11 @@ const Navigation = () => {
           <Grid item>
             <Button component={Link} to='/browse'>
               Browse
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button onClick={signOut}>
+              Sign Out
             </Button>
           </Grid>
           <Grid item>

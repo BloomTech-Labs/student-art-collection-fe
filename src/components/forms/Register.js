@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const REGISTER_USER = gql`
 mutation 
@@ -69,6 +70,7 @@ const Register = () => {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [zipcode, setZipcode] = useState('');
+  const history = useHistory();
 
   const [addSchool, { data, loading, error }] = useMutation(REGISTER_USER);
 
@@ -88,6 +90,7 @@ const Register = () => {
         city, 
         zipcode }
     });
+    history.push('/dashboard')
   };
 
   if (error) {

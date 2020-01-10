@@ -11,6 +11,7 @@ import {
   CardMedia,
   Typography,
 } from '@material-ui/core'
+import { Spinner } from './GraphLoading'
 
 //todo clicking image takes user to the artwork's page
 //todo maybe tweak the text overlay
@@ -66,7 +67,7 @@ const ImageMasonry = () => {
     return <div>Error...</div>
   }
   if (loading) {
-    return <div>Loading....</div>
+    return <Spinner />
   }
   if (data) {
     return (

@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { BackButton } from '../styles/muiButtons'
 import { Contact, ArtInfo, ImageCarousel } from '../components'
 
 //todo art(id: ) needs to take in the id set into state by the user clicking on an

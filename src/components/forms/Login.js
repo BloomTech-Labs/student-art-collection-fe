@@ -29,7 +29,7 @@ const Login = () => {
 
     const user = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
     
-    loginUser({ variables: { email, password } })
+    //loginUser({ variables: { email, password } })
 
     history.push('/dashboard')
   };

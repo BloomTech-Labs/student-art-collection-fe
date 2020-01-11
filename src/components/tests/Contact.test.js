@@ -78,29 +78,29 @@ describe('<Contact />', () => {
             </MemoryRouter>
         );
 
-        const nameElement = getByPlaceholderText('Your Name')
-        const emailElement = getByPlaceholderText('Your Email')
-        const subjectElement = getByPlaceholderText('Your Subject Line')
-        const messageElement = getByPlaceholderText('Your Message')
+        const nameElement = getByPlaceholderText('Name')
+        const emailElement = getByPlaceholderText('Email')
+        const subjectElement = getByPlaceholderText('Subject')
+        const messageElement = getByPlaceholderText('Message')
         const submitButton = getByText('Send Email!')
 
         fireEvent.change(nameElement, {
-            target: {name: 'Your Name', value: mockEmailVariables.name}
+            target: {name: 'Name', value: mockEmailVariables.name}
         });
         expect(nameElement.value).toBe(mockEmailVariables.name)
 
         fireEvent.change(emailElement, {
-            target: {name: 'Your Email', value: mockEmailVariables.fromUser}
+            target: {name: 'Email', value: mockEmailVariables.fromUser}
         });
         expect(emailElement.value).toBe(mockEmailVariables.fromUser)
         
         fireEvent.change(subjectElement, {
-            target: {name: 'Your Subject Line', value: mockEmailVariables.subject}
+            target: {name: 'Subject', value: mockEmailVariables.subject}
         });
         expect(subjectElement.value).toBe(mockEmailVariables.subject)
 
         fireEvent.change(messageElement, {
-            target: {name: 'Your Message', value: mockEmailVariables.message}
+            target: {name: 'Message', value: mockEmailVariables.message}
         });
         expect(messageElement.value).toBe(mockEmailVariables.message)
 

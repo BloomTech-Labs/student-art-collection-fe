@@ -4,7 +4,7 @@ import { Container } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 import PrivateRoute from './components/auth/PrivateRoute'
 import { Register, Login, Navigation } from './components'
-import { BrowseListings, MainPage, SinglePage } from './views'
+import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />
             <Route path='/artwork/:id' component={SinglePage} />
+            <Route path='/admin/artwork/:id' component={AdminSingleView} />
             {/* <Route
               path='/artwork'
               render={props => <SinglePage {...props} id={1} />}

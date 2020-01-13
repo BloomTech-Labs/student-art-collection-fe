@@ -1,12 +1,14 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from 'react-apollo';
-import { Card, Grid, CardActionArea, CardMedia } from '@material-ui/core'
 import { Link } from 'react-router-dom';
+import { Card, Grid, CardActionArea, CardMedia } from '@material-ui/core'
+import styled from 'styled-components'
+
 
 const GET_SCHOOL_INFO = gql`
-query school ($id: ID!){
-    school(id: $id){
+query schoolBySchoolId ($id: ID!){
+    schoolBySchoolId(school_id: $id){
         school_name
         city
         art {
@@ -22,9 +24,9 @@ query school ($id: ID!){
 }
 `
 const Dashboard = props => {
-
-    
-    const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {variables: { id:1 }})
+    console.log(props)
+    const id = props.schoolId
+    const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {variables: { id }})
 
     if(error) {
         return <div> Error Loading Dashboard...</div>
@@ -36,18 +38,20 @@ const Dashboard = props => {
         console.log(data);
         return (
             <>
-            <div>
-                Welcome, {data.school.school_name}
+            <TopDash>
                 <div>
-                {data.school.city}    || Grades 9-12
+                Welcome, {data.schoolBySchoolId.school_name}
+                <div>
+                {data.schoolBySchoolId.city}    || Grades 9-12
+                </div>
                 </div>
                 {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
-            </div>
+            </TopDash>
 
-            <div>
+            <ArtSect>
                 School Artwork
 
-                {data.school.art.map(listings => (
+                {data.schoolBySchoolId.art.map(listings => (
 
                     <Grid item key={listings.id}>
                     <Card>
@@ -75,9 +79,24 @@ const Dashboard = props => {
                     </Card>
                 </Grid>
                 ))}
-            </div>
+            </ArtSect>
             </>
         )}
 }
+
+//styling
+const TopDash = styled.div`
+    background-color: orange;
+    opacity: 75%;
+    border: solid 1px gray;
+    text-color: white;
+    padding: 2%;
+    
+`;
+
+const ArtSect = styled.div`
+    align-content: center;
+    margin: 2% 0;
+`;
 
 export default Dashboard;

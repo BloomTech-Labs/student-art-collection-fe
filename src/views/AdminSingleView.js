@@ -18,9 +18,8 @@ import {
 } from '../components'
 
 const GET_ART = gql`
-  query {
-    #art($id: ID!)
-    art(id: 4) {
+  query art($id: ID!) {
+    art(id: $id) {
       id
       price
       sold
@@ -50,7 +49,7 @@ const DELETE_ART = gql`
 
 const AdminSingleView = props => {
   const id = props.match.params.id
-  const { error, loading, data } = useQuery(GET_ART)
+  const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
   const [deleteArt] = useMutation(DELETE_ART)
 
   console.log(`props >>>`, props)

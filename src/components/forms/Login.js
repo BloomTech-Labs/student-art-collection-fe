@@ -29,7 +29,7 @@ const Login = () => {
 
     const user = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
     
-    // loginUser({ variables: { email, password } })
+    //loginUser({ variables: { email, password } })
 
     history.push('/dashboard')
   };
@@ -40,6 +40,7 @@ const Login = () => {
     <Box display='flex' justifyContent='center'>
       <form onSubmit={onSubmit}>
         <TextField
+          placeholder='Email'
           variant='outlined'
           label='Email'
           style={styles.textfield}
@@ -52,6 +53,7 @@ const Login = () => {
           required={true}
         />
         <TextField
+          placeholder='Password'
           variant='outlined'
           label='Password'
           style={styles.textfield}

@@ -110,6 +110,7 @@ const Register = () => {
      <Box display='flex' style={styles.textfieldbox}>
       <form onSubmit={onSubmit}>
         <TextField
+          placeholder='Email'
           variant='outlined'
           label='Email'
           style={styles.textfield}
@@ -122,6 +123,7 @@ const Register = () => {
           required={true}
         />
         <TextField
+          placeholder='Password'
           variant='outlined'
           label='Password'
           style={styles.textfield}
@@ -134,6 +136,7 @@ const Register = () => {
           required={true}
         />
         <TextField
+          placeholder='School Name'
           variant='outlined'
           label='School Name'
           style={styles.textfield}
@@ -146,6 +149,7 @@ const Register = () => {
           required={true}
         />
         <TextField
+          placeholder='Address'
           variant='outlined'
           label='Address'
           style={styles.textfield}
@@ -158,6 +162,7 @@ const Register = () => {
           required={true}
         />
         <TextField
+          placeholder='City'
           variant='outlined'
           label='City'
           style={styles.textfield}
@@ -170,6 +175,7 @@ const Register = () => {
           required={true}
         />
         <TextField
+          placeholder='ZIP Code'
           variant='outlined'
           label='ZIP Code'
           style={styles.textfield}

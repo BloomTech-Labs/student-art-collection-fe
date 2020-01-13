@@ -21,7 +21,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory()
-
+  console.log('this is history', history)
   const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER);
 
   const onSubmit = async e => {

@@ -8,6 +8,7 @@ import Contact from './components/forms/Contact.js'
 import Dashboard from './components/Dashboard'
 import { Register, Login, Navigation } from './components'
 import { BrowseListings, MainPage, SinglePage } from './views'
+import Submission from './components/forms/Submission'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             {/* <Route path='/dashboard' component={Dashboard} /> */}
             <PrivateRoute path='/dashboard' component={Dashboard} />
             <Route path='/artwork/:id' component={SinglePage} />
+            <PrivateRoute path='/admin/artwork/new' component={Submission} />
             {/* <Route
               path='/artwork'
               render={props => <SinglePage {...props} id={1} />}

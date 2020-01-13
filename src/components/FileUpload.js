@@ -1,9 +1,13 @@
 import React from 'react';
-import {useDropzone} from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
 const FileUpload = (props) => {
   
+const onDrop = (files) => {
+    props.setFile(files[0]);
+};
+
 const {
     acceptedFiles,
     getRootProps,
@@ -11,14 +15,23 @@ const {
     isDragActive,
     isDragAccept,
     isDragReject
-  } = useDropzone({accept: 'image/jpeg, image/png'});
+  } = useDropzone({ accept: 'image/jpeg, image/png', multiple:false, onDrop:onDrop });
+
+  const files = acceptedFiles.map(file => (
+    <li key={file.path}>
+      {file.name}
+    </li>
+  ));
   
   return (
     <div className="container">
       <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>Drag 'n' drop a file here, or click to select a file</p>
       </Container>
+      <ul>
+        {files}
+      </ul>
     </div>
   );
 };
@@ -37,6 +50,7 @@ const getColor = (props) => {
   }
   
   const Container = styled.div`
+    cursor: pointer;
     flex: 1;
     display: flex;
     flex-direction: column;

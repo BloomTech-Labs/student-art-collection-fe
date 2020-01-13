@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
 import FileUpload from '../FileUpload'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 
 //Should category be int or string?
@@ -42,12 +44,18 @@ const Submission = () => {
   const [description, setDescription] = useState('')
   const [file, setFile] = useState(null)
   const [submitArt, { data, loading, error }] = useMutation(SUBMISSION)
+  const history = useHistory()
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    submitArt({
-      variables: { category, price, artistName, description },
-    })
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+    const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
+    history.push('/dashboard')
+    // submitArt({
+    //   variables: { category, price, artistName, description },
+    // })
   }
 
   if (error) {
@@ -124,7 +132,7 @@ const Submission = () => {
             required={true}
           />
           <Box display='flex' justifyContent='center'>
-          <FileUpload />
+          <FileUpload setFile={setFile} />
           </Box>
           <Box display='flex' justifyContent='center'>
             <Button

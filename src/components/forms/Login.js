@@ -38,7 +38,7 @@ const Login = () => {
     <>
     <h2 style={styles.heading}>Login to Student ArtCo!</h2>
     <Box display='flex' justifyContent='center'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}> 
         <TextField
           placeholder='Email'
           variant='outlined'

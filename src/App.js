@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 import PrivateRoute from './components/auth/PrivateRoute'
+// import { Images } from './components/images/images'
+import Contact from './components/forms/Contact.js'
+import Dashboard from './components/Dashboard'
 import { Register, Login, Navigation } from './components'
 import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
 
@@ -17,6 +20,8 @@ function App() {
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/browse' component={BrowseListings} />
+            {/* <Route path='/dashboard' component={Dashboard} /> */}
+            <PrivateRoute path='/dashboard' component={Dashboard} />
             <Route path='/artwork/:id' component={SinglePage} />
             <Route path='/admin/artwork/:id' component={AdminSingleView} />
             {/* <Route

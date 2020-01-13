@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { useMutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import React, { useState } from 'react'
+import { useMutation } from 'react-apollo'
+import { gql } from 'apollo-boost'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Box from '@material-ui/core/Box'
+import FileUpload from '../FileUpload'
+
 
 //Should category be int or string?
 const SUBMISSION = gql`
@@ -28,25 +30,25 @@ const SUBMISSION = gql`
       description
     }
   }
-`;
+`
 
 export { SUBMISSION }
 
 const Submission = () => {
-  const [category, setCategory] = useState('');
-  const [price, setPrice] = useState('');
-  const [artistName, setArtistName] = useState('');
+  const [category, setCategory] = useState('')
+  const [price, setPrice] = useState('')
+  const [artistName, setArtistName] = useState('')
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
-  const [description, setDescription] = useState('');
-
-  const [submitArt, { data, loading, error }] = useMutation(SUBMISSION);
+  const [description, setDescription] = useState('')
+  const [file, setFile] = useState(null)
+  const [submitArt, { data, loading, error }] = useMutation(SUBMISSION)
 
   const onSubmit = e => {
     e.preventDefault()
     submitArt({
       variables: { category, price, artistName, description },
-    });
-  };
+    })
+  }
 
   if (error) {
     //? if server returns an error...
@@ -64,6 +66,7 @@ const Submission = () => {
     <>
       <h2 style={styles.heading}>Create an Art Listing</h2>
       <Box display='flex' justifyContent='center' style={styles.textfieldbox}>
+        
         <form onSubmit={onSubmit}>
           <TextField
             variant='outlined'
@@ -120,10 +123,10 @@ const Submission = () => {
             onChange={e => setDescription(e.target.value)}
             required={true}
           />
-          <Box
-            display='flex'
-            justifyContent='center'
-          >
+          <Box display='flex' justifyContent='center'>
+          <FileUpload />
+          </Box>
+          <Box display='flex' justifyContent='center'>
             <Button
               variant='contained'
               style={styles.button}
@@ -136,8 +139,8 @@ const Submission = () => {
         </form>
       </Box>
     </>
-  );
-};
+  )
+}
 
 const styles = {
   heading: {
@@ -151,6 +154,6 @@ const styles = {
   button: {
     margin: 15,
   },
-};
+}
 
-export default Submission;
+export default Submission

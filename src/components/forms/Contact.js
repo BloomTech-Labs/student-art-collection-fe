@@ -42,6 +42,12 @@ const Contact = props => {
   const onSubmit = e => {
     e.preventDefault()
     sendMail({ variables: { sendto, name, fromUser, subject, message } })
+    .then(() => {
+      setName('')
+      setFromUser('')
+      setSubject('')
+      setMessage('')
+    })
     if (data) {
       console.log('data', data)
     } else if (loading) {

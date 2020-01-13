@@ -13,7 +13,7 @@ query {
 
 export const Images = () => {
     const{loading, error, data} = useQuery(GET_IMAGES)
-   
+
     if (loading) {
         return (
             <div>Loading...</div>

@@ -39,17 +39,23 @@ const Dashboard = props => {
         return (
             <>
             <TopDash>
-                <div>
+                <SchoolText>
                 Welcome, {data.schoolBySchoolId.school_name}
-                <div>
-                {data.schoolBySchoolId.city}    || Grades 9-12
-                </div>
-                </div>
+                <TownText>
+                    <br></br>
+                    {data.schoolBySchoolId.city}    || Grades 9-12
+                </TownText>
+                </SchoolText>
                 {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
+                <button>
+                    
+                </button>
             </TopDash>
 
             <ArtSect>
-                School Artwork
+                <ListingTop>
+                    School Artwork
+                </ListingTop>
 
                 {data.schoolBySchoolId.art.map(listings => (
 
@@ -91,12 +97,31 @@ const TopDash = styled.div`
     border: solid 1px gray;
     text-color: white;
     padding: 2%;
+    width: 100%
+
     
+`;
+
+const SchoolText = styled.text`
+    font-size:30px;
+    font-weight: 400;
+    color: white;
+`;
+
+const TownText = styled.text`
+    font-size: 20px;
 `;
 
 const ArtSect = styled.div`
     align-content: center;
     margin: 2% 0;
+`;
+
+const ListingTop = styled.text`
+font-size:30px;
+font-weight: 400;
+color: black;
+align-items:center;
 `;
 
 export default Dashboard;

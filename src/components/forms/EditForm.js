@@ -18,6 +18,7 @@ const GET_CATEGORIES = gql`
 const UPDATE_ART = gql`
     mutation
         updateArt(
+            $category: ID
             $id: ID!
             $title: String!
             $price: Int!
@@ -26,6 +27,7 @@ const UPDATE_ART = gql`
             $description: String!
         ) {
             updateArt(
+                category: $category
                 id: $id
                 title: $title
                 price: $price
@@ -66,7 +68,7 @@ const EditForm = (props) => {
     
     const [selectedIndex, setSelectedIndex] = useState(props.info.art.category.id -1)
     const [anchorEl, setAnchorEl] = useState(null);
-    const [_, setCategory] = useState(props.info.art.category.id);
+    const [category, setCategory] = useState(props.info.art.category.id);
     const {error, loading, data} = useQuery(GET_CATEGORIES);
     
     const [updateArt] = useMutation(UPDATE_ART);
@@ -89,6 +91,7 @@ const EditForm = (props) => {
         event.preventDefault()
         await updateArt({
             variables: {
+                category,
                 id,
                 price,
                 artist_name: artistName,
@@ -107,7 +110,7 @@ const EditForm = (props) => {
         if (data) {
             console.log('Here at data')
             setReload(true)
-            props.propData.history.replace(`/admin/artwork/${id}/show`)
+            props.propData.history.replace(`/admin/artwork/${id}`)
         }
     }
 

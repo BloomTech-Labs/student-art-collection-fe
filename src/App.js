@@ -28,7 +28,7 @@ function App() {
               {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
               <PrivateRoute path='/dashboard' component={Dashboard} />
               <PrivateRoute
-                exact path='/admin/artwork/:id/show'
+                exact path='/admin/artwork/:id'
                 component={AdminSingleView}
                 />
               <PrivateRoute 

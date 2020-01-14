@@ -187,12 +187,13 @@ console.log(price)
             required={true}
           /> */}
 
-<FormControl variant="outlined">
+<FormControl variant="outlined" size='small' style={styles.dropdown}>
         {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
         <Select
           displayEmpty
           value={category}
           onChange={categoryChange}
+          required={true}
         >
          <MenuItem value=''>Art Category</MenuItem>
          {data.allCategories.map(item => <MenuItem value={item.id} key={item.id}>{item.category}</MenuItem>)}
@@ -287,6 +288,9 @@ const styles = {
   button: {
     margin: 15,
   },
+  dropdown: {
+      margin: 15,
+  }
 }
 
 export default Submission

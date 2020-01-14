@@ -1,6 +1,7 @@
 import Register from './forms/Register'
 import Login from './forms/Login'
 import Contact from './forms/Contact'
+import EditSubmission from './forms/Edit'
 import Navigation from './Navigation'
 import ImageMasonry from './ImageMasonry'
 import ImageCarousel from './ImageCarousel'
@@ -13,6 +14,7 @@ export {
   Register,
   Login,
   Contact,
+  EditSubmission,
   Navigation,
   ImageMasonry,
   ImageCarousel,

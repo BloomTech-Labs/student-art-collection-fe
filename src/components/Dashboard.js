@@ -148,7 +148,7 @@ const TopDash = styled.div`
     background-color: #56565b;
     opacity: 75%;
     border: solid 1px gray;
-    text-color:  #F5F5F5;
+    color:  #F5F5F5;
     padding: 2%;
     display: block;
 `;

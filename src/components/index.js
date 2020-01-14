@@ -5,6 +5,7 @@ import Navigation from './Navigation'
 import ImageMasonry from './ImageMasonry'
 import ImageCarousel from './ImageCarousel'
 import ArtInfo from './ArtInfo'
+import EditConsole from './EditConsole'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 
@@ -16,6 +17,7 @@ export {
   ImageMasonry,
   ImageCarousel,
   ArtInfo,
+  EditConsole,
   Spinner,
   ErrorMessage,
 }

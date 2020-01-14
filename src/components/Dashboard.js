@@ -145,18 +145,10 @@ const Dashboard = props => {
 
 //styling
 const TopDash = styled.div`
-<<<<<<< HEAD
-  background-color: orange;
-  opacity: 75%;
-  border: solid 1px gray;
-  color: white;
-  padding: 2%;
-`
-=======
     background-color: #56565b;
     opacity: 75%;
     border: solid 1px gray;
-    text-color:  #F5F5F5;
+    color:  #F5F5F5;
     padding: 2%;
     display: block;
 `;
@@ -170,7 +162,6 @@ const SchoolText = styled.text`
 const TownText = styled.text`
     font-size: 20px;
 `;
->>>>>>> d141ba41fc7d9cc85ff5b0c96486b37562f99266
 
 const ArtSect = styled.div`
     align-content: center;

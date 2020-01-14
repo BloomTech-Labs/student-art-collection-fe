@@ -8,7 +8,7 @@ import Dashboard from './components/Dashboard'
 import { Register, Login, Navigation, EditSubmission } from './components'
 import Submission from './components/forms/Submission'
 import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
-import Submission from './components/forms/Submission'
+
 
 function App() {
   const [reload, setReload] = useState(false)
@@ -33,8 +33,12 @@ function App() {
               {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
               <PrivateRoute path='/dashboard' component={Dashboard} />
               <PrivateRoute
-                path='/admin/artwork/:id'
+                exact path='/admin/artwork/:id'
                 component={AdminSingleView}
+              />
+              <PrivateRoute
+                exact path='/admin/artwork/:id/edit'
+                component={EditSubmission}
               />
             </Switch>
           </Router>

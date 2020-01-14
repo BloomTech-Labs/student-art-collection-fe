@@ -145,15 +145,12 @@ const Dashboard = props => {
 
 //styling
 const TopDash = styled.div`
-    background-color: orange;
+    background-color: #56565b;
     opacity: 75%;
     border: solid 1px gray;
     text-color:  #F5F5F5;
     padding: 2%;
     display: block;
-    width: 100%;
-    overflow: hidden;
-    height: 100%;
 `;
 
 const SchoolText = styled.text`

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useMutation, useQuery } from 'react-apollo'
+import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import {
   TextField,
@@ -20,97 +20,28 @@ import CategorySelection from '../CategorySelection'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
-//Should category be int or string?
-// const SUBMISSION = gql`
-//   mutation addArt(
-//     $category: ID
-//     $school_id: ID
-//     $price: Int
-//     $title: String
-//     $artistName: String
-//     $description: String
-//     $image_url: String
-//   ) {
-//     addArt(
-//       category: $category
-//       school_id: $school_id
-//       price: $price
-//       title: $title
-//       artist_name: $artistName
-//       description: $description
-//       image_url: $image_url
-//     ) {
-//       title
-//     }
-//   }
-// `
-
-// const SUBMISSION = gql`
-//     mutation addArt($input: NewArtInput) {
-//         addArt(input: $input) {
-//             title
-//         }
-//     }
-// `;
-
-// const SUBMISSION = gql`
-// mutation {
-//     addArt(input: {
-//       category: $category,
-//       price: $price,
-//     }) {
-//       title
-//     }
-//   }
-// `
-
-// const SUBMISSION = gql`
-//     mutation (
-//      $category: ID,
-//      $school_id: ID,
-//      $price: Int,
-//      $title: String,
-//      $artistName: String,
-//      $description: String,
-//      $image_url: String,
-//     ) {
-//         addArt(
-//             category: $category,
-//                school_id: $school_id,
-//                price: $price,
-//                title: $title,
-//                artist_name: $artistName,
-//                description: $description,
-//                image_url: $image_url,
-//         ) {
-//                title
-//              }
-//     }
-// `
-
-// const  SUBMISSION = gql`
-//   mutation {
-//       addArt(newArt: {
-//           category: 1
-//           school_id: 1
-//           title: "art"
-//           description: "desc"
-//           image_url: "http//example.com"
-//           art_id: 2
-//       }) {
-//           title
-//       }
-//   }
-// `
-
 const SUBMISSION = gql`
-  mutation addArt($input: NewArtInput) {
-    addArt(newArt: $input) {
-      # title
+  mutation addArt(
+    $category: ID
+    $school_id: ID
+    $image_url: String
+    $title: String
+  ) {
+    addArt(
+      category: $category
+      school_id: $school_id
+      image_url: $image_url
+      title: $title
+    ) {
       school_id
+      title
       category {
         id
         category
+      }
+      images {
+        id
+        image_url
       }
     }
   }
@@ -128,10 +59,10 @@ const Submission = props => {
   const [file, setFile] = useState(null)
   const history = useHistory()
 
-  const [muteData, setMuteData] = useState()
-  const [MuteError, setMuteError] = useState()
-  const [submitArt] = useMutation(SUBMISSION)
+  const [data, setData] = useState()
+  const [error, setError] = useState()
 
+  const [submitArt] = useMutation(SUBMISSION)
   // const [example, { data }] = useMutation(SUBMISSION)
 
   const onSubmit = async e => {
@@ -161,23 +92,25 @@ const Submission = props => {
     //   category: 1,
     //   school_id: props.schoolId,
     // })
-
-    try {
-      const { muteData } = await submitArt({
-        variables: { input: [category, props.schoolId] },
-      })
-      setMuteData(muteData)
-    } catch (e) {
-      setMuteError(e)
+    const variables = {
+      category: 2,
+      school_id: 1,
+      title: 'title',
+      image_url: 'exa',
     }
-    console.log(`mutation data >>>`, muteData)
-    console.log(`muteError`, MuteError)
+
+    console.log(`variables >>>`, variables)
+    // submitArt({ variables })
+    try {
+      const data = await submitArt({ variables: variables })
+      setData(data)
+    } catch (e) {
+      setError(e)
+    }
+    console.log(`mutation data >>>`, data)
+    console.log(`mutation error >>>`, error)
 
     // history.push('/dashboard')
-  }
-
-  const categoryChange = e => {
-    setCategory(e.target.value)
   }
 
   return (

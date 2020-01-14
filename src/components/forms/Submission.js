@@ -1,49 +1,128 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-apollo'
+import { useMutation, useQuery } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import Box from '@material-ui/core/Box'
+import {
+  TextField,
+  Button,
+  Box,
+  ListItem,
+  ListItemText,
+  List,
+  Menu,
+  MenuItem,
+  InputLabel,
+  FormHelperText,
+  Select,
+  FormControl
+} from '@material-ui/core'
 import FileUpload from '../FileUpload'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
-
 //Should category be int or string?
 const SUBMISSION = gql`
-  mutation submitArt(
-    $category: Int!
-    $price: Int!
-    $artist_name: String!
-    $sold: Boolean!
-    $description: String!
+  mutation addArt(
+    $category: ID
+    $school_id: ID
+    $price: Int
+    $title: String
+    $artistName: String
+    $description: String
+    $image_url: String
   ) {
-    submitArt(
+    addArt(
       category: $category
+      school_id: $school_id
       price: $price
-      artist_name: $artist_name
-      sold: $sold
+      title: $title
+      artist_name: $artistName
       description: $description
+      image_url: $image_url
     ) {
-      category
-      price
-      artist_name
-      sold
-      description
+      title
     }
   }
 `
 
-export { SUBMISSION }
+// const SUBMISSION = gql`
+//     mutation addArt($input: NewArtInput) {
+//         addArt(input: $input) {
+//             title
+//         }
+//     }
+// `;
 
-const Submission = () => {
+// const SUBMISSION = gql`
+// mutation {
+//     addArt(input: {
+//       category: $category,
+//       price: $price,
+//     }) {
+//       title
+//     }
+//   }
+// `
+
+// const SUBMISSION = gql`
+//     mutation (
+//      $category: ID,
+//      $school_id: ID,
+//      $price: Int,
+//      $title: String,
+//      $artistName: String,
+//      $description: String,
+//      $image_url: String,
+//     ) {
+//         addArt(
+//             category: $category,
+//                school_id: $school_id,
+//                price: $price,
+//                title: $title,
+//                artist_name: $artistName,
+//                description: $description,
+//                image_url: $image_url,
+//         ) {
+//                title
+//              }
+//     }
+// `
+
+// const  SUBMISSION = gql`
+//   mutation {
+//       addArt(newArt: {
+//           category: 1
+//           school_id: 1
+//           title: "art"
+//           description: "desc"
+//           image_url: "http//example.com"
+//           art_id: 2
+//       }) {
+//           title
+//       }
+//   }
+// `
+
+const CATEGORIES = gql`
+  query allCategories {
+    allCategories {
+      id
+      category
+    }
+  }
+`
+
+const Submission = props => {
   const [category, setCategory] = useState('')
   const [price, setPrice] = useState('')
   const [artistName, setArtistName] = useState('')
+  const [title, setTitle] = useState('')
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [anchorEl, setAnchorEl] = useState(null)
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
   const [description, setDescription] = useState('')
   const [file, setFile] = useState(null)
-  const [submitArt, { data, loading, error }] = useMutation(SUBMISSION)
+  const [submitArt] = useMutation(SUBMISSION)
+  const { error, loading, data } = useQuery(CATEGORIES)
   const history = useHistory()
 
   const onSubmit = async e => {
@@ -51,12 +130,31 @@ const Submission = () => {
     const formData = new FormData()
     formData.append('file', file)
     formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`, formData)
+    const response = await axios.post(
+      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+      formData
+    )
+console.log(price)
+    await submitArt({
+      variables: {
+        input: {
+            category,
+            price: +price,
+            artistName,
+            description,
+            title,
+            school_id: props.schoolId,
+            image_url: response.secure_url,
+        }
+      },
+    })
+
     history.push('/dashboard')
-    // submitArt({
-    //   variables: { category, price, artistName, description },
-    // })
   }
+
+  const categoryChange = e => {
+      setCategory(e.target.value)
+  } 
 
   if (error) {
     //? if server returns an error...
@@ -74,9 +172,8 @@ const Submission = () => {
     <>
       <h2 style={styles.heading}>Create an Art Listing</h2>
       <Box display='flex' justifyContent='center' style={styles.textfieldbox}>
-        
         <form onSubmit={onSubmit}>
-          <TextField
+          {/* <TextField
             variant='outlined'
             label='Category'
             style={styles.textfield}
@@ -88,7 +185,19 @@ const Submission = () => {
             placeholder='Category'
             onChange={e => setCategory(e.target.value)}
             required={true}
-          />
+          /> */}
+
+<FormControl variant="outlined">
+        {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
+        <Select
+          displayEmpty
+          value={category}
+          onChange={categoryChange}
+        >
+         <MenuItem value=''>Art Category</MenuItem>
+         {data.allCategories.map(item => <MenuItem value={item.id} key={item.id}>{item.category}</MenuItem>)}
+        </Select>
+      </FormControl>
 
           <TextField
             variant='outlined'
@@ -99,8 +208,10 @@ const Submission = () => {
             type='text'
             name='price'
             value={price}
-            placeholder='$1.00'
-            onChange={e => setPrice(e.target.value)}
+            placeholder='1.00'
+            onChange={e => {
+                console.log(price)
+                setPrice(e.target.value)}}
             required={true}
           />
 
@@ -120,6 +231,20 @@ const Submission = () => {
 
           <TextField
             variant='outlined'
+            label='Title'
+            style={styles.textfield}
+            size='small'
+            fullWidth={false}
+            type='text'
+            name='title'
+            value={title}
+            placeholder='Title'
+            onChange={e => setTitle(e.target.value)}
+            required={true}
+          />
+
+          <TextField
+            variant='outlined'
             label='Description'
             style={styles.textfield}
             size='small'
@@ -132,7 +257,7 @@ const Submission = () => {
             required={true}
           />
           <Box display='flex' justifyContent='center'>
-          <FileUpload setFile={setFile} />
+            <FileUpload setFile={setFile} />
           </Box>
           <Box display='flex' justifyContent='center'>
             <Button

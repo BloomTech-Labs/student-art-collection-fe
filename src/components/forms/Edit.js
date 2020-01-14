@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import { useQuery, useMutation } from 'react-apollo';
+import React from 'react';
+import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import EditForm from './EditForm.js'
 import ErrorMessage from '../GraphErrors';
 import Spinner from '../GraphLoading';
-import {useHistory} from 'react-router-dom';
 
 const GET_ART = gql`
     query art($id: ID!) {
@@ -29,50 +28,10 @@ const GET_ART = gql`
     }
 `;
 
-const UPDATE_ART = gql`
-    mutation
-        updateArt(
-            $id: ID!
-            $title: String!
-            $price: Int!
-            $artist_name: String!
-            $sold: Boolean
-            $description: String!
-        ) {
-            updateArt(
-                id: $id
-                title: $title
-                price: $price
-                artist_name: $artist_name
-                sold: $sold
-                description: $description
-            ) {
-                title
-                price
-                artist_name
-                sold
-                description
-            }
-        }
-`;
-
-
 const EditSubmission = (props) => {
     const id = props.match.params.id
-    const [updated, setUpdated] = useState(false)
-    
-    const[art, { error, loading, data }] = useQuery(GET_ART) 
-    useEffect(() => {
-        art({
-            variables: {
-                id
-            }
-        })
-    }, [updated])
-
-    const onUpdate = () => {
-        setUpdated(!updated)
-    }
+    const propData = props
+    const { error, loading, data } = useQuery(GET_ART, {variables: { id }}) 
 
     if (error) {
         return <ErrorMessage />
@@ -83,7 +42,7 @@ const EditSubmission = (props) => {
     }
     
     if (data) {
-        return <EditForm info={data} /* onUpdate={onUpdate} */ />
+        return <EditForm info={data} propData={propData}  />
     };
     
 };

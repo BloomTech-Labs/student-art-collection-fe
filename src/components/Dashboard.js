@@ -23,7 +23,6 @@ const GET_SCHOOL_INFO = gql`
   }
 `
 const Dashboard = props => {
-  console.log(props)
   const id = props.schoolId
   const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {
     variables: { id },
@@ -36,7 +35,6 @@ const Dashboard = props => {
     return <div> Loading Dashboard...</div>
   }
   if (data) {
-    console.log(data)
     return (
       <>
         <TopDash>
@@ -86,7 +84,7 @@ const TopDash = styled.div`
   background-color: orange;
   opacity: 75%;
   border: solid 1px gray;
-  text-color: white;
+  color: white;
   padding: 2%;
 `
 

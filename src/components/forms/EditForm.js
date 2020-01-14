@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {gql} from 'apollo-boost';
 import {useQuery, useMutation} from 'react-apollo';
 import {TextField, Button, Box, List, ListItem, ListItemText, Menu, MenuItem} from '@material-ui/core';
-import {useHistory} from 'react-router-dom';
+import ErrorMessage from '../GraphErrors';
+import Spinner from '../GraphLoading';
+import ReloadContext from '../../components/ReloadContext';
 
 const GET_CATEGORIES = gql`
     query {
@@ -41,6 +43,7 @@ const UPDATE_ART = gql`
 `;
 
 const EditForm = (props) => {
+    const {setReload} = useContext(ReloadContext)
     const styles = {
         heading: {
         fontFamily: 'Barlow',
@@ -54,9 +57,7 @@ const EditForm = (props) => {
         margin: 15,
         },
     }
-    
 
-    
     const id = props.info.art.id 
     const [price, setPrice] = useState(props.info.art.price);
     const [artistName, setArtistName] = useState(props.info.art.artist_name);
@@ -65,12 +66,10 @@ const EditForm = (props) => {
     
     const [selectedIndex, setSelectedIndex] = useState(props.info.art.category.id -1)
     const [anchorEl, setAnchorEl] = useState(null);
-    const [category, setCategory] = useState(props.info.art.category.id);
+    const [_, setCategory] = useState(props.info.art.category.id);
     const {error, loading, data} = useQuery(GET_CATEGORIES);
     
     const [updateArt] = useMutation(UPDATE_ART);
-    
-    const history = useHistory()
 
     const handleClickListItem = event => {
         setAnchorEl(event.currentTarget);
@@ -86,21 +85,31 @@ const EditForm = (props) => {
         setAnchorEl(null)
     }
     
-    // const onSubmit = async event => {
-    //     event.preventDefault()
-    //     await updateArt({
-    //         variables: {
-    //             id,
-    //             price,
-    //             artist_name: artistName,
-    //             description,
-    //             title
-    //         }
-    //     })
-    //     .then(() => {
-    //         history.push(`/admin/artwork/${id}`)
-    //     })
-    // }
+    const onSubmit = async event => {
+        event.preventDefault()
+        await updateArt({
+            variables: {
+                id,
+                price,
+                artist_name: artistName,
+                description,
+                title
+            }
+        })
+        if (error) {
+            console.log('Here at error')
+            return <ErrorMessage />
+        }
+        if (loading) {
+            console.log('Here at loading')
+            return <Spinner />
+        }
+        if (data) {
+            console.log('Here at data')
+            setReload(true)
+            props.propData.history.replace(`/admin/artwork/${id}/show`)
+        }
+    }
 
     if (error) {
        return <h1>Failed to load categories, item cannot be updated!</h1>
@@ -115,7 +124,7 @@ const EditForm = (props) => {
             <>
                 <h2 style={styles.heading}>Update an Art Listing</h2>
                 <Box display='flex' justifyContent='center' style={styles.textfieldbox}>
-                <form >
+                <form onSubmit={onSubmit}>
                     <List aria-label='Selecting a category'>
                         <ListItem
                             button

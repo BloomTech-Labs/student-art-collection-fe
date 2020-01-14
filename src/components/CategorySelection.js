@@ -1,7 +1,7 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
-import { FormControl, MenuItem, Select } from '@material-ui/core'
+import { FormControl, MenuItem, Select, Box } from '@material-ui/core'
 import { ErrorMessage, Spinner } from './index'
 
 const CATEGORIES = gql`
@@ -24,7 +24,7 @@ const CategorySelection = ({ cat, setCat }) => {
   }
   if (data) {
     return (
-      <FormControl variant='outlined' size='small'>
+      <FormControl variant='outlined' size='small' style={styles.dropdown}>
         <Select
           displayEmpty
           value={cat}
@@ -42,5 +42,13 @@ const CategorySelection = ({ cat, setCat }) => {
     )
   }
 }
+
+const styles = {
+  dropdown: {
+    margin: 15,
+  },
+}
+
+
 
 export default CategorySelection

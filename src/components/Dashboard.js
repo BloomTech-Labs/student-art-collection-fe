@@ -123,12 +123,12 @@ const Dashboard = props => {
                             />
 
                             <CardContent className = {classes.content}>
-                            <Typography className={classes.mediaTitle} variant={"h6"} gutterBottom>
-                                {listings.title === '' ? 'Untitled' : listings.title}
+                            <Typography className={classes.mediaTitle} variant={'h6'} gutterBottom>
+                                Title: {listings.title === '' ? 'Untitled' : listings.title}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {listings.artist_name === '' ? 'Untitled' : listings.artist_name}
-                                </Typography>
+                            <Typography variant='body2' color='textSecondary' component='p'>
+                                Artist: {listings.artist_name === '' ? 'Untitled' : listings.artist_name}
+                            </Typography>
                             
                             </CardContent>
 
@@ -148,7 +148,7 @@ const TopDash = styled.div`
     background-color: orange;
     opacity: 75%;
     border: solid 1px gray;
-    text-color: white;
+    text-color:  #F5F5F5;
     padding: 2%;
     display: block;
     width: 100%;
@@ -159,7 +159,7 @@ const TopDash = styled.div`
 const SchoolText = styled.text`
     font-size:30px;
     font-weight: 400;
-    color: white;
+    color:  #F5F5F5;
 `;
 
 const TownText = styled.text`

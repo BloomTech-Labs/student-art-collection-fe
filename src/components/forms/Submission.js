@@ -13,36 +13,37 @@ import {
   InputLabel,
   FormHelperText,
   Select,
-  FormControl
+  FormControl,
 } from '@material-ui/core'
 import FileUpload from '../FileUpload'
+import CategorySelection from '../CategorySelection'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 //Should category be int or string?
-const SUBMISSION = gql`
-  mutation addArt(
-    $category: ID
-    $school_id: ID
-    $price: Int
-    $title: String
-    $artistName: String
-    $description: String
-    $image_url: String
-  ) {
-    addArt(
-      category: $category
-      school_id: $school_id
-      price: $price
-      title: $title
-      artist_name: $artistName
-      description: $description
-      image_url: $image_url
-    ) {
-      title
-    }
-  }
-`
+// const SUBMISSION = gql`
+//   mutation addArt(
+//     $category: ID
+//     $school_id: ID
+//     $price: Int
+//     $title: String
+//     $artistName: String
+//     $description: String
+//     $image_url: String
+//   ) {
+//     addArt(
+//       category: $category
+//       school_id: $school_id
+//       price: $price
+//       title: $title
+//       artist_name: $artistName
+//       description: $description
+//       image_url: $image_url
+//     ) {
+//       title
+//     }
+//   }
+// `
 
 // const SUBMISSION = gql`
 //     mutation addArt($input: NewArtInput) {
@@ -102,11 +103,15 @@ const SUBMISSION = gql`
 //   }
 // `
 
-const CATEGORIES = gql`
-  query allCategories {
-    allCategories {
-      id
-      category
+const SUBMISSION = gql`
+  mutation addArt($input: NewArtInput) {
+    addArt(newArt: $input) {
+      # title
+      school_id
+      category {
+        id
+        category
+      }
     }
   }
 `
@@ -121,51 +126,58 @@ const Submission = props => {
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
   const [description, setDescription] = useState('')
   const [file, setFile] = useState(null)
-  const [submitArt] = useMutation(SUBMISSION)
-  const { error, loading, data } = useQuery(CATEGORIES)
   const history = useHistory()
+
+  const [muteData, setMuteData] = useState()
+  const [MuteError, setMuteError] = useState()
+  const [submitArt] = useMutation(SUBMISSION)
+
+  // const [example, { data }] = useMutation(SUBMISSION)
 
   const onSubmit = async e => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    const response = await axios.post(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-      formData
-    )
-console.log(price)
-    await submitArt({
-      variables: {
-        input: {
-            category,
-            price: +price,
-            artistName,
-            description,
-            title,
-            school_id: props.schoolId,
-            image_url: response.secure_url,
-        }
-      },
-    })
+    // const formData = new FormData()
+    // formData.append('file', file)
+    // formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+    // const response = await axios.post(
+    //   `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+    //   formData
+    // )
+    // console.log(price)
+    // submitArt({
+    //   variables: {
+    //     input: {
+    //       category,
+    //       price: +price,
+    //       artistName,
+    //       description,
+    //       title,
+    //       school_id: props.schoolId,
+    //       image_url: response.secure_url,
+    //     },
+    //   },
+    // })
+    // setInput({
+    //   category: 1,
+    //   school_id: props.schoolId,
+    // })
 
-    history.push('/dashboard')
+    try {
+      const { muteData } = await submitArt({
+        variables: { input: [category, props.schoolId] },
+      })
+      setMuteData(muteData)
+    } catch (e) {
+      setMuteError(e)
+    }
+    console.log(`mutation data >>>`, muteData)
+    console.log(`muteError`, MuteError)
+
+    // history.push('/dashboard')
   }
 
   const categoryChange = e => {
-      setCategory(e.target.value)
-  } 
-
-  if (error) {
-    //? if server returns an error...
-    return <div>Error....</div>
-  }
-  if (loading) {
-    //? while art is being submitted
-    return <div>Loading...</div>
-  }
-  if (data) {
-    //todo redirect upon successful submission
+    setCategory(e.target.value)
   }
 
   return (
@@ -187,20 +199,24 @@ console.log(price)
             required={true}
           /> */}
 
-<FormControl variant="outlined" size='small' style={styles.dropdown}>
-        {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
-        <Select
-          displayEmpty
-          value={category}
-          onChange={categoryChange}
-          required={true}
-        >
-         <MenuItem value=''>Art Category</MenuItem>
-         {data.allCategories.map(item => <MenuItem value={item.id} key={item.id}>{item.category}</MenuItem>)}
-        </Select>
-      </FormControl>
+          {/* <FormControl variant='outlined' size='small' style={styles.dropdown}>
+            <Select
+              displayEmpty
+              value={category}
+              onChange={categoryChange}
+              required={true}
+            >
+              <MenuItem value=''>Art Category</MenuItem>
+              {data.allCategories.map(item => (
+                <MenuItem value={item.id} key={item.id}>
+                  {item.category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl> */}
+          <CategorySelection cat={category} setCat={setCategory} />
 
-          <TextField
+          {/* <TextField
             variant='outlined'
             label='Price'
             style={styles.textfield}
@@ -211,12 +227,13 @@ console.log(price)
             value={price}
             placeholder='1.00'
             onChange={e => {
-                console.log(price)
-                setPrice(e.target.value)}}
+              console.log(price)
+              setPrice(e.target.value)
+            }}
             required={true}
-          />
+          /> */}
 
-          <TextField
+          {/* <TextField
             variant='outlined'
             label='Artist Name'
             style={styles.textfield}
@@ -228,9 +245,9 @@ console.log(price)
             placeholder='Artist Name'
             onChange={e => setArtistName(e.target.value)}
             required={true}
-          />
+          /> */}
 
-          <TextField
+          {/* <TextField
             variant='outlined'
             label='Title'
             style={styles.textfield}
@@ -242,9 +259,9 @@ console.log(price)
             placeholder='Title'
             onChange={e => setTitle(e.target.value)}
             required={true}
-          />
+          /> */}
 
-          <TextField
+          {/* <TextField
             variant='outlined'
             label='Description'
             style={styles.textfield}
@@ -256,10 +273,10 @@ console.log(price)
             placeholder='Description'
             onChange={e => setDescription(e.target.value)}
             required={true}
-          />
-          <Box display='flex' justifyContent='center'>
+          /> */}
+          {/* <Box display='flex' justifyContent='center'>
             <FileUpload setFile={setFile} />
-          </Box>
+          </Box> */}
           <Box display='flex' justifyContent='center'>
             <Button
               variant='contained'
@@ -289,8 +306,8 @@ const styles = {
     margin: 15,
   },
   dropdown: {
-      margin: 15,
-  }
+    margin: 15,
+  },
 }
 
 export default Submission

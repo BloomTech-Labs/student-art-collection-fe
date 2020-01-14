@@ -5,7 +5,7 @@ const EditConsole = ({ handleEdit, handleDelete }) => {
   return (
     <Grid container spacing={5} justify='space-evenly'>
       <Grid item>
-        <Button onClick={handleEdit} variant='outlined'>
+        <Button onClick={() => handleEdit()} variant='outlined'>
           Edit
         </Button>
       </Grid>

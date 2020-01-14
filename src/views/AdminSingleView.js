@@ -53,7 +53,7 @@ const AdminSingleView = props => {
   const [deleteArt] = useMutation(DELETE_ART)
 
   console.log(`props >>>`, props)
-
+  
   const handleDelete = () => {
     deleteArt({ variables: { id } })
     props.history.push('/dashboard')
@@ -70,6 +70,7 @@ const AdminSingleView = props => {
     return <Spinner />
   }
   if (data) {
+    console.log('data', data)
     return (
       <Container>
         <Card>

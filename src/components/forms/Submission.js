@@ -1,20 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import {
-  TextField,
-  Button,
-  Box,
-  ListItem,
-  ListItemText,
-  List,
-  Menu,
-  MenuItem,
-  InputLabel,
-  FormHelperText,
-  Select,
-  FormControl,
-} from '@material-ui/core'
+import { TextField, Button, Box } from '@material-ui/core'
 import FileUpload from '../FileUpload'
 import CategorySelection from '../CategorySelection'
 import axios from 'axios'
@@ -22,16 +9,22 @@ import { useHistory } from 'react-router-dom'
 
 const SUBMISSION = gql`
   mutation addArt(
-    $category: ID
-    $school_id: ID
-    $image_url: String
+    $category: ID!
+    $school_id: ID!
+    $image_url: String!
     $title: String
+    $description: String
+    $artist_name: String
+    $price: Int
   ) {
     addArt(
       category: $category
       school_id: $school_id
       image_url: $image_url
       title: $title
+      description: $description
+      artist_name: $artist_name
+      price: $price
     ) {
       school_id
       title
@@ -52,65 +45,36 @@ const Submission = props => {
   const [price, setPrice] = useState('')
   const [artistName, setArtistName] = useState('')
   const [title, setTitle] = useState('')
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [anchorEl, setAnchorEl] = useState(null)
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
   const [description, setDescription] = useState('')
   const [file, setFile] = useState(null)
   const history = useHistory()
 
-  const [data, setData] = useState()
-  const [error, setError] = useState()
-
   const [submitArt] = useMutation(SUBMISSION)
-  // const [example, { data }] = useMutation(SUBMISSION)
 
   const onSubmit = async e => {
     e.preventDefault()
-    // const formData = new FormData()
-    // formData.append('file', file)
-    // formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    // const response = await axios.post(
-    //   `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-    //   formData
-    // )
-    // console.log(price)
-    // submitArt({
-    //   variables: {
-    //     input: {
-    //       category,
-    //       price: +price,
-    //       artistName,
-    //       description,
-    //       title,
-    //       school_id: props.schoolId,
-    //       image_url: response.secure_url,
-    //     },
-    //   },
-    // })
-    // setInput({
-    //   category: 1,
-    //   school_id: props.schoolId,
-    // })
-    const variables = {
-      category: 2,
-      school_id: 1,
-      title: 'title',
-      image_url: 'exa',
-    }
-
-    console.log(`variables >>>`, variables)
-    // submitArt({ variables })
-    try {
-      const data = await submitArt({ variables: variables })
-      setData(data)
-    } catch (e) {
-      setError(e)
-    }
-    console.log(`mutation data >>>`, data)
-    console.log(`mutation error >>>`, error)
-
-    // history.push('/dashboard')
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+        formData
+      )
+      .then(res => {
+        const variables = {
+          category,
+          price: Number(price),
+          artist_name: artistName,
+          description,
+          title,
+          school_id: props.schoolId,
+          image_url: res.data.secure_url,
+        }
+        submitArt({ variables: variables })
+      })
+      .then(() => history.push('/dashboard'))
   }
 
   return (
@@ -118,38 +82,9 @@ const Submission = props => {
       <h2 style={styles.heading}>Create an Art Listing</h2>
       <Box display='flex' justifyContent='center' style={styles.textfieldbox}>
         <form onSubmit={onSubmit}>
-          {/* <TextField
-            variant='outlined'
-            label='Category'
-            style={styles.textfield}
-            size='small'
-            fullWidth={false}
-            type='text'
-            name='category'
-            value={category}
-            placeholder='Category'
-            onChange={e => setCategory(e.target.value)}
-            required={true}
-          /> */}
-
-          {/* <FormControl variant='outlined' size='small' style={styles.dropdown}>
-            <Select
-              displayEmpty
-              value={category}
-              onChange={categoryChange}
-              required={true}
-            >
-              <MenuItem value=''>Art Category</MenuItem>
-              {data.allCategories.map(item => (
-                <MenuItem value={item.id} key={item.id}>
-                  {item.category}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl> */}
           <CategorySelection cat={category} setCat={setCategory} />
 
-          {/* <TextField
+          <TextField
             variant='outlined'
             label='Price'
             style={styles.textfield}
@@ -164,9 +99,9 @@ const Submission = props => {
               setPrice(e.target.value)
             }}
             required={true}
-          /> */}
+          />
 
-          {/* <TextField
+          <TextField
             variant='outlined'
             label='Artist Name'
             style={styles.textfield}
@@ -178,9 +113,9 @@ const Submission = props => {
             placeholder='Artist Name'
             onChange={e => setArtistName(e.target.value)}
             required={true}
-          /> */}
+          />
 
-          {/* <TextField
+          <TextField
             variant='outlined'
             label='Title'
             style={styles.textfield}
@@ -192,9 +127,9 @@ const Submission = props => {
             placeholder='Title'
             onChange={e => setTitle(e.target.value)}
             required={true}
-          /> */}
+          />
 
-          {/* <TextField
+          <TextField
             variant='outlined'
             label='Description'
             style={styles.textfield}
@@ -206,10 +141,10 @@ const Submission = props => {
             placeholder='Description'
             onChange={e => setDescription(e.target.value)}
             required={true}
-          /> */}
-          {/* <Box display='flex' justifyContent='center'>
+          />
+          <Box display='flex' justifyContent='center'>
             <FileUpload setFile={setFile} />
-          </Box> */}
+          </Box>
           <Box display='flex' justifyContent='center'>
             <Button
               variant='contained'

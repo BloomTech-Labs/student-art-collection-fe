@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery, useMutation } from 'react-apollo'
+import ReloadContext from '../components/ReloadContext'
 import {
   Card,
   CardActions,
@@ -48,11 +49,21 @@ const DELETE_ART = gql`
 `
 
 const AdminSingleView = props => {
+  const {reload, setReload} = useContext(ReloadContext)
   const id = props.match.params.id
-  const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
+  const { error, loading, data, refetch } = useQuery(GET_ART, {variables: {id}})
   const [deleteArt] = useMutation(DELETE_ART)
 
-  console.log(`props >>>`, props)
+  // eslint-disable-next-line
+  useEffect(() => {
+    if(reload === true) {
+      function update() {
+        return refetch({variables: {id}})
+      }
+      update()
+      setReload(false)
+    }
+  }, [])
 
   const handleDelete = () => {
     deleteArt({ variables: { id } })
@@ -63,6 +74,7 @@ const AdminSingleView = props => {
     props.history.push(`/admin/artwork/${id}/edit`)
   }
 
+
   if (error) {
     return <ErrorMessage />
   }
@@ -71,26 +83,26 @@ const AdminSingleView = props => {
   }
   if (data) {
     return (
-      <Container>
-        <Card>
-          <CardActions>
-            <IconButton
-              size='small'
-              children={<BackButton />}
-              onClick={() => props.history.goBack()}
-            />
-          </CardActions>
-          <CardContent>
-            <ImageCarousel info={data.art.images} />
-          </CardContent>
-          <CardContent>
-            <ArtInfo info={data.art} />
-          </CardContent>
-          <CardActions>
-            <EditConsole handleEdit={handleEdit} handleDelete={handleDelete} />
-          </CardActions>
-        </Card>
-      </Container>
+        <Container>
+          <Card>
+            <CardActions>
+              <IconButton
+                size='small'
+                children={<BackButton />}
+                onClick={() => props.history.goBack()}
+                />
+            </CardActions>
+            <CardContent>
+              <ImageCarousel info={data.art.images} />
+            </CardContent>
+            <CardContent>
+              <ArtInfo info={data.art} />
+            </CardContent>
+            <CardActions>
+              <EditConsole handleEdit={handleEdit} handleDelete={handleDelete} />
+            </CardActions>
+          </Card>
+        </Container>
     )
   }
 }

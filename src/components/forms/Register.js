@@ -5,8 +5,8 @@ import firebaseApp from '../auth/firebaseApp';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+// import styled from 'styled-components';
 
 const REGISTER_USER = gql`
 mutation 
@@ -203,10 +203,10 @@ const Register = () => {
   );
 };
 
-const LoginP = styled.p`
-    text-align: center;
-    font-family: 'Nunito';
-`
+// const LoginP = styled.p`
+//     text-align: center;
+//     font-family: 'Nunito';
+// `
 
 const styles = {
   heading: {

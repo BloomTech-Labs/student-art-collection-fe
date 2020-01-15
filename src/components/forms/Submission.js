@@ -1,63 +1,85 @@
-import React, { useState } from 'react';
-import { useMutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import React, { useState, useContext } from 'react'
+import { useMutation } from 'react-apollo'
+import { gql } from 'apollo-boost'
+import { TextField, Button, Box } from '@material-ui/core'
+import FileUpload from '../FileUpload'
+import CategorySelection from '../CategorySelection'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import ReloadContext from '../ReloadContext';
 
-//Should category be int or string?
 const SUBMISSION = gql`
-  mutation submitArt(
-    $category: Int!
-    $price: Int!
-    $artist_name: String!
-    $sold: Boolean!
-    $description: String!
+  mutation addArt(
+    $category: ID!
+    $school_id: ID!
+    $image_url: String!
+    $title: String
+    $description: String
+    $artist_name: String
+    $price: Int
   ) {
-    submitArt(
+    addArt(
       category: $category
-      price: $price
-      artist_name: $artist_name
-      sold: $sold
+      school_id: $school_id
+      image_url: $image_url
+      title: $title
       description: $description
+      artist_name: $artist_name
+      price: $price
     ) {
-      category
-      price
-      artist_name
-      sold
-      description
+      school_id
+      title
+      category {
+        id
+        category
+      }
+      images {
+        id
+        image_url
+      }
     }
   }
-`;
+`
 
-export { SUBMISSION }
-
-const Submission = () => {
-  const [category, setCategory] = useState('');
-  const [price, setPrice] = useState('');
-  const [artistName, setArtistName] = useState('');
+const Submission = props => { 
+  const {setReload} = useContext(ReloadContext)
+  const [category, setCategory] = useState('')
+  const [price, setPrice] = useState('')
+  const [artistName, setArtistName] = useState('')
+  const [title, setTitle] = useState('')
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('')
+  const [file, setFile] = useState(null)
+  const history = useHistory()
 
-  const [submitArt, { data, loading, error }] = useMutation(SUBMISSION);
+  const [submitArt] = useMutation(SUBMISSION)
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    submitArt({
-      variables: { category, price, artistName, description },
-    });
-  };
-
-  if (error) {
-    //? if server returns an error...
-    return <div>Error....</div>
-  }
-  if (loading) {
-    //? while art is being submitted
-    return <div>Loading...</div>
-  }
-  if (data) {
-    //todo redirect upon successful submission
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+        formData
+      )
+      .then(res => {
+        const variables = {
+          category,
+          price: Number(price),
+          artist_name: artistName,
+          description,
+          title,
+          school_id: props.schoolId,
+          image_url: res.data.secure_url,
+        }
+        submitArt({ variables: variables })
+      })
+      .then(() => {
+        setReload(true)
+        history.push('/admin/dashboard')
+      })
   }
 
   return (
@@ -65,19 +87,7 @@ const Submission = () => {
       <h2 style={styles.heading}>Create an Art Listing</h2>
       <Box display='flex' justifyContent='center' style={styles.textfieldbox}>
         <form onSubmit={onSubmit}>
-          <TextField
-            variant='outlined'
-            label='Category'
-            style={styles.textfield}
-            size='small'
-            fullWidth={false}
-            type='text'
-            name='category'
-            value={category}
-            placeholder='Category'
-            onChange={e => setCategory(e.target.value)}
-            required={true}
-          />
+          <CategorySelection cat={category} setCat={setCategory} />
 
           <TextField
             variant='outlined'
@@ -88,8 +98,11 @@ const Submission = () => {
             type='text'
             name='price'
             value={price}
-            placeholder='$1.00'
-            onChange={e => setPrice(e.target.value)}
+            placeholder='1.00'
+            onChange={e => {
+              console.log(price)
+              setPrice(e.target.value)
+            }}
             required={true}
           />
 
@@ -109,6 +122,20 @@ const Submission = () => {
 
           <TextField
             variant='outlined'
+            label='Title'
+            style={styles.textfield}
+            size='small'
+            fullWidth={false}
+            type='text'
+            name='title'
+            value={title}
+            placeholder='Title'
+            onChange={e => setTitle(e.target.value)}
+            required={true}
+          />
+
+          <TextField
+            variant='outlined'
             label='Description'
             style={styles.textfield}
             size='small'
@@ -120,10 +147,10 @@ const Submission = () => {
             onChange={e => setDescription(e.target.value)}
             required={true}
           />
-          <Box
-            display='flex'
-            justifyContent='center'
-          >
+          <Box display='flex' justifyContent='center'>
+            <FileUpload setFile={setFile} />
+          </Box>
+          <Box display='flex' justifyContent='center'>
             <Button
               variant='contained'
               style={styles.button}
@@ -136,8 +163,8 @@ const Submission = () => {
         </form>
       </Box>
     </>
-  );
-};
+  )
+}
 
 const styles = {
   heading: {
@@ -151,6 +178,9 @@ const styles = {
   button: {
     margin: 15,
   },
-};
+  dropdown: {
+    margin: 15,
+  },
+}
 
-export default Submission;
+export default Submission

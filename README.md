@@ -89,6 +89,8 @@ In order for the app to function correctly, the user must set up their own envir
     * REACT_APP_FIREBASE_MESSAGING_SENDER_ID - Info found from Firebase App Config for your Firebase project
     * REACT_APP_FIREBASE_APP_ID - Info found from Firebase App Config for your Firebase project
     * REACT_APP_FIREBASE_MEASUREMENT_ID - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_UPLOAD_PRESET - Unique value assigned by Cloudinary
+    * REACT_APP_CLOUD_NAME - Cloud name found in Cloudinary account
 
 # Content Licenses
 

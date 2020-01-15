@@ -90,7 +90,7 @@ const Register = () => {
         city, 
         zipcode }
     });
-    history.push('/dashboard')
+    history.push('/admin/dashboard')
   };
 
   if (error) {

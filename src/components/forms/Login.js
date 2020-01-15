@@ -17,7 +17,7 @@ const Login = () => {
 
     await firebaseApp.auth().signInWithEmailAndPassword(email, password);
 
-    history.push('/dashboard')
+    history.push('/admin/dashboard')
   };
 
   return (

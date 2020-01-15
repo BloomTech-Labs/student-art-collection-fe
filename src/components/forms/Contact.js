@@ -119,7 +119,7 @@ const Contact = props => {
             color='primary'
             type='submit'
           >
-            Send Email!
+            Send Email
           </Button>
         </Box>
       </form>
@@ -138,6 +138,7 @@ const styles = {
   },
   button: {
     margin: 15,
+    background: '#3CBBB1'
   },
 };
 

@@ -1,19 +1,26 @@
-// import React from 'react';
+import React from 'react';
+import {MockedProvider} from '@apollo/react-testing';
+import {render} from '@testing-library/react';
+import Register from '../forms/Register';
+
+// Commenting these out to remove warnings!
+
+// import {fireEvent} from '@testing-library/react';
 // import {gql} from 'apollo-boost';
-// import {MockedProvider} from '@apollo/react-testing';
-// import {render, fireEvent} from '@testing-library/react';
-// import Register from '../forms/Register';
 // import {MemoryRouter} from 'react-router-dom';
 
 
-// describe('<Register />', () => {
-//     it('should render without crashing', () => {
-//         render(
-//             <MockedProvider mocks={[]}>
-//                 <Register />
-//             </MockedProvider>
-//         );
-//     });
+describe('<Register />', () => {
+    it('should render without crashing', () => {
+        render(
+            <MockedProvider mocks={[]}>
+                <Register />
+            </MockedProvider>
+        );
+    });
+});
+
+// THIS TEST WILL BE UPDATED IN RC 2
 
 //     const mockRegisterResponse = {
 //         data: {

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { gql } from 'apollo-boost';
-import { useQuery, useMutation } from 'react-apollo';
 import firebaseApp from '../auth/firebaseApp';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -8,37 +6,25 @@ import Box from '@material-ui/core/Box';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 
-const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
-      email
-      password
-    }
-  }
-`
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory()
-  console.log('this is history', history)
-  const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER);
 
   const onSubmit = async e => {
     e.preventDefault();
 
-    const user = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
-    
-    //loginUser({ variables: { email, password } })
+    await firebaseApp.auth().signInWithEmailAndPassword(email, password);
 
-    history.push('/dashboard')
+    history.push('/admin/dashboard')
   };
 
   return (
     <>
     <h2 style={styles.heading}>Login to Student ArtCo!</h2>
     <Box display='flex' justifyContent='center'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}> 
         <TextField
           placeholder='Email'
           variant='outlined'

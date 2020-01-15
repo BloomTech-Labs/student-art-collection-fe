@@ -1,17 +1,25 @@
-// import React from 'react';
-// import { MockedProvider } from '@apollo/react-testing';
-// import { render, fireEvent, wait } from '@testing-library/react';
-// import Submission, { SUBMISSION } from '../forms/Submission';
+import React from 'react';
+import { MockedProvider } from '@apollo/react-testing';
+import { render } from '@testing-library/react';
+import Submission from '../forms/Submission';
+
+// COMMENTING OUT TO REMOVE WARNINGS
+
+// import {fireEvent, wait} from '@testing-library/react';
+// import { SUBMISSION } from '../forms/Submission';
 // import { MemoryRouter } from 'react-router-dom';
 
-// describe('<Submission />', () => {
-// it('should render without crashing', () => {
-//     render(
-//         <MockedProvider mocks={[]}>
-//             <Submission />
-//         </MockedProvider>
-//     );
-// });
+describe('<Submission />', () => {
+it('should render without crashing', () => {
+    render(
+        <MockedProvider mocks={[]}>
+            <Submission />
+        </MockedProvider>
+    );
+});
+});
+
+// THIS TEST WILL BE FINISHED IN RC 2
 
 // const mockSubmissionVariables = {
 //     category: 'test category',

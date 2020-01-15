@@ -4,7 +4,6 @@ import { gql } from 'apollo-boost';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import styled from 'styled-components';
 
 const SEND_MAIL = gql`
   mutation sendMail(
@@ -42,6 +41,12 @@ const Contact = props => {
   const onSubmit = e => {
     e.preventDefault()
     sendMail({ variables: { sendto, name, fromUser, subject, message } })
+    .then(() => {
+      setName('')
+      setFromUser('')
+      setSubject('')
+      setMessage('')
+    })
     if (data) {
       console.log('data', data)
     } else if (loading) {

@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: 1.8
     },
     mediaTitle: {
-        color: '#ef6538'
+        
     },
     button: {
         color: 'white',
@@ -110,7 +110,7 @@ const Dashboard = props => {
 
             <ArtSect>
                 <ListingTop>
-                    School Artwork 
+                  School Artwork
                 </ListingTop>
 
                 <br></br>
@@ -138,7 +138,7 @@ const Dashboard = props => {
                             <Typography className={classes.mediaTitle} variant={'h6'} gutterBottom>
                                 Title: {listings.title === '' ? 'Untitled' : listings.title}
                             </Typography>
-                            <Typography variant='body2' color='textSecondary' component='p'>
+                            <Typography className={classes.mediaTitle} variant={'h6'} component='p'>
                                 Artist: {listings.artist_name === '' ? 'Untitled' : listings.artist_name}
                             </Typography>
                             
@@ -157,7 +157,7 @@ const Dashboard = props => {
 
 //styling
 const TopDash = styled.div`
-    background-color: #000000;
+    background-color: #000;
     opacity: 85%;
     border: solid .5px gray;
     color:  #F5F5F5;

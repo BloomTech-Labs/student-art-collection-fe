@@ -56,12 +56,11 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 1.8,
   },
   mediaTitle: {
-    color: '#ef6538',
+    
   },
   button: {
-    background: 'linear-gradient(45deg, #636387 30%, #464687 90%)',
     color: 'white',
-    borderRadius: '4px',
+    background: '#3CBBB1',
     marginTop: '10px',
     marginBottom: '10px',
     textAlign: 'center',
@@ -69,6 +68,9 @@ const useStyles = makeStyles(theme => ({
     width: '30%',
     alignContent: 'center',
     margin: 'auto',
+    '&:hover': {
+        backgroundColor: '#318B84'
+    }
   },
   fullHeight: {
     height: '100%',
@@ -129,7 +131,7 @@ const Dashboard = props => {
               // to='/admin/artwork/new'
               to={`/admin/artwork/${data.schoolBySchoolId.id}/new`}
               size='large'
-              variant='outlined'
+              variant='contained'
               className={classes.button}
             >
               Add New Listing
@@ -162,8 +164,7 @@ const Dashboard = props => {
                         {listings.title === '' ? 'Untitled' : listings.title}
                       </Typography>
                       <Typography
-                        variant='body2'
-                        color='textSecondary'
+                        variant={'h6'}
                         component='p'
                       >
                         Artist:{' '}
@@ -185,9 +186,9 @@ const Dashboard = props => {
 
 //styling
 const TopDash = styled.div`
-  background-color: #56565b;
-  opacity: 75%;
-  border: solid 1px gray;
+  background-color: #000;
+  opacity: 85%;
+  border: solid .5px gray;
   color: #f5f5f5;
   padding: 2%;
   display: block;

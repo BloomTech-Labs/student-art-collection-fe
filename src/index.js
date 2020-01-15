@@ -15,9 +15,10 @@ const client = new ApolloClient({
   uri: process.env.REACT_APP_DATABASE_URL
     ? process.env.REACT_APP_DATABASE_URL
     : 'http://localhost:4000/graphql',
-  onError: ({ networkError, graphQLErrors }) => {
+  onError: ({ networkError, graphQLErrors, apolloErrors }) => {
     console.log(`network errors >>>`, networkError)
     console.log(`graphql errors >>>`, graphQLErrors)
+    console.log(`apollo errors >>>`, apolloErrors)
   },
   //   link: ApolloLink.from([errorLink]),
 })

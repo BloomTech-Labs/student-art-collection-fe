@@ -218,7 +218,8 @@ const styles = {
     margin: 15,
   },
   button: {
-    margin: '25px 45px 15px 15px',
+    margin: '25px 70px 15px 15px',
+    background: '#3CBBB1'
   },
   textfieldbox: {
     marginLeft: 100,

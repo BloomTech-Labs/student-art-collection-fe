@@ -85,6 +85,7 @@ const styles = {
   },
   button: {
     margin: 15,
+    background: '#3CBBB1'
   },
 };
 

@@ -57,6 +57,7 @@ const EditForm = (props) => {
         },
         button: {
         margin: 15,
+        background: '#3CBBB1'
         },
     }
 

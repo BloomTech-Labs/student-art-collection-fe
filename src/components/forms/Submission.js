@@ -6,7 +6,7 @@ import FileUpload from '../FileUpload'
 import CategorySelection from '../CategorySelection'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
-import ReloadContext from '../ReloadContext';
+import ReloadContext from '../ReloadContext'
 
 const SUBMISSION = gql`
   mutation addArt(
@@ -41,8 +41,9 @@ const SUBMISSION = gql`
   }
 `
 
-const Submission = props => { 
-  const {setReload} = useContext(ReloadContext)
+const Submission = props => {
+  console.log(`props >>>`, props)
+  const { setReload } = useContext(ReloadContext)
   const [category, setCategory] = useState('')
   const [price, setPrice] = useState('')
   const [artistName, setArtistName] = useState('')
@@ -53,6 +54,12 @@ const Submission = props => {
   const history = useHistory()
 
   const [submitArt] = useMutation(SUBMISSION)
+
+  //todo refactor this to...
+  //? ...not use match.params,
+  //! ...and
+  //? ...not use the firebase uid
+  const id = props.match.params.id
 
   const onSubmit = async e => {
     e.preventDefault()
@@ -71,9 +78,10 @@ const Submission = props => {
           artist_name: artistName,
           description,
           title,
-          school_id: props.schoolId,
+          school_id: id,
           image_url: res.data.secure_url,
         }
+        console.log(`vars >>>`, variables)
         submitArt({ variables: variables })
       })
       .then(() => {

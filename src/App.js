@@ -30,7 +30,14 @@ function App() {
               {/* Example PrivateRoute usage */}
               {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
               <PrivateRoute path='/admin/dashboard' component={Dashboard} />
-              <PrivateRoute path='/admin/artwork/new' component={Submission} />
+              {/*
+                 //? adding the id variable in order to avoid using the firebase
+                 //? uid for the newArt mutation
+              */}
+              <PrivateRoute
+                path='/admin/artwork/:id/new'
+                component={Submission}
+              />
               <PrivateRoute
                 exact
                 path='/admin/artwork/:id'

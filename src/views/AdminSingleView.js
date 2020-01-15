@@ -67,6 +67,7 @@ const AdminSingleView = props => {
 
   const handleDelete = () => {
     deleteArt({ variables: { id } })
+    setReload(true)
     props.history.push('/admin/dashboard')
   }
 

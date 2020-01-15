@@ -50,9 +50,8 @@ const useStyles = makeStyles(theme => ({
         color: '#ef6538'
     },
     button: {
-        background: 'linear-gradient(45deg, #636387 30%, #464687 90%)',
         color: 'white',
-        borderRadius: '4px',
+        background: '#3CBBB1',
         marginTop: '10px',
         marginBottom: '10px',
         textAlign: 'center',
@@ -60,7 +59,9 @@ const useStyles = makeStyles(theme => ({
         width: '30%',
         alignContent: 'center',
         margin: 'auto',
-
+        "&:hover": {
+            backgroundColor: "#318B84"
+        }
 
     },
     fullHeight: {
@@ -114,7 +115,7 @@ const Dashboard = props => {
 
                 <br></br>
                 
-                <Button component = { Link } to = '/admin/artwork/new' size='large' variant='outlined' className={classes.button}>
+                <Button component = { Link } to = '/admin/artwork/new' size='large' variant='contained' className={classes.button}>
                     Add New Listing
                 </Button>
 
@@ -156,9 +157,9 @@ const Dashboard = props => {
 
 //styling
 const TopDash = styled.div`
-    background-color: #56565b;
-    opacity: 75%;
-    border: solid 1px gray;
+    background-color: #000000;
+    opacity: 85%;
+    border: solid .5px gray;
     color:  #F5F5F5;
     padding: 2%;
     display: block;

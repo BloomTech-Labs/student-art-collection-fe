@@ -67,7 +67,7 @@ const AdminSingleView = props => {
 
   const handleDelete = () => {
     deleteArt({ variables: { id } })
-    props.history.push('/dashboard')
+    props.history.push('/admin/dashboard')
   }
 
   const handleEdit = () => {

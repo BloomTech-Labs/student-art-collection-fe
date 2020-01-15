@@ -57,7 +57,10 @@ const AdminSingleView = props => {
   // eslint-disable-next-line
   useEffect(() => {
     if(reload === true) {
-      window.location.reload()
+      function update() {
+        return refetch({variables: {id}})
+      }
+      update()
       setReload(false)
     }
   }, [])

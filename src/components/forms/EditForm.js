@@ -110,7 +110,7 @@ const EditForm = (props) => {
         if (data) {
             console.log('Here at data')
             setReload(true)
-            props.propData.history.replace(`/admin/artwork/${id}`)
+            props.propData.history.replace(`/admin/dashboard`)
         }
     }
 

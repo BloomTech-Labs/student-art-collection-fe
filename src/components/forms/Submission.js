@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { TextField, Button, Box } from '@material-ui/core'
@@ -6,6 +6,7 @@ import FileUpload from '../FileUpload'
 import CategorySelection from '../CategorySelection'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import ReloadContext from '../ReloadContext';
 
 const SUBMISSION = gql`
   mutation addArt(
@@ -40,7 +41,8 @@ const SUBMISSION = gql`
   }
 `
 
-const Submission = props => {
+const Submission = props => { 
+  const {setReload} = useContext(ReloadContext)
   const [category, setCategory] = useState('')
   const [price, setPrice] = useState('')
   const [artistName, setArtistName] = useState('')
@@ -74,7 +76,10 @@ const Submission = props => {
         }
         submitArt({ variables: variables })
       })
-      .then(() => history.push('/dashboard'))
+      .then(() => {
+        setReload(true)
+        history.push('/admin/dashboard')
+      })
   }
 
   return (

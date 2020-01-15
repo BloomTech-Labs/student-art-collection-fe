@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { Grid, CardActionArea, CardMedia, CardContent, Typography, makeStyles, Button } from '@material-ui/core'
 import styled from 'styled-components'
+import ReloadContext from '../components/ReloadContext';
 
 const GET_SCHOOL_INFO = gql`
     query schoolBySchoolId($id: ID!) {
@@ -68,10 +69,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Dashboard = props => {
-    console.log(props)
+    const {reload, setReload} = useContext(ReloadContext)
     const id = props.schoolId
-    const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {variables: { id }})
+    const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {variables: { id }})
     const classes = useStyles()
+
+    useEffect(() => {
+        if(reload === true) {
+            function update() {
+                return refetch()
+            }
+            update()
+            setReload(false)
+        }
+    }, [])
 
     if(error) {
         return <div> Error Loading Dashboard...</div>

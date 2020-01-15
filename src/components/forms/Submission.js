@@ -185,6 +185,7 @@ const styles = {
   },
   button: {
     margin: 15,
+    background: '#3CBBB1'
   },
   dropdown: {
     margin: 15,

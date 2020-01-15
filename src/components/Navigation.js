@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Button, makeStyles, Typography } from '@material-ui/core'
+import { Grid, Button, makeStyles } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
-
-//todo colors & fonts
+import { AuthContext } from './auth/Auth'
+import logo from '../images/logo1.png'
 
 const useStyles = makeStyles(theme => ({
   space: {
@@ -19,11 +19,15 @@ const useStyles = makeStyles(theme => ({
 const Navigation = () => {
   const classes = useStyles()
   const history = useHistory()
+  const { authenticated } = useContext(AuthContext)
 
   const signOut = () => {
-    firebaseApp.auth().signOut().then(() => {
-      history.push('/login')
-    })
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push('/login')
+      })
   }
 
   return (
@@ -35,35 +39,42 @@ const Navigation = () => {
     >
       <Grid item>
         <Link to='/' className={classes.logo}>
-          <Typography variant='h4'>SA</Typography>
+          <img src={logo} alt='Student Artco' />
         </Link>
       </Grid>
       <Grid item>
         <Grid container spacing={5}>
           <Grid item>
-            <Button component={Link} to='/browse'>
-              Browse
-            </Button>
+            {authenticated === false ? (
+              <Button component={Link} to='/browse'>
+                Browse
+              </Button>
+            ) : (
+              <Button component={Link} to='/admin/dashboard'>
+                Dashboard
+              </Button>
+            )}
           </Grid>
           <Grid item>
-            <Button onClick={signOut}>
-              Sign Out
-            </Button>
+            {authenticated === false ? (
+              <Button component={Link} to='/login'>
+                Sign In
+              </Button>
+            ) : (
+              <Button onClick={signOut}>Sign Out</Button>
+            )}
           </Grid>
           <Grid item>
-            <Button component={Link} to='/login'>
-              Sign In
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              component={Link}
-              to='/register'
-              variant='contained'
-              disableElevation
-            >
-              Join
-            </Button>
+            {authenticated === false ? (
+              <Button
+                component={Link}
+                to='/register'
+                variant='contained'
+                disableElevation
+              >
+                Join
+              </Button>
+            ) : null}
           </Grid>
         </Grid>
       </Grid>

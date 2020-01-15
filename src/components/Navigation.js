@@ -20,6 +20,7 @@ const Navigation = () => {
   const classes = useStyles()
   const history = useHistory()
   const { authenticated } = useContext(AuthContext)
+  console.log(`auth >>>`, authenticated)
 
   const signOut = () => {
     firebaseApp
@@ -44,28 +45,31 @@ const Navigation = () => {
       </Grid>
       <Grid item>
         <Grid container spacing={5}>
-          <Grid item>
-            {authenticated === false ? (
-              <Button component={Link} to='/browse'>
-                Browse
-              </Button>
-            ) : (
+          {authenticated === true ? (
+            <Grid item>
               <Button component={Link} to='/admin/dashboard'>
                 Dashboard
               </Button>
-            )}
+            </Grid>
+          ) : null}
+          <Grid item>
+            <Button component={Link} to='/browse'>
+              Browse
+            </Button>
           </Grid>
           <Grid item>
-            {authenticated === false ? (
+            {authenticated === true ? (
+              <Button onClick={signOut}>Sign Out</Button>
+            ) : (
               <Button component={Link} to='/login'>
                 Sign In
               </Button>
-            ) : (
-              <Button onClick={signOut}>Sign Out</Button>
             )}
           </Grid>
           <Grid item>
-            {authenticated === false ? (
+            {authenticated === true ? (
+              <Button disabled />
+            ) : (
               <Button
                 component={Link}
                 to='/register'
@@ -74,7 +78,8 @@ const Navigation = () => {
               >
                 Join
               </Button>
-            ) : null}
+            )}
+            <Button disabled />
           </Grid>
         </Grid>
       </Grid>

@@ -8,15 +8,30 @@ import Dashboard from './components/Dashboard'
 import { Register, Login, Navigation, EditSubmission } from './components'
 import Submission from './components/forms/Submission'
 import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
+import ScrollTop from './components/ScrollTop'
+import Fab from '@material-ui/core/Fab'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import { Toolbar } from '@material-ui/core'
 import { theme } from './styles/theme'
 
-function App() {
+function App(props) {
   const [reload, setReload] = useState(false)
   return (
     <Container>
       <AuthProvider>
         <ReloadProvider value={{ reload, setReload }}>
           <Router>
+            <ThemeProvider theme={theme}>
+              <Toolbar id='back-to-top-anchor'>
+                <Navigation />
+              </Toolbar>
+              <Switch>
+                <Route exact path='/' component={MainPage} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
+                <Route path='/browse' component={BrowseListings} />
+                <Route path='/artwork/:id' component={SinglePage} />
+                {/* <Route
             <ThemeProvider theme={theme}>
               <Navigation />
               <Switch>
@@ -51,6 +66,15 @@ function App() {
                   component={EditSubmission}
                 />
               </Switch>
+              <ScrollTop {...props}>
+                <Fab
+                  style={{ backgroundColor: '#3CBBB1' }}
+                  size='small'
+                  aria-label='scroll back to top'
+                >
+                  <KeyboardArrowUpIcon />
+                </Fab>
+              </ScrollTop>
             </ThemeProvider>
           </Router>
         </ReloadProvider>

@@ -1,7 +1,21 @@
 import React, {useState, useContext} from 'react';
 import {gql} from 'apollo-boost';
 import {useQuery, useMutation} from 'react-apollo';
-import {TextField, Button, Box, List, ListItem, ListItemText, Menu, MenuItem} from '@material-ui/core';
+import {
+    TextField, 
+    Button, 
+    Box, 
+    List, 
+    ListItem, 
+    ListItemText, 
+    Menu, 
+    MenuItem, 
+    Checkbox,
+    FormGroup,
+    FormControl,
+    FormControlLabel,
+    FormLabel
+} from '@material-ui/core';
 import ErrorMessage from '../GraphErrors';
 import Spinner from '../GraphLoading';
 import ReloadContext from '../../components/ReloadContext';
@@ -45,6 +59,7 @@ const UPDATE_ART = gql`
 `;
 
 const EditForm = (props) => {
+    // This is context to refetch the graphQL query from the database
     const {setReload} = useContext(ReloadContext)
     const styles = {
         heading: {
@@ -62,16 +77,23 @@ const EditForm = (props) => {
     }
 
     const id = props.info.art.id 
+
+    // These values are pulled from props to set in the proper place for editing
     const [price, setPrice] = useState(props.info.art.price);
     const [artistName, setArtistName] = useState(props.info.art.artist_name);
     const [description, setDescription] = useState(props.info.art.description);
     const [title, setTitle] = useState(props.info.art.title)
     
+    // These modify the selection of the category of the piece of art
     const [selectedIndex, setSelectedIndex] = useState(props.info.art.category.id -1)
     const [anchorEl, setAnchorEl] = useState(null);
     const [category, setCategory] = useState(props.info.art.category.id);
     const {error, loading, data} = useQuery(GET_CATEGORIES);
     
+    // This modifies the truthiness of whether a piece of art is sold
+    const [sold, setSold] = useState(props.info.art.sold)
+    const [checked, setChecked] = useState(sold)
+
     const [updateArt] = useMutation(UPDATE_ART);
 
     const handleClickListItem = event => {
@@ -87,6 +109,11 @@ const EditForm = (props) => {
     const handleClose = () => {
         setAnchorEl(null)
     }
+
+    const handleChecked = () => {
+        setChecked(!checked)
+        setSold(!sold)
+    }
     
     const onSubmit = async event => {
         event.preventDefault()
@@ -97,7 +124,8 @@ const EditForm = (props) => {
                 price,
                 artist_name: artistName,
                 description,
-                title
+                title,
+                sold
             }
         })
         if (error) {
@@ -158,7 +186,22 @@ const EditForm = (props) => {
                             </MenuItem>
                         ))}
                     </Menu>
-    
+
+                    <FormControlLabel
+                        value="Sold"
+                        control={
+                            <Checkbox 
+                                checked={checked}
+                                onChange={handleChecked}
+                                color="primary"
+                                value='primary'
+                                inputProps={{'aria-label': 'When checked, this box updates the piece of art as sold'}}
+                            />
+                        }
+                        label="Sold"
+                        labelPlacement="top"
+                    />
+
                     <TextField
                     variant='outlined'
                     label='Title'

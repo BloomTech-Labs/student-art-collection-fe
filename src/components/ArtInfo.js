@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 const ArtInfo = ({ info }) => {
   const classes = useStyles()
-
+  console.log(info)
   return (
     <div className={classes.root}>
       <Grid container alignItems='center' justify='space-between'>

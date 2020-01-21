@@ -25,3 +25,31 @@ export const SubmitButton = withStyles({
     },
   },
 })(Button)
+
+export const EditButton = withStyles({
+  root: {
+    width: '100px',
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    borderColor: '#000',
+    textTransform: 'none',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    },
+  },
+})(Button)
+
+export const DeleteButton = withStyles({
+  root: {
+    width: '100px',
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    borderColor: '#FF0404',
+    textTransform: 'none',
+    color: '#FF0404',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 4, 4, 0.1)',
+    },
+  },
+})(Button)

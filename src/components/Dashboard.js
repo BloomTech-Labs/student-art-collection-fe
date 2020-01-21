@@ -24,6 +24,13 @@ const GET_SCHOOL_INFO = gql`
         id
         artist_name
         title
+        price
+        sold
+        description
+        category {
+          id
+          category
+        }
         images {
           id
           image_url
@@ -79,7 +86,7 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = props => {
   console.log(`dashboard props >>>`, props)
-  const { reload, setReload } = useContext(ReloadContext)
+  const { reload, setReload, setArtData } = useContext(ReloadContext)
   const schoolId = props.schoolId
   const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {
     variables: { schoolId },
@@ -92,7 +99,7 @@ const Dashboard = props => {
         return refetch()
       }
       update()
-      setReload(false)
+      // setReload(false)
     }
   }, [])
 
@@ -143,6 +150,7 @@ const Dashboard = props => {
                   <CardActionArea
                     component={Link}
                     to={`/admin/artwork/${listings.id}`}
+                    onClick={() => setArtData(data.schoolBySchoolId.art[listings.id -1])}
                   >
                     <CardMedia
                       className={classes.media}

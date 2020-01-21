@@ -49,20 +49,26 @@ const DELETE_ART = gql`
 `
 
 const AdminSingleView = props => {
-  const {reload, setReload} = useContext(ReloadContext)
+  const {reload, setReload, artData} = useContext(ReloadContext)
   const id = props.match.params.id
   const { error, loading, data, refetch } = useQuery(GET_ART, {variables: {id}})
   const [deleteArt] = useMutation(DELETE_ART)
 
   // eslint-disable-next-line
+  // useEffect(() => {
+  //   if(reload === true) {
+  //     function update() {
+  //       return refetch({variables: {id}})
+  //     }
+  //     update()
+  //     setReload(false)
+  //   }
+  // }, [])
+
   useEffect(() => {
-    if(reload === true) {
-      function update() {
-        return refetch({variables: {id}})
-      }
-      update()
-      setReload(false)
-    }
+   if (reload === true) {
+     window.location.reload()
+   }
   }, [])
 
   const handleDelete = () => {
@@ -83,6 +89,7 @@ const AdminSingleView = props => {
     return <Spinner />
   }
   if (data) {
+    console.log(props.history)
     return (
         <Container>
           <Card>

@@ -11,10 +11,11 @@ import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
 
 function App() {
   const [reload, setReload] = useState(false)
+  const [artData, setArtData] = useState([])
   return (
     <Container>
       <AuthProvider>
-        <ReloadProvider value={{ reload, setReload }}>
+        <ReloadProvider value={{ reload, setReload, artData, setArtData }}>
           <Router>
             <Navigation />
             <Switch>

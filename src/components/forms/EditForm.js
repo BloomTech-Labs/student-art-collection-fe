@@ -60,7 +60,7 @@ const UPDATE_ART = gql`
 
 const EditForm = (props) => {
     // This is context to refetch the graphQL query from the database
-    const {setReload} = useContext(ReloadContext)
+    const {reload, setReload} = useContext(ReloadContext)
     const styles = {
         heading: {
         fontFamily: 'Barlow',
@@ -129,15 +129,13 @@ const EditForm = (props) => {
             }
         })
         if (error) {
-            console.log('Here at error')
             return <ErrorMessage />
         }
         if (loading) {
-            console.log('Here at loading')
             return <Spinner />
         }
         if (data) {
-            console.log('Here at data')
+            console.log('reload when submitted', reload)
             setReload(true)
             props.propData.history.replace(`/admin/dashboard`)
         }
@@ -152,6 +150,7 @@ const EditForm = (props) => {
     }
 
     if (data) {
+        console.log('reload when loaded', reload)
         return (
             <>
                 <h2 style={styles.heading}>Update an Art Listing</h2>
@@ -179,7 +178,6 @@ const EditForm = (props) => {
                         {data.allCategories.map((item, index) => (
                             <MenuItem
                                 key={item.id}
-                                disabled={index === 0}
                                 selected={index === selectedIndex}
                                 onClick={event => handleMenuItemClick(event, index)}
                             >{item.category}

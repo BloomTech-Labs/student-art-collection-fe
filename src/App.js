@@ -25,6 +25,7 @@ function App() {
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register} />
                 <Route path='/browse' component={BrowseListings} />
+                <Route path='team' component={Team} />
                 <Route path='/artwork/:id' component={SinglePage} />
                 {/* <Route
                 path='/artwork'

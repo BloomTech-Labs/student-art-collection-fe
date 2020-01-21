@@ -1,18 +1,19 @@
 import React from 'react'
-import { Button, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
+import { EditButton, DeleteButton } from '../styles/muiButtons'
 
 const EditConsole = ({ handleEdit, handleDelete }) => {
   return (
     <Grid container spacing={5} justify='space-evenly'>
       <Grid item>
-        <Button onClick={() => handleEdit()} variant='outlined'>
+        <EditButton onClick={() => handleEdit()} variant='outlined'>
           Edit
-        </Button>
+        </EditButton>
       </Grid>
       <Grid item>
-        <Button onClick={handleDelete} variant='outlined'>
+        <DeleteButton onClick={handleDelete} variant='outlined'>
           Delete
-        </Button>
+        </DeleteButton>
       </Grid>
     </Grid>
   )

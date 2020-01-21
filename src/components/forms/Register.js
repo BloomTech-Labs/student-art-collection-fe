@@ -5,7 +5,7 @@ import firebaseApp from '../auth/firebaseApp'
 import { useHistory, Link } from 'react-router-dom'
 import { Grid, Typography } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
-import { LoginButton } from '../../styles/muiButtons'
+import { SubmitButton } from '../../styles/muiButtons'
 import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
 
 const REGISTER_USER = gql`
@@ -171,9 +171,9 @@ const Register = () => {
                   />
                 </Grid>
                 <Grid item>
-                  <LoginButton variant='contained' size='small' type='submit'>
+                  <SubmitButton variant='contained' size='small' type='submit'>
                     Submit
-                  </LoginButton>
+                  </SubmitButton>
                 </Grid>
               </Grid>
             </form>

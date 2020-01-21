@@ -10,7 +10,7 @@ export const BackButton = withStyles({
   },
 })(ArrowBackIcon)
 
-export const LoginButton = withStyles({
+export const SubmitButton = withStyles({
   root: {
     width: '150px',
     padding: theme.spacing(0.6),

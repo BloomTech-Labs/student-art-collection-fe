@@ -6,7 +6,12 @@ export const formStyles = makeStyles(theme => ({
     background: '#FFAA04',
   },
   image: {
-    maxHeight: '550px',
+    maxHeight: '600px',
+    borderRadius: '10px',
+  },
+  link: {
+    color: '#00554B',
+    textDecoration: 'none',
   },
 }))
 
@@ -23,10 +28,10 @@ export const InputField = withStyles({
         borderColor: '#fff',
       },
       '&:hover fieldset': {
-        borderColor: '#000',
+        borderColor: '#3CBBB1',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#000',
+        borderColor: '#3CBBB1',
         borderWidth: '1px',
       },
     },

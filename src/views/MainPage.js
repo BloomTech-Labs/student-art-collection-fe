@@ -1,10 +1,22 @@
 import React from 'react'
-import { styles as makeStyles, Grid } from '@material-ui/core';
+import { makeStyles, Grid } from '@material-ui/core'
+import welcomeBackground from '../images/landing-page/header-background.png'
+import howToStep1 from '../images/landing-page/how-step-1.png'
+import howToStep2 from '../images/landing-page/how-step-2.png'
+import howToStep3 from '../images/landing-page/how-step-3.png'
+
+const useStyles = makeStyles(theme => ({
+    welcome : {
+        backgroundImage: `url(${welcomeBackground})`
+    }
+}))
 
 const MainPage = () => {
+    const classes = useStyles()
+
     return (
         <>
-            <div>
+            <div className={classes.welcome}>
                 <h1>Student Art Co</h1>
                 <p>Welcome message with links for call to action</p>
             </div>

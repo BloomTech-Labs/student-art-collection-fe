@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import { TextField, Button, Box } from '@material-ui/core'
+import { Grid, Paper, TextField, Typography } from '@material-ui/core'
+import { formStyles } from '../../styles/muiForms'
+import { SubmitButton } from '../../styles/muiButtons'
 import FileUpload from '../FileUpload'
 import CategorySelection from '../CategorySelection'
 import axios from 'axios'
@@ -52,6 +54,7 @@ const Submission = props => {
   const [description, setDescription] = useState('')
   const [file, setFile] = useState(null)
   const history = useHistory()
+  const classes = formStyles()
 
   const [submitArt] = useMutation(SUBMISSION)
 
@@ -91,104 +94,98 @@ const Submission = props => {
   }
 
   return (
-    <>
-      <h2 style={styles.heading}>Create an Art Listing</h2>
-      <Box display='flex' justifyContent='center' style={styles.textfieldbox}>
-        <form onSubmit={onSubmit}>
-          <CategorySelection cat={category} setCat={setCategory} />
-
-          <TextField
-            variant='outlined'
-            label='Price'
-            style={styles.textfield}
-            size='small'
-            fullWidth={false}
-            type='text'
-            name='price'
-            value={price}
-            placeholder='1.00'
-            onChange={e => {
-              console.log(price)
-              setPrice(e.target.value)
-            }}
-            required={true}
-          />
-
-          <TextField
-            variant='outlined'
-            label='Artist Name'
-            style={styles.textfield}
-            size='small'
-            fullWidth={false}
-            type='text'
-            name='artistName'
-            value={artistName}
-            placeholder='Artist Name'
-            onChange={e => setArtistName(e.target.value)}
-            required={true}
-          />
-
-          <TextField
-            variant='outlined'
-            label='Title'
-            style={styles.textfield}
-            size='small'
-            fullWidth={false}
-            type='text'
-            name='title'
-            value={title}
-            placeholder='Title'
-            onChange={e => setTitle(e.target.value)}
-            required={true}
-          />
-
-          <TextField
-            variant='outlined'
-            label='Description'
-            style={styles.textfield}
-            size='small'
-            fullWidth={true}
-            type='text'
-            name='description'
-            value={description}
-            placeholder='Description'
-            onChange={e => setDescription(e.target.value)}
-            required={true}
-          />
-          <Box display='flex' justifyContent='center'>
-            <FileUpload setFile={setFile} />
-          </Box>
-          <Box display='flex' justifyContent='center'>
-            <Button
-              variant='contained'
-              style={styles.button}
-              color='primary'
-              type='submit'
-            >
-              Submit
-            </Button>
-          </Box>
-        </form>
-      </Box>
-    </>
+    <Paper elevation={0} className={classes.root}>
+      <Paper elevation={3} className={classes.paper}>
+        <Grid container direction='column' alignItems='center' spacing={4}>
+          <Grid item>
+            <Typography variant='h2' component='h2'>
+              Create an Art Listing
+            </Typography>
+          </Grid>
+          <Grid item>
+            <form onSubmit={onSubmit}>
+              <Grid
+                container
+                direction='column'
+                alignItems='center'
+                spacing={4}
+              >
+                <Grid item>
+                  <FileUpload setFile={setFile} />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label='Artist Name'
+                    name='artistName'
+                    placeholder='Artist Name'
+                    type='text'
+                    variant='outlined'
+                    size='small'
+                    className={classes.message}
+                    required
+                    value={artistName}
+                    onChange={e => setArtistName(e.target.value)}
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label='Title'
+                    name='title'
+                    placeholder='Title'
+                    type='text'
+                    variant='outlined'
+                    size='small'
+                    className={classes.message}
+                    required
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label='Price'
+                    name='price'
+                    placeholder='1.00'
+                    type='text'
+                    variant='outlined'
+                    size='small'
+                    className={classes.message}
+                    required
+                    value={price}
+                    onChange={e => setPrice(e.target.value)}
+                  />
+                </Grid>
+                <Grid item>
+                  <CategorySelection cat={category} setCat={setCategory} />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label='Description'
+                    name='description'
+                    placeholder='Description'
+                    type='text'
+                    variant='outlined'
+                    size='small'
+                    multiline
+                    rows={8}
+                    className={classes.message}
+                    required
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                  />
+                </Grid>
+                <Grid item>
+                  <SubmitButton variant='contained' size='small' type='submit'>
+                    Submit
+                  </SubmitButton>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Paper>
   )
-}
-
-const styles = {
-  heading: {
-    fontFamily: 'Barlow',
-    margin: '80px 15px 25px 45px',
-    textAlign: 'center',
-  },
-  textfield: {
-    margin: 15,
-  },
-  button: {
-    margin: 15,
-  },
-  dropdown: {
-    margin: 15,
-  },
 }
 
 export default Submission

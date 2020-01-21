@@ -5,6 +5,11 @@ export const formStyles = makeStyles(theme => ({
     padding: theme.spacing(5),
     background: '#FFAA04',
   },
+  paper: {
+    width: '50%',
+    margin: '0 auto',
+    padding: '20px',
+  },
   image: {
     maxHeight: '600px',
     borderRadius: '10px',

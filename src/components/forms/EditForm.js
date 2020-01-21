@@ -135,7 +135,6 @@ const EditForm = (props) => {
             return <Spinner />
         }
         if (data) {
-            console.log('reload when submitted', reload)
             setReload(true)
             props.propData.history.replace(`/admin/dashboard`)
         }

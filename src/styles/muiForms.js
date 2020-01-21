@@ -13,6 +13,9 @@ export const formStyles = makeStyles(theme => ({
     color: '#00554B',
     textDecoration: 'none',
   },
+  message: {
+    width: '400px',
+  },
   expand: {
     marginLeft: 'auto',
     paddingLeft: theme.spacing(2),
@@ -22,6 +25,9 @@ export const formStyles = makeStyles(theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
+    '&:hover': {
+      backgroundColor: '#23A298',
+    },
   },
 }))
 

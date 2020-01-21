@@ -5,7 +5,7 @@ import { theme } from './theme'
 export const BackButton = withStyles({
   root: {
     padding: theme.spacing(1.5),
-    backgroundColor: 'rgba(0,0,0,.1)',
+    backgroundColor: '#3CBBB1',
     borderRadius: '50%',
   },
 })(ArrowBackIcon)

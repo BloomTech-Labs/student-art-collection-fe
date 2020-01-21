@@ -71,7 +71,7 @@ const Login = () => {
                   />
                 </Grid>
                 <Grid item>
-                  <LoginButton variant='outlined' size='small' type='submit'>
+                  <LoginButton variant='contained' size='small' type='submit'>
                     Submit
                   </LoginButton>
                 </Grid>

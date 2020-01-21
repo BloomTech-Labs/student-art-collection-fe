@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Button, AppBar, makeStyles } from '@material-ui/core'
+import { Grid, Button, AppBar, makeStyles, Toolbar } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
 import { AuthContext } from './auth/Auth'
 import logo from '../images/logo1.png'
@@ -10,10 +10,9 @@ import HideOnScroll from './HideOnScroll'
 // import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 const useStyles = makeStyles(theme => ({
-  // space: {
-  //   marginBottom: theme.spacing(3),
-  //   marginTop: theme.spacing(1),
-  // },
+  space: {
+    padding: theme.spacing(1),
+  },
   logo: {
     textDecoration: 'none',
     // color: '#000',
@@ -46,7 +45,7 @@ const Navigation = props => {
 
   return (
     <HideOnScroll {...props}>
-      <AppBar className={classes.appbar}>
+    <AppBar className={classes.appbar}>
         <Grid
           container
           alignItems='center'
@@ -119,11 +118,7 @@ const Navigation = props => {
           </Grid>
         </Grid>
       </AppBar>
-      {/* <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop> */}
+      
     </HideOnScroll>
   )
 }

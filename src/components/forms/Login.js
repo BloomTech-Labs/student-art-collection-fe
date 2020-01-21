@@ -79,7 +79,10 @@ const Login = () => {
             </form>
           </Grid>
           <Grid item>
-            No Account? Sign Up <Link to='/register'>Here</Link>
+            No Account? Sign Up{' '}
+            <Link to='/register' className={classes.link}>
+              Here
+            </Link>
           </Grid>
         </Grid>
       </Grid>

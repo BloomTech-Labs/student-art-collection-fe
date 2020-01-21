@@ -13,6 +13,16 @@ export const formStyles = makeStyles(theme => ({
     color: '#00554B',
     textDecoration: 'none',
   },
+  expand: {
+    marginLeft: 'auto',
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    backgroundColor: '#3CBBB1',
+    color: '#fff',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
 }))
 
 export const InputField = withStyles({

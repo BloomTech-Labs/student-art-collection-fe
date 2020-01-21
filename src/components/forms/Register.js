@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { useMutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
-import firebaseApp from '../auth/firebaseApp';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import { useHistory } from 'react-router-dom';
-// import styled from 'styled-components';
+import React, { useState } from 'react'
+import { useMutation } from 'react-apollo'
+import { gql } from 'apollo-boost'
+import firebaseApp from '../auth/firebaseApp'
+import { useHistory, Link } from 'react-router-dom'
+import { Grid, Typography } from '@material-ui/core'
+import { formStyles, InputField } from '../../styles/muiForms'
+import { SubmitButton } from '../../styles/muiButtons'
+import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
 
 const REGISTER_USER = gql`
-mutation 
-  addSchool(
+  mutation addSchool(
     $school_id: ID!
     $school_name: String!
     $email: String!
@@ -18,13 +17,13 @@ mutation
     $city: String!
     $zipcode: String!
   ) {
-    addSchool (
-    school_id: $school_id
-    school_name: $school_name
-    email: $email
-    address: $address
-    city: $city
-    zipcode: $zipcode
+    addSchool(
+      school_id: $school_id
+      school_name: $school_name
+      email: $email
+      address: $address
+      city: $city
+      zipcode: $zipcode
     ) {
       school_id
       school_name
@@ -35,195 +34,165 @@ mutation
     }
   }
 `
-export {REGISTER_USER};
-// `
-//   mutation addSchool(
-//     $school_id: ID!
-//     $email: String!
-//     $school_name: String!
-//     $address: String!
-//     $city: String!
-//     $zipcode: String!
-//   ) {
-//     addSchool(
-//       school_id: ID!
-//       email: String!
-//       school_name: String!
-//       address: String!
-//       city: String!
-//       zipcode: String!
-//     ) {
-//       email
-//       password
-//       school_name
-//       address
-//       city
-//       zipcode
-//     }
-//   }
-// `;
 
 const Register = () => {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [schoolName, setSchoolName] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const history = useHistory();
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [schoolName, setSchoolName] = useState('')
+  const [address, setAddress] = useState('')
+  const [city, setCity] = useState('')
+  const [zipcode, setZipcode] = useState('')
+  const history = useHistory()
+  const classes = formStyles()
 
-  const [addSchool, { data, loading, error }] = useMutation(REGISTER_USER);
+  const [addSchool, { data, loading, error }] = useMutation(REGISTER_USER)
 
   const onSubmit = async e => {
-    e.preventDefault();
+    e.preventDefault()
     //This newUser object needs to be added to the request to the backend to connect
     //the firebase user to the app user account
-    const newUser = await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
-    // setSchoolId(newUser.uid)
-    console.log(newUser)
+    const newUser = await firebaseApp
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
     addSchool({
-      variables: { 
-        school_id: newUser.user.uid, 
-        email, 
-        school_name: schoolName, 
-        address, 
-        city, 
-        zipcode }
-    });
+      variables: {
+        school_id: newUser.user.uid,
+        email,
+        school_name: schoolName,
+        address,
+        city,
+        zipcode,
+      },
+    })
     history.push('/admin/dashboard')
-  };
+  }
 
-  if (error) {
-    //? if server returns an error...
-    return <div>Error....</div>;
-  }
-  if (loading) {
-    //? while user is being registered
-    return <div>Loading...</div>;
-  }
-  if (data) {
-    //todo redirect upon successful registration
-  }
   return (
-    <>
-    <h2 style={styles.heading}>Register for Student ArtCo!</h2>
-     <Box display='flex' style={styles.textfieldbox}>
-      <form onSubmit={onSubmit}>
-        <TextField
-          placeholder='Email'
-          variant='outlined'
-          label='Email'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='email'
-          name='email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required={true}
-        />
-        <TextField
-          placeholder='Password'
-          variant='outlined'
-          label='Password'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='password'
-          name='password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required={true}
-        />
-        <TextField
-          placeholder='School Name'
-          variant='outlined'
-          label='School Name'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='text'
-          name='school name'
-          value={schoolName}
-          onChange={e => setSchoolName(e.target.value)}
-          required={true}
-        />
-        <TextField
-          placeholder='Address'
-          variant='outlined'
-          label='Address'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='text'
-          name='address'
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-          required={true}
-        />
-        <TextField
-          placeholder='City'
-          variant='outlined'
-          label='City'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='text'
-          name='city'
-          value={city}
-          onChange={e => setCity(e.target.value)}
-          required={true}
-        />
-        <TextField
-          placeholder='ZIP Code'
-          variant='outlined'
-          label='ZIP Code'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='text'
-          name='zipcode'
-          value={zipcode}
-          onChange={e => setZipcode(e.target.value)}
-          required={true}
-        />
-        <Box display='flex' justifyContent='center'>
-        <Button
-          variant='contained'
-          style={styles.button}
-          color='primary'
-          type='submit'
-        >
-          Register
-        </Button>
-        </Box>
-        </form>
-        </Box>
-    </>
-  );
-};
+    <Grid
+      container
+      alignItems='center'
+      justify='space-around'
+      className={classes.root}
+    >
+      <Grid item>
+        <Grid container direction='column' alignItems='center' spacing={5}>
+          <Grid item>
+            <Typography component='h2' variant='h2' gutterBottom>
+              Welcome to Student ArtCo!
+            </Typography>
+            <Typography component='h3' variant='body1' align='center'>
+              Fill out the form below, and get your school started today!
+            </Typography>
+          </Grid>
+          <Grid item>
+            <form onSubmit={onSubmit}>
+              <Grid
+                container
+                direction='column'
+                alignItems='center'
+                spacing={4}
+              >
+                <Grid item>
+                  <InputField
+                    placeholder='Email'
+                    variant='outlined'
+                    label='Email'
+                    size='small'
+                    type='email'
+                    name='email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item>
+                  <InputField
+                    placeholder='Password'
+                    variant='outlined'
+                    label='Password'
+                    size='small'
+                    type='password'
+                    name='password'
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item>
+                  <InputField
+                    placeholder='School Name'
+                    variant='outlined'
+                    label='School Name'
+                    size='small'
+                    type='text'
+                    name='school name'
+                    value={schoolName}
+                    onChange={e => setSchoolName(e.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item>
+                  <InputField
+                    placeholder='Address'
+                    variant='outlined'
+                    label='Address'
+                    size='small'
+                    type='text'
+                    name='address'
+                    value={address}
+                    onChange={e => setAddress(e.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item>
+                  <InputField
+                    placeholder='City'
+                    variant='outlined'
+                    label='City'
+                    size='small'
+                    type='text'
+                    name='city'
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item>
+                  <InputField
+                    placeholder='ZIP Code'
+                    variant='outlined'
+                    label='ZIP Code'
+                    size='small'
+                    type='text'
+                    name='zipcode'
+                    value={zipcode}
+                    onChange={e => setZipcode(e.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item>
+                  <SubmitButton variant='contained' size='small' type='submit'>
+                    Submit
+                  </SubmitButton>
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
+          <Grid item>
+            <Typography variant='body1'>
+              Already a member? Sign in{' '}
+              <Link to='/login' className={classes.link}>
+                Here
+              </Link>
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <img src={pineapple} alt='blue pineapple' className={classes.image} />
+      </Grid>
+    </Grid>
+  )
+}
 
-// const LoginP = styled.p`
-//     text-align: center;
-//     font-family: 'Nunito';
-// `
-
-const styles = {
-  heading: {
-    fontFamily: 'Barlow',
-    margin: '80px 15px 25px 45px',
-    textAlign: 'center'
-  },
-  textfield: {
-    margin: 15,
-  },
-  button: {
-    margin: '25px 70px 15px 15px',
-    background: '#3CBBB1'
-  },
-  textfieldbox: {
-    marginLeft: 100,
-  },
-};
-
-export default Register;
+export default Register

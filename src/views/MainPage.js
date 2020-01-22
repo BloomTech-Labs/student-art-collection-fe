@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         padding: '2%',
-        marginBottom: '2%'
+        marginBottom: '2%',
+        paddingTop: '50vh'
     },
     welcomeMessageContainerStyles: {
         left: '0px',
@@ -35,19 +36,23 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer'
     },
     howToSection: {
-        marginBottom: '2%',
-        padding: '10%'
+        marginBottom: '2%'
     },
-    bringArtCoSection: {
-        marginBottom: '2%',
-        padding: '10%',
-        backgroundColor: '#E9B654'
-    },
-    footer: {
-        textAlign: 'center'
+    howToContent: {
+        padding: '5%'
     },
     howToItem: {
         margin: '7%'
+    },
+    bringArtCoSection: {
+        marginBottom: '2%',
+        backgroundColor: '#E9B654'
+    },
+    bringArtCoContent: {
+        padding: '2%'
+    },
+    footer: {
+        textAlign: 'center'
     }
 }))
 
@@ -65,7 +70,7 @@ const MainPage = () => {
 
     return (
         <>
-            <Grid container direction='column'>
+            <Grid container direction='column' spacing={3}>
                 <Grid className={classes.welcomeHeroStyles} item xs={12}>
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
@@ -96,7 +101,7 @@ const MainPage = () => {
                     </Grid>
                 </Grid>
                 <Grid className={classes.howToSection} item xs={12}>
-                    <Grid container spacing={3} alignItems='center'>
+                    <Grid className={classes.howToContent} container spacing={3} alignItems='center'>
                         <Grid item xs={12}>
                             <Typography variant='h5'>
                                 What is Student Artco?
@@ -112,45 +117,45 @@ const MainPage = () => {
                                 As easy as 1, 2, 3!
                             </Typography>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} md={4}>
                             <Grid container direction='column' alignItems='center'>
-                                <Grid className={classes.howToItem} item>
-                                    <img src={howToStep1} alt='person stadning facing left tapping screen of a mobile phone' />
+                                <Grid className={classes.howToItem} item xs={12}>
+                                    <img src={howToStep1} alt='person standing facing left tapping screen of a mobile phone' />
                                 </Grid>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <img src={one} alt='the number one' />
                                 </Grid>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <Typography variant='p'>
                                         Start here or with one of our mobile apps
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} md={4}>
                             <Grid container direction='column' alignItems='center'>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <img src={howToStep2} alt='mobile phone showing zip code 08032 on the display' />
                                 </Grid>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <img src={two} alt='the number two' />
                                 </Grid>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <Typography variant='p'>
                                         Enter your zip code
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={12} md={4}>
                             <Grid container direction='column' alignItems='center'>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <img src={howToStep3} alt='person standing reaching out to a shopping cart icon on a web browser' />
                                 </Grid>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <img src={three} alt='the number three' />
                                 </Grid>
-                                <Grid className={classes.howToItem} item>
+                                <Grid className={classes.howToItem} item xs={12}>
                                     <Typography variant='p'>
                                         Start supporting your community!
                                     </Typography>
@@ -160,7 +165,7 @@ const MainPage = () => {
                     </Grid>
                 </Grid>
                 <Grid className={classes.bringArtCoSection} item xs={12}>
-                    <Grid container spacing={3}>
+                    <Grid className={classes.bringArtCoContent} container spacing={3}>
                         <Grid item xs={12}>
                             <Typography variant='h5'>
                                 Looking to bring Student Artco to your school?

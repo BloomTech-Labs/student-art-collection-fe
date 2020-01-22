@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useMutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import React, { useState } from 'react'
+import { useMutation } from 'react-apollo'
+import { gql } from 'apollo-boost'
+import { Grid, TextField, Typography } from '@material-ui/core'
+import { formStyles } from '../../styles/muiForms'
+import { SubmitButton } from '../../styles/muiButtons'
 
 const SEND_MAIL = gql`
   mutation sendMail(
@@ -35,111 +35,112 @@ const Contact = props => {
   const [fromUser, setFromUser] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
+  const classes = formStyles()
 
   const [sendMail, { data, loading, error }] = useMutation(SEND_MAIL)
 
   const onSubmit = e => {
     e.preventDefault()
-    sendMail({ variables: { sendto, name, fromUser, subject, message } })
-    .then(() => {
-      setName('')
-      setFromUser('')
-      setSubject('')
-      setMessage('')
-    })
+    sendMail({ variables: { sendto, name, fromUser, subject, message } }).then(
+      () => {
+        setName('')
+        setFromUser('')
+        setSubject('')
+        setMessage('')
+      }
+    )
     if (data) {
-      console.log('data', data)
     } else if (loading) {
-      console.log('Loading')
     } else if (error) {
-      console.log('error')
     }
   }
 
   return (
-    <div>
-      <h2 style={styles.heading}>Contact The Seller</h2>
-      <form onSubmit={onSubmit}>
-        <TextField
-          placeholder='Name'
-          variant='outlined'
-          label='Name'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='text'
-          value={name}
-          name='name'
-          required={true}
-          onChange={e => setName(e.target.value)}
-        ></TextField>
-        <TextField
-          placeholder='Email'
-          variant='outlined'
-          label='Email'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='email'
-          value={fromUser}
-          name='email'
-          required={true}
-          onChange={e => setFromUser(e.target.value)}
-        ></TextField>
-        <TextField
-          placeholder='Subject'
-          variant='outlined'
-          label='Subject'
-          style={styles.textfield}
-          size='small'
-          fullWidth={false}
-          type='text'
-          value={subject}
-          name='subject line'
-          required={true}
-          onChange={e => setSubject(e.target.value)}
-        ></TextField>
-        <TextField
-          placeholder='Message'
-          variant='outlined'
-          label='Message'
-          style={styles.textfield}
-          size='small'
-          fullWidth={true}
-          type='text'
-          value={message}
-          name='message'
-          required={true}
-          onChange={e => setMessage(e.target.value)}
-        ></TextField>
-        <Box display='flex' justifyContent='center'>
-          <Button
-            variant='contained'
-            style={styles.button}
-            color='primary'
-            type='submit'
-          >
-            Send Email
-          </Button>
-        </Box>
-      </form>
-    </div>
-  );
-};
+    <Grid container direction='column' alignItems='center' spacing={4}>
+      <Grid item>
+        <Typography variant='h2' component='h2'>
+          Contact the Seller
+        </Typography>
+      </Grid>
+      <Grid item>
+        <form onSubmit={onSubmit}>
+          <Grid container direction='column' alignItems='center' spacing={3}>
+            <Grid item>
+              <TextField
+                placeholder='Name'
+                label='Name'
+                name='name'
+                variant='outlined'
+                size='small'
+                type='text'
+                required
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                placeholder='Email'
+                label='Email'
+                name='email'
+                variant='outlined'
+                size='small'
+                type='email'
+                required
+                value={fromUser}
+                onChange={e => setFromUser(e.target.value)}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                placeholder='Subject'
+                label='Subject'
+                name='subject line'
+                variant='outlined'
+                size='small'
+                type='text'
+                required
+                value={subject}
+                onChange={e => setSubject(e.target.value)}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                placeholder='Message'
+                label='Message'
+                name='message'
+                variant='outlined'
+                size='small'
+                type='text'
+                multiline
+                rows={8}
+                required
+                className={classes.message}
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+              />
+            </Grid>
+            <Grid item>
+              <SubmitButton>Submit</SubmitButton>
+            </Grid>
+          </Grid>
+        </form>
+      </Grid>
+    </Grid>
 
-const styles = {
-  heading: {
-    fontFamily: 'Barlow',
-    margin: '80px 15px 15px 45px',
-    textAlign: 'center',
-  },
-  textfield: {
-    margin: 15,
-  },
-  button: {
-    margin: 15,
-    background: '#3CBBB1'
-  },
-};
+    //     <Box display='flex' justifyContent='center'>
+    //       <Button
+    //         variant='contained'
+    //         style={styles.button}
+    //         color='primary'
+    //         type='submit'
+    //       >
+    //         Send Email
+    //       </Button>
+    //     </Box>
+    //   </form>
+    // </div>
+  )
+}
 
-export default Contact;
+export default Contact

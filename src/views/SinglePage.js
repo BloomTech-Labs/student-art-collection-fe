@@ -9,10 +9,10 @@ import {
   Container,
   Button,
   IconButton,
-  makeStyles,
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { BackButton } from '../styles/muiButtons'
+import { formStyles } from '../styles/muiForms'
 import {
   Contact,
   ArtInfo,
@@ -26,8 +26,6 @@ import {
 const GET_ART = gql`
   query art($id: ID!) {
     art(id: $id) {
-      id
-      school_id
       price
       sold
       title
@@ -35,6 +33,7 @@ const GET_ART = gql`
       description
       date_posted
       school {
+        school_id
         school_name
         email
         address
@@ -51,20 +50,12 @@ const GET_ART = gql`
   }
 `
 
-const useStyles = makeStyles(theme => ({
-  expand: {
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-}))
-
 const SinglePage = props => {
-  const id = props.match.params.id //? probably not the best way to do this...
+  const id = props.match.params.id
+  // const id = props.match.params.id //? probably not the best way to do this...
   const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
   const [expanded, setExpanded] = useState(false)
-  const classes = useStyles()
+  const classes = formStyles()
 
   if (error) {
     return <ErrorMessage />

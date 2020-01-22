@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react'
+import React, {useContext} from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery, useMutation } from 'react-apollo'
 import ReloadContext from '../components/ReloadContext'
@@ -21,7 +21,6 @@ import {
 const GET_ART = gql`
   query art($id: ID!) {
     art(id: $id) {
-      id
       price
       sold
       title
@@ -49,21 +48,28 @@ const DELETE_ART = gql`
 `
 
 const AdminSingleView = props => {
-  const {reload, setReload} = useContext(ReloadContext)
+  const {setReload} = useContext(ReloadContext)
   const id = props.match.params.id
-  const { error, loading, data, refetch } = useQuery(GET_ART, {variables: {id}})
+  const { error, loading, data } = useQuery(GET_ART, {variables: {id}})
   const [deleteArt] = useMutation(DELETE_ART)
 
+  // KEEPING THESE UNTIL CONFIRMED WORKING ON STAGING/PRODUCTION
   // eslint-disable-next-line
-  useEffect(() => {
-    if(reload === true) {
-      function update() {
-        return refetch({variables: {id}})
-      }
-      update()
-      setReload(false)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if(reload === true) {
+  //     function update() {
+  //       return refetch({variables: {id}})
+  //     }
+  //     update()
+  //     setReload(false)
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //  if (reload === true) {
+  //    window.location.reload()
+  //  }
+  // }, [])
 
   const handleDelete = () => {
     deleteArt({ variables: { id } })

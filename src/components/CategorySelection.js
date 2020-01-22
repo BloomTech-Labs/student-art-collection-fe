@@ -1,7 +1,7 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
-import { FormControl, MenuItem, Select, Box } from '@material-ui/core'
+import { FormControl, MenuItem, Select } from '@material-ui/core'
 import { ErrorMessage, Spinner } from './index'
 
 const CATEGORIES = gql`

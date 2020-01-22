@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
+import ReloadContext from './ReloadContext'
 
 const GET_ALL_ART = gql`
   query {
@@ -57,8 +58,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const { error, loading, data } = useQuery(GET_ALL_ART)
+  const {reload, setReload, setArtId} = useContext(ReloadContext)
+  const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
+
+  useEffect(() => {
+    if (reload === true) {
+      function update() {
+        return refetch()
+      }
+      update()
+      setReload(false)
+    }
+  })
 
   if (error) {
     return <ErrorMessage />
@@ -77,6 +89,7 @@ const ImageMasonry = () => {
                   component={Link}
                   to={`/artwork/${art.id}`}
                   className={classes.actionArea}
+                  onClick={() => setArtId(art.id)}
                 >
                   <CardMedia
                     component='img'

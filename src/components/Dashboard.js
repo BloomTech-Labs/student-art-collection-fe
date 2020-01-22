@@ -85,8 +85,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Dashboard = props => {
-  console.log(`dashboard props >>>`, props)
-  const { reload, setReload} = useContext(ReloadContext)
+  const { reload, setReload } = useContext(ReloadContext)
   const schoolId = props.schoolId
   const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {
     variables: { schoolId },
@@ -101,7 +100,7 @@ const Dashboard = props => {
       update()
       setReload(false)
     }
-  }, [])
+  })
 
   if (error) {
     return <div> Error Loading Dashboard...</div>
@@ -110,7 +109,6 @@ const Dashboard = props => {
     return <div> Loading Dashboard...</div>
   }
   if (data) {
-    console.log(`dashboard data >>>`, data)
     return (
       <>
         <div className={classes.root}>

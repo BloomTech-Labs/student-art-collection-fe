@@ -1,6 +1,5 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { Grid, makeStyles, Typography } from '@material-ui/core'
-import ReloadContext from './ReloadContext'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,9 +14,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ArtInfo = ({info}) => {
-  // const {artData} = useContext(ReloadContext)
   const classes = useStyles()
-  // console.log('this is the info', artData)
   return (
     <div className={classes.root}>
       <Grid container alignItems='center' justify='space-between'>

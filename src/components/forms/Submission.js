@@ -44,7 +44,6 @@ const SUBMISSION = gql`
 `
 
 const Submission = props => {
-  console.log(`props >>>`, props)
   const { setReload } = useContext(ReloadContext)
   const [category, setCategory] = useState('')
   const [price, setPrice] = useState('')
@@ -84,7 +83,6 @@ const Submission = props => {
           school_id: id,
           image_url: res.data.secure_url,
         }
-        console.log(`vars >>>`, variables)
         submitArt({ variables: variables })
       })
       .then(() => {

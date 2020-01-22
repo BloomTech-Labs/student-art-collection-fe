@@ -50,11 +50,8 @@ const Contact = props => {
       }
     )
     if (data) {
-      console.log('data', data)
     } else if (loading) {
-      console.log('Loading')
     } else if (error) {
-      console.log('error')
     }
   }
 

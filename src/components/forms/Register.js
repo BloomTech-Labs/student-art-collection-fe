@@ -45,7 +45,7 @@ const Register = () => {
   const history = useHistory()
   const classes = formStyles()
 
-  const [addSchool, { data, loading, error }] = useMutation(REGISTER_USER)
+  const [addSchool, /* { data, loading, error } */] = useMutation(REGISTER_USER)
 
   const onSubmit = async e => {
     e.preventDefault()

@@ -10,9 +10,6 @@ const useStyles = makeStyles(theme => ({
 
 const ImageCarousel = ({ info }) => {
   const classes = useStyles()
-
-  // console.log(`img info >>>`, info)
-
   return (
     <Grid container justify='center'>
       <Grid item>

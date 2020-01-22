@@ -12,11 +12,11 @@ import { theme } from './styles/theme'
 
 function App() {
   const [reload, setReload] = useState(false)
-  const [artData, setArtData] = useState([])
+  const [artId, setArtId] = useState(1)
   return (
     <Container>
       <AuthProvider>
-        <ReloadProvider value={{ reload, setReload, artData, setArtData }}>
+        <ReloadProvider value={{ reload, setReload, artId, setArtId }}>
           <Router>
             <ThemeProvider theme={theme}>
               <Navigation />

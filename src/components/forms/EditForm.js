@@ -11,10 +11,7 @@ import {
     Menu, 
     MenuItem, 
     Checkbox,
-    FormGroup,
-    FormControl,
     FormControlLabel,
-    FormLabel
 } from '@material-ui/core';
 import ErrorMessage from '../GraphErrors';
 import Spinner from '../GraphLoading';
@@ -60,7 +57,7 @@ const UPDATE_ART = gql`
 
 const EditForm = (props) => {
     // This is context to refetch the graphQL query from the database
-    const {reload, setReload} = useContext(ReloadContext)
+    const {setReload} = useContext(ReloadContext)
     const styles = {
         heading: {
         fontFamily: 'Barlow',
@@ -149,7 +146,6 @@ const EditForm = (props) => {
     }
 
     if (data) {
-        console.log('reload when loaded', reload)
         return (
             <>
                 <h2 style={styles.heading}>Update an Art Listing</h2>

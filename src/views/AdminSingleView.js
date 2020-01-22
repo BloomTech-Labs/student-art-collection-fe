@@ -21,7 +21,6 @@ import {
 const GET_ART = gql`
   query art($id: ID!) {
     art(id: $id) {
-      id
       price
       sold
       title
@@ -51,7 +50,7 @@ const DELETE_ART = gql`
 const AdminSingleView = props => {
   const {setReload} = useContext(ReloadContext)
   const id = props.match.params.id
-  const { error, loading, data, refetch } = useQuery(GET_ART, {variables: {id}})
+  const { error, loading, data } = useQuery(GET_ART, {variables: {id}})
   const [deleteArt] = useMutation(DELETE_ART)
 
   // KEEPING THESE UNTIL CONFIRMED WORKING ON STAGING/PRODUCTION
@@ -90,7 +89,6 @@ const AdminSingleView = props => {
     return <Spinner />
   }
   if (data) {
-    console.log(props.history)
     return (
         <Container>
           <Card>

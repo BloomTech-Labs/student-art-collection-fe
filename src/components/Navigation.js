@@ -4,6 +4,7 @@ import { Grid, Button, makeStyles } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
 import { AuthContext } from './auth/Auth'
 import logo from '../images/logo1.png'
+import ReloadContext from './ReloadContext'
 
 const useStyles = makeStyles(theme => ({
   space: {
@@ -17,10 +18,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Navigation = () => {
+  const { setReload } = useContext(ReloadContext)
   const classes = useStyles()
   const history = useHistory()
   const { authenticated } = useContext(AuthContext)
-  console.log(`auth >>>`, authenticated)
 
   const signOut = () => {
     firebaseApp
@@ -53,7 +54,7 @@ const Navigation = () => {
             </Grid>
           ) : null}
           <Grid item>
-            <Button component={Link} to='/browse'>
+            <Button component={Link} to='/browse' onClick={() => setReload(true)}>
               Browse
             </Button>
           </Grid>

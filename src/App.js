@@ -16,10 +16,11 @@ import { theme } from './styles/theme'
 
 function App(props) {
   const [reload, setReload] = useState(false)
+  const [artId, setArtId] = useState(1)
   return (
     <Container>
       <AuthProvider>
-        <ReloadProvider value={{ reload, setReload }}>
+        <ReloadProvider value={{ reload, setReload, artId, setArtId }}>
           <Router>
             <ThemeProvider theme={theme}>
               <Toolbar id='back-to-top-anchor'>

@@ -26,8 +26,6 @@ import {
 const GET_ART = gql`
   query art($id: ID!) {
     art(id: $id) {
-      id
-      school_id
       price
       sold
       title
@@ -35,6 +33,7 @@ const GET_ART = gql`
       description
       date_posted
       school {
+        school_id
         school_name
         email
         address
@@ -52,7 +51,8 @@ const GET_ART = gql`
 `
 
 const SinglePage = props => {
-  const id = props.match.params.id //? probably not the best way to do this...
+  const id = props.match.params.id
+  // const id = props.match.params.id //? probably not the best way to do this...
   const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
   const [expanded, setExpanded] = useState(false)
   const classes = formStyles()

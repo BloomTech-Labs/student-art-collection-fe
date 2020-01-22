@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Button, AppBar, makeStyles, Toolbar } from '@material-ui/core'
+import { Grid, Button, AppBar, makeStyles } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
 import { AuthContext } from './auth/Auth'
 import logo from '../images/logo1.png'
@@ -54,7 +54,7 @@ const Navigation = props => {
           className={classes.space}
         >
           <Grid item>
-            <Link to='/' className={classes.logo} onClick={() => setReload(true)}>
+            <Link to='/' className={classes.logo}>
               <img src={logo} alt='Student Artco' />
             </Link>
           </Grid>
@@ -65,6 +65,7 @@ const Navigation = props => {
                   component={Link}
                   to='/browse'
                   className={classes.button}
+                  onClick={() => setReload(true)}
                 >
                   Browse
                 </Button>

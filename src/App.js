@@ -13,12 +13,13 @@ import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import { Toolbar } from '@material-ui/core'
 import { theme } from './styles/theme'
+import { AppContainer } from './styles/muiAppContainer'
 
 function App(props) {
   const [reload, setReload] = useState(false)
   const [artId, setArtId] = useState(1)
   return (
-    <Container>
+    <AppContainer>
       <AuthProvider>
         <ReloadProvider value={{ reload, setReload, artId, setArtId }}>
           <Router>
@@ -80,7 +81,7 @@ function App(props) {
           </Router>
         </ReloadProvider>
       </AuthProvider>
-    </Container>
+    </AppContainer>
   )
 }
 

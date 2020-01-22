@@ -11,6 +11,8 @@ import {
   Grid,
   Paper,
   Typography,
+  Checkbox,
+  FormControlLabel,
 } from '@material-ui/core'
 import { formStyles } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
@@ -56,20 +58,28 @@ const UPDATE_ART = gql`
 `
 
 const EditForm = props => {
+  // This is the context to refetch the graphQL query from the database
   const { setReload } = useContext(ReloadContext)
 
   const id = props.info.art.id
+
+  // These values are pulled from props to set in the proper place for editing
   const [price, setPrice] = useState(props.info.art.price)
   const [artistName, setArtistName] = useState(props.info.art.artist_name)
   const [description, setDescription] = useState(props.info.art.description)
   const [title, setTitle] = useState(props.info.art.title)
 
+  // These modify the selection of the category of the piece of art
   const [selectedIndex, setSelectedIndex] = useState(
     props.info.art.category.id - 1
   )
   const [anchorEl, setAnchorEl] = useState(null)
   const [category, setCategory] = useState(props.info.art.category.id)
   const { error, loading, data } = useQuery(GET_CATEGORIES)
+
+  // These modify the truthiness of whether a piece of art is sold
+  const [sold, setSold] = useState(props.info.art.sold)
+  const [checked, setChecked] = useState(sold)
 
   const [updateArt] = useMutation(UPDATE_ART)
 
@@ -89,6 +99,11 @@ const EditForm = props => {
     setAnchorEl(null)
   }
 
+  const handleChecked = () => {
+    setChecked(!checked)
+    setSold(!sold)
+  }
+
   const onSubmit = async event => {
     event.preventDefault()
     await updateArt({
@@ -99,18 +114,16 @@ const EditForm = props => {
         artist_name: artistName,
         description,
         title,
+        sold
       },
     })
     if (error) {
-      console.log('Here at error')
       return <ErrorMessage />
     }
     if (loading) {
-      console.log('Here at loading')
       return <Spinner />
     }
     if (data) {
-      console.log('Here at data')
       setReload(true)
       props.propData.history.replace(`/admin/dashboard`)
     }
@@ -185,6 +198,20 @@ const EditForm = props => {
                     />
                   </Grid>
                   <Grid item>
+                    <FormControlLabel value="Sold"
+                    control={
+                      <Checkbox
+                      checked={checked}
+                      onChange={handleChecked}
+                      color="primary"
+                      value="primary"
+                      inputProps={{'aria-label': 'When checked, this box updates a piece of art as sold'}}
+                      />} 
+                      label="Sold"
+                      labelPlacement="top"
+                    />
+                  </Grid>
+                  <Grid item>
                     <List aria-label='Selecting a category'>
                       <ListItem
                         button
@@ -210,7 +237,6 @@ const EditForm = props => {
                       {data.allCategories.map((item, index) => (
                         <MenuItem
                           key={item.id}
-                          disabled={index === 0}
                           selected={index === selectedIndex}
                           onClick={event => handleMenuItemClick(event, index)}
                         >

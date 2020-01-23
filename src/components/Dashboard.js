@@ -60,8 +60,8 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     fontSize: '1.5rem',
     background: '#3CBBB1',
-    width: '400px',
-    height: '80px',
+    width: '350px',
+    height: '60px',
     marginBottom: '50px',
     margin: 'auto',
     '&:hover': {
@@ -99,7 +99,7 @@ const Dashboard = props => {
       <>
         <TopDash>
           <SchoolText>Welcome, {data.schoolBySchoolId.school_name}</SchoolText>
-          <TownText>{data.schoolBySchoolId.city} || Grades 9-12</TownText>
+          <TownText>{data.schoolBySchoolId.city} <Lines>||</Lines> Grades 9-12</TownText>
 
           {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
         </TopDash>
@@ -169,18 +169,19 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 500px;
-  margin-top: 50px;
+  height: 600px;
+  margin-top: -50px;
   color: #f5f5f5;
   width: 100%;
 `
 
 const SchoolText = styled.text`
-  font-size: 5rem;
+  font-size: 4rem;
 `
 
 const TownText = styled.text`
   font-size: 3rem;
+  color: #FFAA04;
 `
 
 const ArtSect = styled.div`
@@ -193,9 +194,12 @@ const ArtSect = styled.div`
 const ListingTop = styled.text`
 display flex;
 justify-content: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: black;
   margin-bottom: 50px;
+`
+const Lines = styled.text`
+  color: #3CBBB1;
 `
 
 export default Dashboard

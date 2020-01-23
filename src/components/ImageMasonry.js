@@ -143,7 +143,7 @@ const ArtSect = styled.div`
 `
 
 const Author = styled.text`
-  color: orange;
+  color: #FFAA04;
 `
 
 export default ImageMasonry

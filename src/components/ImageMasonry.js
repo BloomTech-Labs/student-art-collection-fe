@@ -73,12 +73,12 @@ const ImageMasonry = () => {
     return (
       <>
         <TopDash>
-          Art enables us to find ourselves and lose ourselves at the same time
+          Art enables us to find ourselves and lose ourselves at the same time.
           <br />
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
-          <Grid container spacing={6} className={classes.cardWrap}>
+          <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>
                 <Card className={classes.cardSize}>

@@ -14,7 +14,6 @@ import {
 } from '@material-ui/core'
 import styled from 'styled-components'
 import ReloadContext from '../components/ReloadContext'
-import { findByLabelText } from '@testing-library/react'
 
 const GET_SCHOOL_INFO = gql`
   query schoolBySchoolId($schoolId: ID!) {
@@ -50,6 +49,7 @@ const useStyles = makeStyles(theme => ({
   cardWrap: {
     display: 'flex',
     justifyContent: 'center',
+    padding: '10px'
   },
   mediaTitle: {
     fontFamily: 'Barlow',
@@ -118,7 +118,6 @@ const Dashboard = props => {
           >
             Add New Listing
           </Button>
-
           <Grid container spacing={6} className={classes.cardWrap}>
             {data.schoolBySchoolId.art.map(listings => (
               <Grid item key={listings.id}>
@@ -135,7 +134,6 @@ const Dashboard = props => {
                         listings.title === '' ? 'Untitled' : listings.title
                       }
                     />
-
                     <CardContent>
                       <Typography className={classes.mediaTitle}>
                         Title:{' '}

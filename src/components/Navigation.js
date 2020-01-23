@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Button, AppBar, makeStyles, Toolbar } from '@material-ui/core'
+import { Grid, Button, AppBar, makeStyles } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
 import { AuthContext } from './auth/Auth'
 import logo from '../images/logo1.png'
 import HideOnScroll from './HideOnScroll'
+import ReloadContext from './ReloadContext'
 // import ScrollTop from './ScrollTop'
 // import Fab from '@material-ui/core/Fab';
 // import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -29,10 +30,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Navigation = props => {
+  const { setReload } = useContext(ReloadContext)
   const classes = useStyles()
   const history = useHistory()
   const { authenticated } = useContext(AuthContext)
-  console.log(`auth >>>`, authenticated)
 
   const signOut = () => {
     firebaseApp
@@ -64,6 +65,7 @@ const Navigation = props => {
                   component={Link}
                   to='/browse'
                   className={classes.button}
+                  onClick={() => setReload(true)}
                 >
                   Browse
                 </Button>

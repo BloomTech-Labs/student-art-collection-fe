@@ -2,19 +2,19 @@ import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
-import InfoIcon from '@material-ui/icons/Info'
 import {
   makeStyles,
   Grid,
   Card,
   CardActionArea,
-  CardActions,
+  CardContent,
   CardMedia,
   Typography,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
+import styled from 'styled-components'
 
 const GET_ALL_ART = gql`
   query {
@@ -32,33 +32,24 @@ const GET_ALL_ART = gql`
 `
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
+  cardSize: {
+    maxWidth: '1000px',
+    maxHeight: '1000px',
   },
-  image: {
-    maxHeight: 300,
-    width: 'auto',
+  cardWrap: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '10px',
   },
-  actionArea: {
-    maxHeight: 300,
-    width: 'auto',
-  },
-  info: {
-    position: 'relative',
-    top: '-70px',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    color: 'white',
-  },
-  title: {
-    marginLeft: 15,
-  },
-  icon: {
-    color: 'rgba(255,255,255,.5)',
+  mediaTitle: {
+    fontFamily: 'Barlow',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
   },
 }))
 
 const ImageMasonry = () => {
-  const {reload, setReload, setArtId} = useContext(ReloadContext)
+  const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
 
@@ -80,57 +71,79 @@ const ImageMasonry = () => {
   }
   if (data) {
     return (
-      <main className={classes.root}>
-        <Grid container spacing={3} alignItems='center' justify='center'>
-          {data.allArts.map(art => (
-            <Grid item key={art.id}>
-              <Card>
-                <CardActionArea
-                  component={Link}
-                  to={`/artwork/${art.id}`}
-                  className={classes.actionArea}
-                  onClick={() => setArtId(art.id)}
-                >
-                  <CardMedia
-                    component='img'
-                    src={art.images[0].image_url}
-                    alt={art.title === '' ? 'Untitled' : art.title}
-                    title={art.title === '' ? 'Untitled' : art.title}
-                    className={classes.image}
-                  />
-                  <Grid
-                    container
-                    justify='space-between'
-                    className={classes.info}
+      <>
+        <TopDash>
+          Art enables us to find ourselves and lose ourselves at the same time.
+          <br />
+          <Author>-Thomas Merton</Author>
+        </TopDash>
+        <ArtSect>
+          <Grid container spacing={4} className={classes.cardWrap}>
+            {data.allArts.map(art => (
+              <Grid item key={art.id}>
+                <Card className={classes.cardSize}>
+                  <CardActionArea
+                    component={Link}
+                    to={`/artwork/${art.id}`}
+                    onClick={() => setArtId(art.id)}
                   >
-                    <Grid item>
-                      <Typography
-                        variant='body2'
-                        component='h3'
-                        className={classes.title}
-                      >
-                        <p>{art.title === '' ? 'Untitled' : art.title}</p>
-                        <p>
-                          {art.school === ''
-                            ? 'School Name Needed'
-                            : art.school.school_name}
-                        </p>
+                    <CardMedia
+                      component='img'
+                      src={art.images[0].image_url}
+                      alt={art.title === '' ? 'Untitled' : art.title}
+                      title={art.title === '' ? 'Untitled' : art.title}
+                    />
+                    <CardContent>
+                      <Typography className={classes.mediaTitle}>
+                        Title: {art.title === '' ? 'Untitled' : art.title}
                       </Typography>
-                    </Grid>
-                    <Grid item>
-                      <CardActions>
-                        <InfoIcon className={classes.icon} />
-                      </CardActions>
-                    </Grid>
-                  </Grid>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </main>
+                      <Typography
+                        className={classes.mediaTitle}
+                        variant={'h6'}
+                        component='p'
+                      >
+                        School:{' '}
+                        {art.school === ''
+                          ? 'School Name Needed'
+                          : art.school.school_name}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </ArtSect>
+      </>
     )
   }
 }
+
+//styling
+const TopDash = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Barlow';
+  background-color: #000;
+  height: 550px;
+  color: #f5f5f5;
+  width: 100%;
+  margin-top: -100px;
+  padding: 0;
+  font-size: 3rem;
+`
+
+const ArtSect = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+`
+
+const Author = styled.text`
+  color: #FFAA04;
+`
 
 export default ImageMasonry

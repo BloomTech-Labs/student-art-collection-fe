@@ -17,13 +17,12 @@ const useStyles = makeStyles(theme => ({
         backgroundPosition: 'center center',
         padding: '2%',
         marginBottom: '2%',
-        paddingTop: '50vh'
+        marginTop: '3%',
     },
     welcomeMessageContainerStyles: {
         left: '0px',
         padding: '2%',
         background: 'rgba(0,0,0,0.75)',
-        // position: 'absolute',
         color: '#FFFFFF',
         width: '75%'
     },
@@ -42,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         padding: '5%'
     },
     howToItem: {
-        margin: '7%'
+        textAlign: 'center'
     },
     bringArtCoSection: {
         marginBottom: '2%',
@@ -74,17 +73,17 @@ const MainPage = () => {
                 <Grid className={classes.welcomeHeroStyles} item xs={12}>
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
-                            <Typography variant="h1">
+                            <Typography variant="h2">
                                 Welcome to Student Artco
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h2'>
+                            <Typography variant='h3'>
                                 Support your local schools today!
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h2'>
+                            <Typography variant='h4'>
                                 I am...
                             </Typography>
                         </Grid>
@@ -101,7 +100,7 @@ const MainPage = () => {
                     </Grid>
                 </Grid>
                 <Grid className={classes.howToSection} item xs={12}>
-                    <Grid className={classes.howToContent} container spacing={3} alignItems='center'>
+                    <Grid className={classes.howToContent} container spacing={3} justify='center' alignItems='center'>
                         <Grid item xs={12}>
                             <Typography variant='h5'>
                                 What is Student Artco?
@@ -109,7 +108,7 @@ const MainPage = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant='p'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at volutpat massa. In pulvinar pellentesque sodales. Curabitur sit amet varius justo. Phasellus aliquam, nisi feugiat consequat facilisis, orci urna porttitor quam, eget lobortis justo ipsum vitae velit. Nullam aliquet scelerisque libero, vel ornare risus consequat quis. Duis molestie, dolor facilisis tristique sagittis, magna magna sodales felis, sit amet sollicitudin felis nunc vitae metus. Nullam maximus malesuada semper. Duis feugiat feugiat elit, varius gravida nunc imperdiet a. Maecenas aliquet aliquet lectus vitae aliquam. Pellentesque eu congue mauris. Maecenas ex erat, congue at maximus rutrum, porta sit amet turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                                Student ArtCo is a platform that facilitates fund-raising for your school's art program by helping to sell art made by students. School art programs are typically underfunded and research shows that students create their best work when it is more than just an assignment. We provide a place where a local community and beyond can visit to see art created by students and purchase it to support an art program. Using the latest technology, we host examples of your student's artwork and make it available for purchase to a wide audience. We want to inspire hope in young artists by showing how far our (and your school's) reach can go and by showing how a local community can come together to provide opportunities to young artists.
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
@@ -117,50 +116,38 @@ const MainPage = () => {
                                 As easy as 1, 2, 3!
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Grid container direction='column' alignItems='center'>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <img src={howToStep1} alt='person standing facing left tapping screen of a mobile phone' />
-                                </Grid>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <img src={one} alt='the number one' />
-                                </Grid>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <Typography variant='p'>
-                                        Start here or with one of our mobile apps
-                                    </Typography>
-                                </Grid>
-                            </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <img src={one} alt='the number one' />
                         </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Grid container direction='column' alignItems='center'>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <img src={howToStep2} alt='mobile phone showing zip code 08032 on the display' />
-                                </Grid>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <img src={two} alt='the number two' />
-                                </Grid>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <Typography variant='p'>
-                                        Enter your zip code
-                                    </Typography>
-                                </Grid>
-                            </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <Typography variant='p'>
+                                Start here or with one of our mobile apps
+                            </Typography>
                         </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Grid container direction='column' alignItems='center'>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <img src={howToStep3} alt='person standing reaching out to a shopping cart icon on a web browser' />
-                                </Grid>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <img src={three} alt='the number three' />
-                                </Grid>
-                                <Grid className={classes.howToItem} item xs={12}>
-                                    <Typography variant='p'>
-                                        Start supporting your community!
-                                    </Typography>
-                                </Grid>
-                            </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <img src={howToStep1} alt='person standing facing left tapping screen of a mobile phone' />
+                        </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <img src={two} alt='the number two' />
+                        </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <Typography variant='p'>
+                                Enter your school's information
+                            </Typography>
+                        </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <img src={howToStep2} alt='mobile phone showing zip code 08032 on the display' />
+                        </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <img src={three} alt='the number three' />
+                        </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <Typography variant='p'>
+                                Start supporting your community!
+                            </Typography>
+                        </Grid>
+                        <Grid className={classes.howToItem} item xs={12} md={4}>
+                            <img src={howToStep3} alt='person standing reaching out to a shopping cart icon on a web browser' />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -168,12 +155,12 @@ const MainPage = () => {
                     <Grid className={classes.bringArtCoContent} container spacing={3}>
                         <Grid item xs={12}>
                             <Typography variant='h5'>
-                                Looking to bring Student Artco to your school?
+                                Looking to bring Student ArtCo to your school?
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant='p'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at volutpat massa. In pulvinar pellentesque sodales. Curabitur sit amet varius justo. Phasellus aliquam, nisi feugiat consequat facilisis, orci urna porttitor quam, eget lobortis justo ipsum vitae velit. Nullam aliquet scelerisque libero, vel ornare risus consequat quis. Duis molestie, dolor facilisis tristique sagittis, magna magna sodales felis, sit amet sollicitudin felis nunc vitae metus. Nullam maximus malesuada semper. Duis feugiat feugiat elit, varius gravida nunc imperdiet a. Maecenas aliquet aliquet lectus vitae aliquam. Pellentesque eu congue mauris. Maecenas ex erat, congue at maximus rutrum, porta sit amet turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                                Joining our platform is easy and within a few minutes you can have art listings up to share with your community and anyone online. All you need is pictures of the artwork to show it off and we can help with the rest. We provide a unique link for every piece of artwork that you can share with anyone. We have mobile apps available for both Android and iOS that allow you to manage your listings from anywhere. Others can use the apps to browse the available artwork and contact you to inquire about purchasing and making a donation.
                             </Typography>
                         </Grid>
                     </Grid>

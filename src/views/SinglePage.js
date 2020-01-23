@@ -53,11 +53,13 @@ const GET_ART = gql`
 const SinglePage = props => {
   const id = props.match.params.id
   // const id = props.match.params.id //? probably not the best way to do this...
-  const { error, loading, data } = useQuery(GET_ART, { variables: { id } })
+  const { error, loading, data } = useQuery(GET_ART, { variables: { id }, fetchPolicy: "no-cache" })
   const [expanded, setExpanded] = useState(false)
   const classes = formStyles()
 
   if (error) {
+    console.log('error', error)
+    console.error('error', error)
     return <ErrorMessage />
   }
   if (loading) {

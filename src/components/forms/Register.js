@@ -3,7 +3,7 @@ import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import firebaseApp from '../auth/firebaseApp'
 import { useHistory, Link } from 'react-router-dom'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, Container } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
@@ -68,6 +68,7 @@ const Register = () => {
   }
 
   return (
+    <Container style={{ marginTop: '200px' }}>
     <Grid
       container
       alignItems='center'
@@ -77,11 +78,11 @@ const Register = () => {
       <Grid item>
         <Grid container direction='column' alignItems='center' spacing={5}>
           <Grid item>
-            <Typography component='h2' variant='h2' gutterBottom>
+            <Typography component='h2' variant='h2'  style={{ fontSize: '2.5rem' }} gutterBottom>
               Welcome to Student ArtCo!
             </Typography>
-            <Typography component='h3' variant='body1' align='center'>
-              Fill out the form below, and get your school started today!
+            <Typography component='h3' variant='body1' align='center' style={{ fontSize: '1.25rem' }} >
+              Fill out the form below and get your school started today.
             </Typography>
           </Grid>
           <Grid item>
@@ -171,7 +172,7 @@ const Register = () => {
                   />
                 </Grid>
                 <Grid item>
-                  <SubmitButton variant='contained' size='small' type='submit'>
+                  <SubmitButton variant='contained' size='medium' type='submit'>
                     Submit
                   </SubmitButton>
                 </Grid>
@@ -179,7 +180,7 @@ const Register = () => {
             </form>
           </Grid>
           <Grid item>
-            <Typography variant='body1'>
+            <Typography style={{ fontSize: '1.25rem' }}>
               Already a member? Sign in{' '}
               <Link to='/login' className={classes.link}>
                 Here
@@ -192,6 +193,7 @@ const Register = () => {
         <img src={pineapple} alt='blue pineapple' className={classes.image} />
       </Grid>
     </Grid>
+    </Container>
   )
 }
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import firebaseApp from '../auth/firebaseApp'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Typography, useMediaQuery } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
-import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
+// import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
 import loginart from '../../images/mr-tt-xb0wLfZH9Zo-unsplash.jpg'
 import styled from 'styled-components'
 
@@ -22,8 +22,6 @@ const Login = () => {
     history.push('/admin/dashboard')
   }
 
-  const matches = useMediaQuery('(min-width:1800px)');
-
   return (
     <ContainerDiv>
     <Grid
@@ -31,7 +29,7 @@ const Login = () => {
       alignItems='center'
       justify='space-around'
       className={classes.root}
-      style={{ width: '65%', height: '65%', marginTop: '200px' }}
+      style={{ width: '65%', height: '60%', marginTop: '200px' }}
     >
       <Grid item>
         <Grid container direction='column' alignItems='center' spacing={5}>

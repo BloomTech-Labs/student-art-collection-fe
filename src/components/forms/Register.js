@@ -3,7 +3,7 @@ import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import firebaseApp from '../auth/firebaseApp'
 import { useHistory, Link } from 'react-router-dom'
-import { Grid, Typography, Container } from '@material-ui/core'
+import { Grid, Typography, Container, useMediaQuery } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
@@ -44,6 +44,7 @@ const Register = () => {
   const [zipcode, setZipcode] = useState('')
   const history = useHistory()
   const classes = formStyles()
+  const breakpoint = useMediaQuery('(min-width: 1300px)')
 
   const [addSchool /* { data, loading, error } */] = useMutation(REGISTER_USER)
 
@@ -68,7 +69,7 @@ const Register = () => {
   }
 
   return (
-    <Container style={{ marginTop: '150px', marginBottom: '100px' }}>
+    <Container style={{ marginTop: '175px', marginBottom: '100px' }}>
       <Grid
         container
         alignItems='center'
@@ -203,9 +204,10 @@ const Register = () => {
             </Grid>
           </Grid>
         </Grid>
+        {breakpoint ? 
         <Grid item>
           <img src={pineapple} alt='blue pineapple' className={classes.image} />
-        </Grid>
+        </Grid> : null}
       </Grid>
     </Container>
   )

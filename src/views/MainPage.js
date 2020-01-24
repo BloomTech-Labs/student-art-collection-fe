@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 const MainPage = () => {
     const classes = useStyles()
     const history = useHistory()
-    const mobile = useMediaQuery('(min-width: 880px)')
+    const breakpoint = useMediaQuery('(min-width: 880px)')
 
     const lookingArtClickhandler = () => {
         history.push('/browse')
@@ -76,7 +76,7 @@ const MainPage = () => {
                 <Grid className={classes.welcomeHeroStyles} item xs={12}>
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
-                            {mobile ? 
+                            {breakpoint ? 
                             <Typography variant="h2" style={{ fontSize: '4rem' }}>
                                 Welcome to Student Artco
                             </Typography>
@@ -85,7 +85,7 @@ const MainPage = () => {
                          </Typography>}
                         </Grid>
                         <Grid item xs={12}>
-                        {mobile ? 
+                        {breakpoint ? 
                             <Typography variant="h2" style={{ fontSize: '4rem' }}>
                                 Support Your Local School's Today!
                             </Typography>
@@ -94,7 +94,7 @@ const MainPage = () => {
                          </Typography>}
                         </Grid>
                         <Grid item xs={12}>
-                        {mobile ? 
+                        {breakpoint ? 
                             <Typography variant="h2" style={{ fontSize: '4rem' }}>
                                 I am...
                             </Typography>

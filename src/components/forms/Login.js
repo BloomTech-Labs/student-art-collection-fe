@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import firebaseApp from '../auth/firebaseApp'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, useMediaQuery } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
+import loginart from '../../images/mr-tt-xb0wLfZH9Zo-unsplash.jpg'
+import styled from 'styled-components'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -20,18 +22,22 @@ const Login = () => {
     history.push('/admin/dashboard')
   }
 
+  const matches = useMediaQuery('(min-width:1800px)');
+
   return (
+    <ContainerDiv>
     <Grid
       container
       alignItems='center'
       justify='space-around'
       className={classes.root}
+      style={{ width: '65%', height: '65%', marginTop: '200px' }}
     >
       <Grid item>
         <Grid container direction='column' alignItems='center' spacing={5}>
           <Grid item>
             <Typography component='h2' variant='h2'>
-              Log in to Student ArtCo!
+              Login to Student ArtCo!
             </Typography>
           </Grid>
           <Grid item>
@@ -71,7 +77,7 @@ const Login = () => {
                   />
                 </Grid>
                 <Grid item>
-                  <SubmitButton variant='contained' size='small' type='submit'>
+                  <SubmitButton variant='contained' size='medium' type='submit'>
                     Submit
                   </SubmitButton>
                 </Grid>
@@ -79,18 +85,30 @@ const Login = () => {
             </form>
           </Grid>
           <Grid item>
+          <Typography style={{ fontSize: '1.25rem' }}>
             No Account? Sign Up{' '}
             <Link to='/register' className={classes.link}>
               Here
             </Link>
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid item>
-        <img src={pineapple} alt='blue pineapple' className={classes.image} />
+        <img src={loginart} alt='art graffiti' className={classes.image} />
       </Grid>
     </Grid>
+    </ContainerDiv>
   )
 }
+
+const ContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+`
+
+
 
 export default Login

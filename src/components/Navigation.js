@@ -46,7 +46,7 @@ const Navigation = props => {
 
   return (
     <HideOnScroll {...props}>
-    <AppBar className={classes.appbar}>
+    <AppBar className={classes.appbar} position='sticky'>
         <Grid
           container
           alignItems='center'

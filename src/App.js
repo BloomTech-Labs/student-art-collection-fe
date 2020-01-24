@@ -24,7 +24,7 @@ function App(props) {
         <ReloadProvider value={{ reload, setReload, artId, setArtId }}>
           <Router>
             <ThemeProvider theme={theme}>
-              <Toolbar id='back-to-top-anchor'>
+              <Toolbar id='back-to-top-anchor' style={{ padding: '0' }}>
                 <Navigation />
               </Toolbar>
               <Switch>

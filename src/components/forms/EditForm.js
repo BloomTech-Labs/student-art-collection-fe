@@ -140,7 +140,7 @@ const EditForm = props => {
 
   if (data) {
     return (
-      <Container style={{ marginTop: '150px' }}>
+      <Container style={{ marginTop: '100px', marginBottom: '100px' }}>
         <Paper elevation={0} className={classes.root}>
           <Paper elevation={3} className={classes.paper}>
             <Grid container direction='column' alignItems='center' spacing={4}>

@@ -35,7 +35,7 @@ const Login = () => {
           <Grid container direction='column' alignItems='center' spacing={5}>
             <Grid item>
               <Typography component='h2' variant='h2'>
-                Login to Student ArtCo!
+                Login to Student ArtCo
               </Typography>
             </Grid>
             <Grid item>

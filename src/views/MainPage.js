@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Grid, Typography } from '@material-ui/core'
+import { makeStyles, Grid, Typography, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import welcomeBackground from '../images/landing-page/header-background.png'
 import howToStep1 from '../images/landing-page/how-step-1.png'
@@ -120,7 +120,7 @@ const MainPage = () => {
                             <img src={one} alt='the number one' />
                         </Grid>
                         <Grid className={classes.howToItem} item xs={12} md={4}>
-                            <Typography variant='p'>
+                            <Typography variant='p' style={{ fontSize: '1.25rem' }}>
                                 Start here or with one of our mobile apps
                             </Typography>
                         </Grid>
@@ -131,7 +131,7 @@ const MainPage = () => {
                             <img src={two} alt='the number two' />
                         </Grid>
                         <Grid className={classes.howToItem} item xs={12} md={4}>
-                            <Typography variant='p'>
+                            <Typography variant='p' style={{ fontSize: '1.25rem' }}>
                                 Enter your school's information
                             </Typography>
                         </Grid>
@@ -142,7 +142,7 @@ const MainPage = () => {
                             <img src={three} alt='the number three' />
                         </Grid>
                         <Grid className={classes.howToItem} item xs={12} md={4}>
-                            <Typography variant='p'>
+                            <Typography variant='p' style={{ fontSize: '1.25rem' }}>
                                 Start supporting your community!
                             </Typography>
                         </Grid>

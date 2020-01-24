@@ -93,7 +93,7 @@ const Register = () => {
                 align='center'
                 style={{ fontSize: '1.25rem' }}
               >
-                Fill out the form below and get your school started today.
+                Fill out the form below and get your school started today
               </Typography>
             </Grid>
             <Grid item>

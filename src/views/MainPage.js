@@ -16,15 +16,15 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         padding: '2%',
-        marginBottom: '2%',
-        marginTop: '3%',
+        marginTop: '2.5%',
     },
     welcomeMessageContainerStyles: {
         left: '0px',
         padding: '2%',
         background: 'rgba(0,0,0,0.75)',
         color: '#FFFFFF',
-        width: '75%'
+        width: '75%',
+        height: '500px',
     },
     welcomeLinkContainerStyles: {
         backgroundColor: '#FFFFFF',
@@ -73,17 +73,17 @@ const MainPage = () => {
                 <Grid className={classes.welcomeHeroStyles} item xs={12}>
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
-                            <Typography variant="h2">
+                            <Typography variant="h2" style={{ fontSize: '4rem' }}>
                                 Welcome to Student Artco
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h3'>
+                            <Typography variant='h2'>
                                 Support your local schools today!
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h4'>
+                            <Typography variant='h2'>
                                 I am...
                             </Typography>
                         </Grid>
@@ -102,17 +102,17 @@ const MainPage = () => {
                 <Grid className={classes.howToSection} item xs={12}>
                     <Grid className={classes.howToContent} container spacing={3} justify='center' alignItems='center'>
                         <Grid item xs={12}>
-                            <Typography variant='h5'>
+                            <Typography variant='h2' style={{ marginTop: '-20px' }}>
                                 What is Student Artco?
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='p'>
-                                Student ArtCo is a platform that facilitates fund-raising for your school's art program by helping to sell art made by students. School art programs are typically underfunded and research shows that students create their best work when it is more than just an assignment. We provide a place where a local community and beyond can visit to see art created by students and purchase it to support an art program. Using the latest technology, we host examples of your student's artwork and make it available for purchase to a wide audience. We want to inspire hope in young artists by showing how far our (and your school's) reach can go and by showing how a local community can come together to provide opportunities to young artists.
+                            <Typography variant='p' style={{ fontSize: '1.25rem', lineHeight: '1.5rem' }}>
+                                Student ArtCo is a platform that facilitates fund-raising for your school's art program by helping to sell art made by students. School art programs are typically underfunded and research shows that students create their best work when it is more than just an assignment. We provide a place where local communities and beyond can visit to see art created by students and purchase it to support their art programs. Using the latest technology, we host examples of your student's artwork and make it available for purchase to a wide audience. We aim to inspire young artists and provide them with unique possibilities for sharing their creativity. 
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h5'>
+                            <Typography variant='h4' style={{ marginTop: '30px '}}>
                                 As easy as 1, 2, 3!
                             </Typography>
                         </Grid>
@@ -159,7 +159,7 @@ const MainPage = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='p'>
+                            <Typography variant='p' style={{ lineHeight: '1.5rem' }}>
                                 Joining our platform is easy and within a few minutes you can have art listings up to share with your community and anyone online. All you need is pictures of the artwork to show it off and we can help with the rest. We provide a unique link for every piece of artwork that you can share with anyone. We have mobile apps available for both Android and iOS that allow you to manage your listings from anywhere. Others can use the apps to browse the available artwork and contact you to inquire about purchasing and making a donation.
                             </Typography>
                         </Grid>

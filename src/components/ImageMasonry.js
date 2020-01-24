@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
@@ -15,6 +15,7 @@ import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
+import CategorySelection from './CategorySelection';
 
 const GET_ALL_ART = gql`
   query {
@@ -30,6 +31,36 @@ const GET_ALL_ART = gql`
     }
   }
 `
+// const GET_FILTERED_ART = gql`
+//   query filter(filter {zipcode: {$eg: String} category: {$eg: String} }) {
+//     filter(filter {zipcode: {eg: $eg} category: {eg: $eg} }) {
+//       price
+//       sold
+//       title
+//       artist_name
+//       school {
+//         school_name
+//         zipcode
+//       }
+//       images {
+//         image_url
+//       }
+//       category {
+//         category
+//       }
+//     }
+//   }
+// `
+
+// const GET_CATEGORIES = gql`
+//   query {
+//     allCategories {
+//       id
+//       category
+//     }
+//   }
+// `
+
 
 const useStyles = makeStyles(theme => ({
   cardSize: {
@@ -49,6 +80,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
+  const {category, setCategory} = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
@@ -78,6 +110,7 @@ const ImageMasonry = () => {
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
+          <CategorySelection cat={category} setCat={setCategory}/>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

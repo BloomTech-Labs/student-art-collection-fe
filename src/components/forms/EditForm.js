@@ -13,6 +13,7 @@ import {
   Typography,
   Checkbox,
   FormControlLabel,
+  Container,
 } from '@material-ui/core'
 import { formStyles } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
@@ -114,7 +115,7 @@ const EditForm = props => {
         artist_name: artistName,
         description,
         title,
-        sold
+        sold,
       },
     })
     if (error) {
@@ -139,144 +140,153 @@ const EditForm = props => {
 
   if (data) {
     return (
-      <Paper elevation={0} className={classes.root}>
-        <Paper elevation={3} className={classes.paper}>
-          <Grid container direction='column' alignItems='center' spacing={4}>
-            <Grid item>
-              <Typography variant='h2' component='h2' gutterBottom>
-                Update an Art Listing
-              </Typography>
-            </Grid>
-            <Grid item>
-              <form onSubmit={onSubmit}>
-                <Grid
-                  container
-                  direction='column'
-                  alignItems='center'
-                  spacing={4}
-                >
-                  <Grid item>
-                    <TextField
-                      label='Artist Name'
-                      name='artistName'
-                      placeholder='Artist Name'
-                      type='text'
-                      variant='outlined'
-                      size='small'
-                      className={classes.message}
-                      required
-                      value={artistName}
-                      onChange={e => setArtistName(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      label='Title'
-                      name='title'
-                      placeholder='title'
-                      type='text'
-                      variant='outlined'
-                      size='small'
-                      className={classes.message}
-                      required
-                      value={title}
-                      onChange={e => setTitle(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      label='Price'
-                      name='price'
-                      placeholder='price'
-                      type='number'
-                      variant='outlined'
-                      size='small'
-                      className={classes.message}
-                      required
-                      value={price}
-                      onChange={e => setPrice(Number(e.target.value))}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <FormControlLabel value="Sold"
-                    control={
-                      <Checkbox
-                      checked={checked}
-                      onChange={handleChecked}
-                      color="primary"
-                      value="primary"
-                      inputProps={{'aria-label': 'When checked, this box updates a piece of art as sold'}}
-                      />} 
-                      label="Sold"
-                      labelPlacement="top"
-                    />
-                  </Grid>
-                  <Grid item>
-                    <List aria-label='Selecting a category'>
-                      <ListItem
-                        button
-                        aria-haspopup='true'
-                        aria-controls='choice-menu'
-                        aria-label='Selected category'
-                        onClick={handleClickListItem}
-                      >
-                        <ListItemText
+      <Container style={{ marginTop: '100px', marginBottom: '100px' }}>
+        <Paper elevation={0} className={classes.root}>
+          <Paper elevation={3} className={classes.paper}>
+            <Grid container direction='column' alignItems='center' spacing={4}>
+              <Grid item>
+                <Typography variant='h2' component='h2' gutterBottom>
+                  Update an Art Listing
+                </Typography>
+              </Grid>
+              <Grid item>
+                <form onSubmit={onSubmit}>
+                  <Grid
+                    container
+                    direction='column'
+                    alignItems='center'
+                    spacing={4}
+                  >
+                    <Grid item>
+                      <TextField
+                        label='Artist Name'
+                        name='artistName'
+                        placeholder='Artist Name'
+                        type='text'
+                        variant='outlined'
+                        size='small'
+                        className={classes.message}
+                        required
+                        value={artistName}
+                        onChange={e => setArtistName(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        label='Title'
+                        name='title'
+                        placeholder='title'
+                        type='text'
+                        variant='outlined'
+                        size='small'
+                        className={classes.message}
+                        required
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        label='Price'
+                        name='price'
+                        placeholder='price'
+                        type='number'
+                        variant='outlined'
+                        size='small'
+                        className={classes.message}
+                        required
+                        value={price}
+                        onChange={e => setPrice(Number(e.target.value))}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <FormControlLabel
+                        value='Sold'
+                        control={
+                          <Checkbox
+                            checked={checked}
+                            onChange={handleChecked}
+                            color='primary'
+                            value='primary'
+                            inputProps={{
+                              'aria-label':
+                                'When checked, this box updates a piece of art as sold',
+                            }}
+                          />
+                        }
+                        label='Sold'
+                        labelPlacement='top'
+                      />
+                    </Grid>
+                    <Grid item>
+                      <List aria-label='Selecting a category'>
+                        <ListItem
                           button
-                          primary='Select a category'
-                          secondary={data.allCategories[selectedIndex].category}
-                        />
-                      </ListItem>
-                    </List>
-                    <Menu
-                      id='choice-menu'
-                      anchorEl={anchorEl}
-                      keepMounted
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                    >
-                      {data.allCategories.map((item, index) => (
-                        <MenuItem
-                          key={item.id}
-                          selected={index === selectedIndex}
-                          onClick={event => handleMenuItemClick(event, index)}
+                          aria-haspopup='true'
+                          aria-controls='choice-menu'
+                          aria-label='Selected category'
+                          onClick={handleClickListItem}
                         >
-                          {item.category}
-                        </MenuItem>
-                      ))}
-                    </Menu>
+                          <ListItemText
+                            button
+                            primary='Select a category'
+                            secondary={
+                              data.allCategories[selectedIndex].category
+                            }
+                          />
+                        </ListItem>
+                      </List>
+                      <Menu
+                        id='choice-menu'
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                      >
+                        {data.allCategories.map((item, index) => (
+                          <MenuItem
+                            key={item.id}
+                            selected={index === selectedIndex}
+                            onClick={event => handleMenuItemClick(event, index)}
+                          >
+                            {item.category}
+                          </MenuItem>
+                        ))}
+                      </Menu>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        label='Description'
+                        name='description'
+                        placeholder='Description'
+                        type='text'
+                        variant='outlined'
+                        size='small'
+                        multiline
+                        rows={8}
+                        className={classes.message}
+                        required
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <SubmitButton
+                        variant='contained'
+                        size='medium'
+                        type='submit'
+                      >
+                        Submit
+                      </SubmitButton>
+                    </Grid>
+                    <Grid item></Grid>
                   </Grid>
-                  <Grid item>
-                    <TextField
-                      label='Description'
-                      name='description'
-                      placeholder='Description'
-                      type='text'
-                      variant='outlined'
-                      size='small'
-                      multiline
-                      rows={8}
-                      className={classes.message}
-                      required
-                      value={description}
-                      onChange={e => setDescription(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <SubmitButton
-                      variant='contained'
-                      size='small'
-                      type='submit'
-                    >
-                      Submit
-                    </SubmitButton>
-                  </Grid>
-                  <Grid item></Grid>
-                </Grid>
-              </form>
+                </form>
+              </Grid>
             </Grid>
-          </Grid>
+          </Paper>
         </Paper>
-      </Paper>
+      </Container>
     )
   }
 }

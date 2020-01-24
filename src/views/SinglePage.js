@@ -67,7 +67,7 @@ const SinglePage = props => {
   }
   if (data) {
     return (
-      <Container>
+      <Container style={{ marginTop: '150px', marginBottom: '100px' }}>
         <Card>
           <CardActions>
             <IconButton

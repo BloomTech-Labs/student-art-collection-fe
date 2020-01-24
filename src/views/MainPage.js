@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Grid, Typography, Button } from '@material-ui/core'
+import { makeStyles, Grid, Typography, useMediaQuery } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import welcomeBackground from '../images/landing-page/header-background.png'
 import howToStep1 from '../images/landing-page/how-step-1.png'
@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         padding: '2%',
-        marginTop: '2.5%',
     },
     welcomeMessageContainerStyles: {
         left: '0px',
@@ -55,9 +54,12 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+
+
 const MainPage = () => {
     const classes = useStyles()
     const history = useHistory()
+    const mobile = useMediaQuery('(min-width: 880px)')
 
     const lookingArtClickhandler = () => {
         history.push('/browse')
@@ -69,31 +71,44 @@ const MainPage = () => {
 
     return (
         <>
+          
             <Grid container direction='column' spacing={3}>
                 <Grid className={classes.welcomeHeroStyles} item xs={12}>
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
+                            {mobile ? 
                             <Typography variant="h2" style={{ fontSize: '4rem' }}>
                                 Welcome to Student Artco
                             </Typography>
+                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
+                             Welcome to Student Artco
+                         </Typography>}
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h2'>
-                                Support your local schools today!
+                        {mobile ? 
+                            <Typography variant="h2" style={{ fontSize: '4rem' }}>
+                                Support Your Local School's Today!
                             </Typography>
+                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
+                             Support Your Local School's Today!
+                         </Typography>}
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h2'>
+                        {mobile ? 
+                            <Typography variant="h2" style={{ fontSize: '4rem' }}>
                                 I am...
                             </Typography>
+                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
+                             I am...
+                         </Typography>}
                         </Grid>
                         <Grid onClick={lookingArtClickhandler} className={classes.welcomeLinkContainerStyles} item xs={4}>
-                            <Typography variant='p'>
+                            <Typography variant='p' style={{ fontSize: '1.25' }}>
                                 Looking for Art
                             </Typography>
                         </Grid>
                         <Grid onClick={adminClickHandler} className={classes.welcomeLinkContainerStyles} item xs={4}>
-                            <Typography variant='p'>
+                            <Typography variant='p' style={{ fontSize: '1.25' }}>
                                 An Administrator
                             </Typography>
                         </Grid>

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import { Grid, Paper, TextField, Typography } from '@material-ui/core'
+import { Grid, Paper, TextField, Typography, Container } from '@material-ui/core'
 import { formStyles } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 import FileUpload from '../FileUpload'
@@ -92,6 +92,7 @@ const Submission = props => {
   }
 
   return (
+    <Container style={{ marginTop: '150px' }}>
     <Paper elevation={0} className={classes.root}>
       <Paper elevation={3} className={classes.paper}>
         <Grid container direction='column' alignItems='center' spacing={4}>
@@ -173,7 +174,7 @@ const Submission = props => {
                   />
                 </Grid>
                 <Grid item>
-                  <SubmitButton variant='contained' size='small' type='submit'>
+                  <SubmitButton variant='contained' size='medium' type='submit'>
                     Submit
                   </SubmitButton>
                 </Grid>
@@ -183,6 +184,7 @@ const Submission = props => {
         </Grid>
       </Paper>
     </Paper>
+    </Container>
   )
 }
 

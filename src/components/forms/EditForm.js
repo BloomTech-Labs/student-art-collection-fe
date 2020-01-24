@@ -13,6 +13,7 @@ import {
   Typography,
   Checkbox,
   FormControlLabel,
+  Container
 } from '@material-ui/core'
 import { formStyles } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
@@ -139,6 +140,7 @@ const EditForm = props => {
 
   if (data) {
     return (
+      <Container style={{ marginTop: '150px' }}>
       <Paper elevation={0} className={classes.root}>
         <Paper elevation={3} className={classes.paper}>
           <Grid container direction='column' alignItems='center' spacing={4}>
@@ -264,7 +266,7 @@ const EditForm = props => {
                   <Grid item>
                     <SubmitButton
                       variant='contained'
-                      size='small'
+                      size='medium'
                       type='submit'
                     >
                       Submit
@@ -277,6 +279,7 @@ const EditForm = props => {
           </Grid>
         </Paper>
       </Paper>
+      </Container>
     )
   }
 }

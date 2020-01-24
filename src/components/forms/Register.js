@@ -45,7 +45,7 @@ const Register = () => {
   const history = useHistory()
   const classes = formStyles()
 
-  const [addSchool, /* { data, loading, error } */] = useMutation(REGISTER_USER)
+  const [addSchool /* { data, loading, error } */] = useMutation(REGISTER_USER)
 
   const onSubmit = async e => {
     e.preventDefault()
@@ -69,130 +69,144 @@ const Register = () => {
 
   return (
     <Container style={{ marginTop: '200px' }}>
-    <Grid
-      container
-      alignItems='center'
-      justify='space-around'
-      className={classes.root}
-    >
-      <Grid item>
-        <Grid container direction='column' alignItems='center' spacing={5}>
-          <Grid item>
-            <Typography component='h2' variant='h2'  style={{ fontSize: '2.5rem' }} gutterBottom>
-              Welcome to Student ArtCo!
-            </Typography>
-            <Typography component='h3' variant='body1' align='center' style={{ fontSize: '1.25rem' }} >
-              Fill out the form below and get your school started today.
-            </Typography>
-          </Grid>
-          <Grid item>
-            <form onSubmit={onSubmit}>
-              <Grid
-                container
-                direction='column'
-                alignItems='center'
-                spacing={4}
+      <Grid
+        container
+        alignItems='center'
+        justify='space-around'
+        className={classes.root}
+      >
+        <Grid item>
+          <Grid container direction='column' alignItems='center' spacing={5}>
+            <Grid item>
+              <Typography
+                component='h2'
+                variant='h2'
+                style={{ fontSize: '2.5rem' }}
+                gutterBottom
               >
-                <Grid item>
-                  <InputField
-                    placeholder='Email'
-                    variant='outlined'
-                    label='Email'
-                    size='small'
-                    type='email'
-                    name='email'
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required
-                  />
+                Welcome to Student ArtCo!
+              </Typography>
+              <Typography
+                component='h3'
+                variant='body1'
+                align='center'
+                style={{ fontSize: '1.25rem' }}
+              >
+                Fill out the form below and get your school started today.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <form onSubmit={onSubmit}>
+                <Grid
+                  container
+                  direction='column'
+                  alignItems='center'
+                  spacing={4}
+                >
+                  <Grid item>
+                    <InputField
+                      placeholder='Email'
+                      variant='outlined'
+                      label='Email'
+                      size='small'
+                      type='email'
+                      name='email'
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <InputField
+                      placeholder='Password'
+                      variant='outlined'
+                      label='Password'
+                      size='small'
+                      type='password'
+                      name='password'
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <InputField
+                      placeholder='School Name'
+                      variant='outlined'
+                      label='School Name'
+                      size='small'
+                      type='text'
+                      name='school name'
+                      value={schoolName}
+                      onChange={e => setSchoolName(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <InputField
+                      placeholder='Address'
+                      variant='outlined'
+                      label='Address'
+                      size='small'
+                      type='text'
+                      name='address'
+                      value={address}
+                      onChange={e => setAddress(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <InputField
+                      placeholder='City'
+                      variant='outlined'
+                      label='City'
+                      size='small'
+                      type='text'
+                      name='city'
+                      value={city}
+                      onChange={e => setCity(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <InputField
+                      placeholder='ZIP Code'
+                      variant='outlined'
+                      label='ZIP Code'
+                      size='small'
+                      type='text'
+                      name='zipcode'
+                      value={zipcode}
+                      onChange={e => setZipcode(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <SubmitButton
+                      variant='contained'
+                      size='medium'
+                      type='submit'
+                    >
+                      Submit
+                    </SubmitButton>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <InputField
-                    placeholder='Password'
-                    variant='outlined'
-                    label='Password'
-                    size='small'
-                    type='password'
-                    name='password'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item>
-                  <InputField
-                    placeholder='School Name'
-                    variant='outlined'
-                    label='School Name'
-                    size='small'
-                    type='text'
-                    name='school name'
-                    value={schoolName}
-                    onChange={e => setSchoolName(e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item>
-                  <InputField
-                    placeholder='Address'
-                    variant='outlined'
-                    label='Address'
-                    size='small'
-                    type='text'
-                    name='address'
-                    value={address}
-                    onChange={e => setAddress(e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item>
-                  <InputField
-                    placeholder='City'
-                    variant='outlined'
-                    label='City'
-                    size='small'
-                    type='text'
-                    name='city'
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item>
-                  <InputField
-                    placeholder='ZIP Code'
-                    variant='outlined'
-                    label='ZIP Code'
-                    size='small'
-                    type='text'
-                    name='zipcode'
-                    value={zipcode}
-                    onChange={e => setZipcode(e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item>
-                  <SubmitButton variant='contained' size='medium' type='submit'>
-                    Submit
-                  </SubmitButton>
-                </Grid>
-              </Grid>
-            </form>
-          </Grid>
-          <Grid item>
-            <Typography style={{ fontSize: '1.25rem' }}>
-              Already a member? Sign in{' '}
-              <Link to='/login' className={classes.link}>
-                Here
-              </Link>
-            </Typography>
+              </form>
+            </Grid>
+            <Grid item>
+              <Typography style={{ fontSize: '1.25rem' }}>
+                Already a member? Sign in{' '}
+                <Link to='/login' className={classes.link}>
+                  Here
+                </Link>
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
+        <Grid item>
+          <img src={pineapple} alt='blue pineapple' className={classes.image} />
+        </Grid>
       </Grid>
-      <Grid item>
-        <img src={pineapple} alt='blue pineapple' className={classes.image} />
-      </Grid>
-    </Grid>
     </Container>
   )
 }

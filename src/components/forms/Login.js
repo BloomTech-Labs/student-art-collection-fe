@@ -24,78 +24,82 @@ const Login = () => {
 
   return (
     <ContainerDiv>
-    <Grid
-      container
-      alignItems='center'
-      justify='space-around'
-      className={classes.root}
-      style={{ width: '65%', height: '60%', marginTop: '200px' }}
-    >
-      <Grid item>
-        <Grid container direction='column' alignItems='center' spacing={5}>
-          <Grid item>
-            <Typography component='h2' variant='h2'>
-              Login to Student ArtCo!
-            </Typography>
-          </Grid>
-          <Grid item>
-            <form onSubmit={onSubmit}>
-              <Grid
-                container
-                direction='column'
-                alignItems='center'
-                spacing={4}
-              >
-                <Grid item>
-                  <InputField
-                    placeholder='Email'
-                    label='Email'
-                    type='email'
-                    name='email'
-                    variant='outlined'
-                    size='small'
-                    fullWidth
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required
-                  />
+      <Grid
+        container
+        alignItems='center'
+        justify='space-around'
+        className={classes.root}
+        style={{ width: '65%', height: '60%', marginTop: '200px' }}
+      >
+        <Grid item>
+          <Grid container direction='column' alignItems='center' spacing={5}>
+            <Grid item>
+              <Typography component='h2' variant='h2'>
+                Login to Student ArtCo!
+              </Typography>
+            </Grid>
+            <Grid item>
+              <form onSubmit={onSubmit}>
+                <Grid
+                  container
+                  direction='column'
+                  alignItems='center'
+                  spacing={4}
+                >
+                  <Grid item>
+                    <InputField
+                      placeholder='Email'
+                      label='Email'
+                      type='email'
+                      name='email'
+                      variant='outlined'
+                      size='small'
+                      fullWidth
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <InputField
+                      placeholder='Password'
+                      label='Password'
+                      type='password'
+                      name='password'
+                      variant='outlined'
+                      size='small'
+                      fullWidth
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item>
+                    <SubmitButton
+                      variant='contained'
+                      size='medium'
+                      type='submit'
+                    >
+                      Submit
+                    </SubmitButton>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <InputField
-                    placeholder='Password'
-                    label='Password'
-                    type='password'
-                    name='password'
-                    variant='outlined'
-                    size='small'
-                    fullWidth
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item>
-                  <SubmitButton variant='contained' size='medium' type='submit'>
-                    Submit
-                  </SubmitButton>
-                </Grid>
-              </Grid>
-            </form>
-          </Grid>
-          <Grid item>
-          <Typography style={{ fontSize: '1.25rem' }}>
-            No Account? Sign Up{' '}
-            <Link to='/register' className={classes.link}>
-              Here
-            </Link>
-            </Typography>
+              </form>
+            </Grid>
+            <Grid item>
+              <Typography style={{ fontSize: '1.25rem' }}>
+                No Account? Sign Up{' '}
+                <Link to='/register' className={classes.link}>
+                  Here
+                </Link>
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
+        <Grid item>
+          <img src={loginart} alt='art graffiti' className={classes.image} />
+        </Grid>
       </Grid>
-      <Grid item>
-        <img src={loginart} alt='art graffiti' className={classes.image} />
-      </Grid>
-    </Grid>
     </ContainerDiv>
   )
 }
@@ -106,7 +110,5 @@ const ContainerDiv = styled.div`
   height: 100vh;
   width: 100%;
 `
-
-
 
 export default Login

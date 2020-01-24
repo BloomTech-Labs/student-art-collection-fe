@@ -68,7 +68,7 @@ const Register = () => {
   }
 
   return (
-    <Container style={{ marginTop: '100px', marginBottom: '100px' }}>
+    <Container style={{ marginTop: '150px', marginBottom: '100px' }}>
       <Grid
         container
         alignItems='center'

@@ -1,7 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { useMutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import { Grid, Paper, TextField, Typography } from '@material-ui/core'
+import {
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+  Container,
+} from '@material-ui/core'
 import { formStyles } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 import FileUpload from '../FileUpload'
@@ -92,97 +98,103 @@ const Submission = props => {
   }
 
   return (
-    <Paper elevation={0} className={classes.root}>
-      <Paper elevation={3} className={classes.paper}>
-        <Grid container direction='column' alignItems='center' spacing={4}>
-          <Grid item>
-            <Typography variant='h2' component='h2'>
-              Create an Art Listing
-            </Typography>
+    <Container style={{ marginTop: '150px' }}>
+      <Paper elevation={0} className={classes.root}>
+        <Paper elevation={3} className={classes.paper}>
+          <Grid container direction='column' alignItems='center' spacing={4}>
+            <Grid item>
+              <Typography variant='h2' component='h2'>
+                Create an Art Listing
+              </Typography>
+            </Grid>
+            <Grid item>
+              <form onSubmit={onSubmit}>
+                <Grid
+                  container
+                  direction='column'
+                  alignItems='center'
+                  spacing={4}
+                >
+                  <Grid item>
+                    <FileUpload setFile={setFile} />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label='Artist Name'
+                      name='artistName'
+                      placeholder='Artist Name'
+                      type='text'
+                      variant='outlined'
+                      size='small'
+                      className={classes.message}
+                      required
+                      value={artistName}
+                      onChange={e => setArtistName(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label='Title'
+                      name='title'
+                      placeholder='Title'
+                      type='text'
+                      variant='outlined'
+                      size='small'
+                      className={classes.message}
+                      required
+                      value={title}
+                      onChange={e => setTitle(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label='Price'
+                      name='price'
+                      placeholder='1.00'
+                      type='text'
+                      variant='outlined'
+                      size='small'
+                      className={classes.message}
+                      required
+                      value={price}
+                      onChange={e => setPrice(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <CategorySelection cat={category} setCat={setCategory} />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      label='Description'
+                      name='description'
+                      placeholder='Description'
+                      type='text'
+                      variant='outlined'
+                      size='small'
+                      multiline
+                      rows={8}
+                      className={classes.message}
+                      required
+                      value={description}
+                      onChange={e => setDescription(e.target.value)}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <SubmitButton
+                      variant='contained'
+                      size='medium'
+                      type='submit'
+                    >
+                      Submit
+                    </SubmitButton>
+                  </Grid>
+                </Grid>
+              </form>
+            </Grid>
           </Grid>
-          <Grid item>
-            <form onSubmit={onSubmit}>
-              <Grid
-                container
-                direction='column'
-                alignItems='center'
-                spacing={4}
-              >
-                <Grid item>
-                  <FileUpload setFile={setFile} />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label='Artist Name'
-                    name='artistName'
-                    placeholder='Artist Name'
-                    type='text'
-                    variant='outlined'
-                    size='small'
-                    className={classes.message}
-                    required
-                    value={artistName}
-                    onChange={e => setArtistName(e.target.value)}
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label='Title'
-                    name='title'
-                    placeholder='Title'
-                    type='text'
-                    variant='outlined'
-                    size='small'
-                    className={classes.message}
-                    required
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label='Price'
-                    name='price'
-                    placeholder='1.00'
-                    type='text'
-                    variant='outlined'
-                    size='small'
-                    className={classes.message}
-                    required
-                    value={price}
-                    onChange={e => setPrice(e.target.value)}
-                  />
-                </Grid>
-                <Grid item>
-                  <CategorySelection cat={category} setCat={setCategory} />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    label='Description'
-                    name='description'
-                    placeholder='Description'
-                    type='text'
-                    variant='outlined'
-                    size='small'
-                    multiline
-                    rows={8}
-                    className={classes.message}
-                    required
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                  />
-                </Grid>
-                <Grid item>
-                  <SubmitButton variant='contained' size='small' type='submit'>
-                    Submit
-                  </SubmitButton>
-                </Grid>
-              </Grid>
-            </form>
-          </Grid>
-        </Grid>
+        </Paper>
       </Paper>
-    </Paper>
+    </Container>
   )
 }
 

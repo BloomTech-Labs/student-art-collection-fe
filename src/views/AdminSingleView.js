@@ -50,7 +50,7 @@ const DELETE_ART = gql`
 const AdminSingleView = props => {
   const {setReload} = useContext(ReloadContext)
   const id = props.match.params.id
-  const { error, loading, data } = useQuery(GET_ART, {variables: {id}})
+  const { error, loading, data } = useQuery(GET_ART, {variables: {id}, fetchPolicy: "no-cache"})
   const [deleteArt] = useMutation(DELETE_ART)
 
   // KEEPING THESE UNTIL CONFIRMED WORKING ON STAGING/PRODUCTION
@@ -83,6 +83,7 @@ const AdminSingleView = props => {
 
 
   if (error) {
+    console.log('error', error)
     return <ErrorMessage />
   }
   if (loading) {
@@ -90,7 +91,7 @@ const AdminSingleView = props => {
   }
   if (data) {
     return (
-        <Container>
+        <Container style={{ marginTop: '100px', marginBottom: '100px' }}>
           <Card>
             <CardActions>
               <IconButton

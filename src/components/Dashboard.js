@@ -4,6 +4,7 @@ import { useQuery } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import {
   Grid,
+  Card,
   CardActionArea,
   CardMedia,
   CardContent,
@@ -41,46 +42,31 @@ const GET_SCHOOL_INFO = gql`
 `
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    margin: 'auto',
-    boxShadow: 'none',
+  cardSize: {
+    maxWidth: '1000px',
+    maxHeight: '1000px',
   },
-  media: {
-    width: '100',
-    minHeight: '40vh',
-  },
-  content: {
-    textAlign: 'left',
-    padding: theme.spacing(3),
-  },
-  divider: {
-    margin: theme.spacing(3),
-  },
-  heading: {
-    fontWeight: 'bold',
-  },
-  subheading: {
-    lineHeight: 1.8,
+  cardWrap: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '10px'
   },
   mediaTitle: {
-    
+    fontFamily: 'Barlow',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
   },
   button: {
     color: 'white',
+    fontSize: '1.5rem',
     background: '#3CBBB1',
-    marginTop: '10px',
-    marginBottom: '10px',
-    textAlign: 'center',
-    display: 'block',
-    width: '30%',
-    alignContent: 'center',
+    width: '350px',
+    height: '60px',
+    marginBottom: '50px',
     margin: 'auto',
     '&:hover': {
-        backgroundColor: '#318B84'
-    }
-  },
-  fullHeight: {
-    height: '100%',
+      backgroundColor: '#318B84',
+    },
   },
 }))
 
@@ -111,46 +97,36 @@ const Dashboard = props => {
   if (data) {
     return (
       <>
-        <div className={classes.root}>
-          <TopDash>
-            <SchoolText>
-              Welcome, {data.schoolBySchoolId.school_name}
-              <TownText>
-                <br></br>
-                {data.schoolBySchoolId.city} || Grades 9-12
-              </TownText>
-            </SchoolText>
-            {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
-          </TopDash>
+        <TopDash>
+          <SchoolText>Welcome, {data.schoolBySchoolId.school_name}</SchoolText>
+          <TownText>{data.schoolBySchoolId.city} <Lines>||</Lines> Grades 9-12</TownText>
 
-          <ArtSect>
-            <ListingTop>School Artwork</ListingTop>
+          {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
+        </TopDash>
 
-            <br></br>
-
-            <Button
-              id={data.schoolBySchoolId.id}
-              component={Link}
-              //todo refactor this to not use match.params
-              //todo quick way to send that id to use in the addArt mutation instead of the firebase uid
-              // to='/admin/artwork/new'
-              to={`/admin/artwork/${data.schoolBySchoolId.id}/new`}
-              size='large'
-              variant='contained'
-              className={classes.button}
-            >
-              Add New Listing
-            </Button>
-
+        <ArtSect>
+          <ListingTop>Your Student's Artwork</ListingTop>
+          <Button
+            id={data.schoolBySchoolId.id}
+            component={Link}
+            //todo refactor this to not use match.params
+            //todo quick way to send that id to use in the addArt mutation instead of the firebase uid
+            // to='/admin/artwork/new'
+            to={`/admin/artwork/${data.schoolBySchoolId.id}/new`}
+            variant='contained'
+            className={classes.button}
+          >
+            Add New Listing
+          </Button>
+          <Grid container spacing={6} className={classes.cardWrap}>
             {data.schoolBySchoolId.art.map(listings => (
-              <Grid item key={listings.id} container spacing={2}>
-                <CardContent className={classes.card}>
+              <Grid item key={listings.id}>
+                <Card className={classes.cardSize}>
                   <CardActionArea
                     component={Link}
                     to={`/admin/artwork/${listings.id}`}
                   >
                     <CardMedia
-                      className={classes.media}
                       component='img'
                       src={listings.images[0].image_url}
                       alt={listings.title === '' ? 'Untitled' : listings.title}
@@ -158,17 +134,13 @@ const Dashboard = props => {
                         listings.title === '' ? 'Untitled' : listings.title
                       }
                     />
-
-                    <CardContent className={classes.content}>
-                      <Typography
-                        className={classes.mediaTitle}
-                        variant={'h6'}
-                        gutterBottom
-                      >
+                    <CardContent>
+                      <Typography className={classes.mediaTitle}>
                         Title:{' '}
                         {listings.title === '' ? 'Untitled' : listings.title}
                       </Typography>
                       <Typography
+                        className={classes.mediaTitle}
                         variant={'h6'}
                         component='p'
                       >
@@ -179,11 +151,11 @@ const Dashboard = props => {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                </CardContent>
+                </Card>
               </Grid>
             ))}
-          </ArtSect>
-        </div>
+          </Grid>
+        </ArtSect>
       </>
     )
   }
@@ -191,35 +163,43 @@ const Dashboard = props => {
 
 //styling
 const TopDash = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Barlow';
   background-color: #000;
-  opacity: 85%;
-  border: solid .5px gray;
+  height: 600px;
   color: #f5f5f5;
-  padding: 2%;
-  display: block;
+  margin-top: -50px;
+  width: 100%;
 `
 
 const SchoolText = styled.text`
-  font-size: 30px;
-  font-weight: 400;
-  color: #f5f5f5;
+  font-size: 4rem;
 `
 
 const TownText = styled.text`
-  font-size: 20px;
+  font-size: 3rem;
+  color: #FFAA04;
 `
 
 const ArtSect = styled.div`
-  align-content: center;
-  margin: 2% 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
 `
 
 const ListingTop = styled.text`
-  font-size: 30px;
-  font-weight: 400;
+display flex;
+justify-content: center;
+  font-size: 2rem;
   color: black;
-  display: flex;
-  justify-content: center;
+  margin-bottom: 50px;
+`
+const Lines = styled.text`
+  color: #3CBBB1;
 `
 
 export default Dashboard

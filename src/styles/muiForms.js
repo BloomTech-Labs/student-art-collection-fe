@@ -3,7 +3,8 @@ import { makeStyles, withStyles, TextField } from '@material-ui/core'
 export const formStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(5),
-    background: '#FFAA04',
+    background: '#E9B654',
+    borderRadius: '10px',
   },
   paper: {
     width: '50%',
@@ -11,7 +12,8 @@ export const formStyles = makeStyles(theme => ({
     padding: '20px',
   },
   image: {
-    maxHeight: '600px',
+    height: '500px',
+    width: '600px',
     borderRadius: '10px',
   },
   link: {
@@ -47,6 +49,7 @@ export const InputField = withStyles({
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         borderColor: '#fff',
+        color: '#000',
       },
       '&:hover fieldset': {
         borderColor: '#3CBBB1',

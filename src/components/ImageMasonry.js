@@ -54,11 +54,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const [category, setCategory] = useState('')
+  // const [category, setCategory] = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
-  const [zipcode, setZipcode] = useState('')
+  // const [zipcode, setZipcode] = useState('')
   const [searchData, setSearchData] = useState(null)
   useEffect(() => {
     if (reload === true) {
@@ -88,17 +88,17 @@ const ImageMasonry = () => {
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
-          <h1>Search by..</h1>
+          {/* <h1>Search by..</h1>
 
           <h2>Category</h2>
           <CategorySelection cat={category} setCat={setCategory}/>
           <h2>Zipcode</h2>
           <form>
           <TextField type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></TextField>
-          </form>
-          
-          <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/>
+          </form> */}
 
+          {/* <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/> */}
+          <SearchButton />
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

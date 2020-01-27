@@ -12,10 +12,10 @@ const Team = () => {
 
     <div className="pull-left col-md-4 sm-text-center">
 				<div className='team-overview'>
-					<h2>Who Are We?</h2>
+					<h2>Meet Our Team</h2>
 					<p>
                         <div>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci quae nesciunt officia! Autem, nam eum voluptatem, esse voluptatibus deleniti tempora laboriosam sequi pariatur, explicabo itaque. Fuga, deserunt? Repudiandae, neque qui.
+                            Our team is compromised of Full Stack Web Developers, Mobile Developers, iOS Developers and a UX Designer. Click on any team member to learn more!
                         </div>
                     </p>
 				</div>

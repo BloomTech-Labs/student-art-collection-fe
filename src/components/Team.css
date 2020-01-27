@@ -5,7 +5,7 @@
 }
 
 body {
-	font-size: 14px;
+	font-size: 10px;
 	line-height: 1.67;
 	color: #444;
 	padding: 60px 0;
@@ -75,14 +75,14 @@ a:hover {
 
 .member-info h3 {
 	text-transform: uppercase;
-	font-size: 10px;
+	font-size: 8px;
 	font-weight: 400;
 	top: -100px;
 }
 
 .member-info p {
 	font-weight: 300;
-	font-size: 8px;
+	font-size: 25px;
 	bottom: -150px;
 }
 
@@ -123,13 +123,13 @@ a:hover {
 /* Team overview */
 .team-overview {
     padding-right: 15px;
-    width: 25%;
+    width: 35%;
     margin-left: 4%;
     margin-top: 5%;
 }
 .team-overview h2 {
 	text-transform: uppercase;
-	font-size: 22px;
+	font-size: 54px;
 	font-weight: 700;
 	margin-bottom: 5px;
 }
@@ -137,6 +137,10 @@ a:hover {
 .team-overview > a {
 	margin-bottom: 30px;
 	display: block;
+}
+
+.team-overview p {
+	font-size: 22px;
 }
 
 .team-overview > a:before {
@@ -157,8 +161,8 @@ a:hover {
 	flex-direction: row;
 	justify-content: center;
     align-items: center;
-    margin-top: 0%;
-    margin-left: -15%;
+    margin-top: -15%;
+    margin-left: 21%;
 }
 
 .flex-center > div:first-child {

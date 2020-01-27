@@ -80,7 +80,7 @@ const MainPage = () => {
                             <Typography variant="h2" style={{ fontSize: '3rem' }}>
                                 Welcome to Student Artco
                             </Typography>
-                             : <Typography variant="h2" style={{ fontSize: '1.75rem' }}>
+                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
                              Welcome to Student Artco
                          </Typography>}
                         </Grid>
@@ -89,7 +89,7 @@ const MainPage = () => {
                             <Typography variant="h2" style={{ fontSize: '3rem' }}>
                                 Support Your Local Schools Today!
                             </Typography>
-                             : <Typography variant="h2" style={{ fontSize: '1.75rem' }}>
+                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
                              Support Your Local Schools Today!
                          </Typography>}
                         </Grid>
@@ -98,7 +98,7 @@ const MainPage = () => {
                             <Typography variant="h2" style={{ fontSize: '3rem' }}>
                                 I am...
                             </Typography>
-                             : <Typography variant="h2" style={{ fontSize: '1.75rem' }}>
+                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
                              I am...
                          </Typography>}
                         </Grid>

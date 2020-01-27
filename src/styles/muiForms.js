@@ -4,7 +4,7 @@ export const formStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(5),
     background: '#E9B654',
-    borderRadius: '10px',
+    borderRadius: '10px'
   },
   paper: {
     width: '50%',
@@ -12,8 +12,8 @@ export const formStyles = makeStyles(theme => ({
     padding: '20px',
   },
   image: {
-    height: '500px',
-    width: '600px',
+    height: '350px',
+    width: '450px',
     borderRadius: '10px',
   },
   link: {

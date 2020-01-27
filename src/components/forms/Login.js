@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const history = useHistory()
   const classes = formStyles()
-  const breakpoint = useMediaQuery('(min-width: 768px)')
+  const breakpoint = useMediaQuery('(min-width: 1450px)')
 
   const onSubmit = async e => {
     e.preventDefault()

@@ -78,7 +78,10 @@ const ImageMasonry = () => {
     return (
       <>
         <TopDash>
-          <Quote>"Art enables us to find ourselves and lose ourselves at the same time."</Quote>
+          <Quote>
+            "Art enables us to find ourselves and lose ourselves at the same
+            time."
+          </Quote>
           <br />
           <Author>-Thomas Merton</Author>
         </TopDash>
@@ -156,7 +159,7 @@ const ArtSect = styled.div`
 `
 
 const Author = styled.text`
-  color: #FFAA04;
+  color: #ffaa04;
 `
 
 const Quote = styled.text`

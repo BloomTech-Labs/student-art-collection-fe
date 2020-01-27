@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const history = useHistory()
   const classes = formStyles()
-  const breakpoint = useMediaQuery('(min-width: 1700px)')
+  const breakpoint = useMediaQuery('(min-width: 768px)')
 
   const onSubmit = async e => {
     e.preventDefault()
@@ -30,7 +30,7 @@ const Login = () => {
         alignItems='center'
         justify='space-around'
         className={classes.root}
-        style={{ width: '65%', height: '60%', marginTop: '200px' }}
+        style={{ width: '65%', height: '60%', marginTop: '50px' }}
       >
         <Grid item>
           <Grid container direction='column' alignItems='center' spacing={5}>
@@ -111,6 +111,7 @@ const ContainerDiv = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100%;
+  background-color: #266863
 `
 
 export default Login

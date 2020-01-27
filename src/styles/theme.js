@@ -9,6 +9,10 @@ export const theme = createMuiTheme({
     p: {
       fontFamily: ['Barlow', 'sans-serif'].join(','),
     },
+    h3: {
+      fontFamily: ['Barlow', 'sans-serif'].join(','),
+      fontSize: '1.75rem',
+    },
     h4: {
       fontFamily: ['Barlow', 'sans-serif'].join(','),
     },

@@ -15,7 +15,23 @@ const Team = () => {
 					<h2>Meet Our Team</h2>
 					<p>
                         <div>
-                            Our team is compromised of Full Stack Web Developers, Mobile Developers, iOS Developers and a UX Designer. Click on any team member to learn more!
+                            Here at Student ArtCo our Mission is to bridge the gap between students and their surrounding communities by having students and the community interact with each other through students' work. 
+
+							During eight weeks Lambda Students build new features in existing products or, like in our case, we build everything from scratch. During this process the team sets out goals and deadlines to deliver those features to users. If you're interested in our code you'll find the links below!
+
+							<ul>
+							<a href='https://github.com/Lambda-School-Labs/student-art-collection-fe'> Front End Repository</a>
+							
+							<a href='https://github.com/Lambda-School-Labs/student-art-collection-be'> Back End Repository</a>
+							
+							<a href='https://github.com/Lambda-School-Labs/student-art-collection-iOS'> iOS Repository</a>
+							
+							<a href='https://github.com/Lambda-School-Labs/student-art-collection-android'> Android Repository</a>
+							
+							<a href='https://www.figma.com/file/KXwyQsMXcwXTqZNQT7bKuW/Student-Art-Collection%2C-Imani-Russ?node-id=372%3A166'> UX</a>
+							</ul>
+							
+							Our team is compromised of Full Stack Web Developers, Mobile Developers,iOS Developers and a UX Designer. Click on any team member to learn more!
                         </div>
                     </p>
 				</div>

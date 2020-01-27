@@ -91,7 +91,7 @@ const AdminSingleView = props => {
   }
   if (data) {
     return (
-        <Container style={{ marginTop: '100px', marginBottom: '100px' }}>
+        <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
           <Card>
             <CardActions>
               <IconButton

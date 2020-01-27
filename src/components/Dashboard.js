@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     color: 'white', 
     background: '#3CBBB1',
-    marginBottom: '50px',
+    marginBottom: '25px',
     margin: 'auto',
     '&:hover': {
       backgroundColor: '#318B84',
@@ -185,7 +185,7 @@ const ArtSect = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 25px;
 `
 
 const ListingTop = styled.text`
@@ -193,7 +193,7 @@ display flex;
 justify-content: center;
   font-size: 1.5rem;
   color: black;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 `
 const Lines = styled.text`
   color: #3CBBB1;

@@ -15,7 +15,7 @@ import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
-import CategorySelection from './CategorySelection';
+import CategorySelection from './CategorySelection'
 
 const GET_ALL_ART = gql`
   query {
@@ -61,7 +61,6 @@ const GET_ALL_ART = gql`
 //   }
 // `
 
-
 const useStyles = makeStyles(theme => ({
   cardSize: {
     maxWidth: '1000px',
@@ -80,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const {category, setCategory} = useState('')
+  const [category, setCategory] = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
@@ -105,12 +104,15 @@ const ImageMasonry = () => {
     return (
       <>
         <TopDash>
-          <Quote>"Art enables us to find ourselves and lose ourselves at the same time."</Quote>
+          <Quote>
+            "Art enables us to find ourselves and lose ourselves at the same
+            time."
+          </Quote>
           <br />
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
-          <CategorySelection cat={category} setCat={setCategory}/>
+          <CategorySelection cat={category} setCat={setCategory} />
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>
@@ -176,7 +178,7 @@ const ArtSect = styled.div`
 `
 
 const Author = styled.text`
-  color: #FFAA04;
+  color: #ffaa04;
 `
 
 const Quote = styled.text`

@@ -75,6 +75,7 @@ const ImageMasonry = () => {
     return <Spinner />
   }
   if (data) {
+    console.log('search data', searchData)
     return (
       <>
         <TopDash>
@@ -92,7 +93,7 @@ const ImageMasonry = () => {
           <h2>Zipcode</h2>
           <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></input>
           <SubmitButton>
-            <SearchButton cat={category} zip={zipcode}/>
+            <SearchButton cat={category} zip={zipcode} setDat={setSearchData}/>
           </SubmitButton>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (

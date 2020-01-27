@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {useQuery} from 'react-apollo';
+import {useLazyQuery} from 'react-apollo';
 import {gql} from 'apollo-boost';
 import ReloadContext from './ReloadContext';
 
@@ -31,12 +31,23 @@ const SEARCH_ART = gql`
     }
 `
 
-const SearchButton = ({cat, zip}) => {
-    const {error, loading, data} = useQuery(SEARCH_ART)
+const SearchButton = ({cat, zip, setDat}) => {
+    const [searchArt] = useLazyQuery(SEARCH_ART)
     console.log(cat)
     console.log(zip)
+
+    const onSearch = e => {
+        e.preventDefault()
+        searchArt({variables: {
+            category: cat,
+            zipcode: zip
+        }})
+        .then((res) => {
+            console.log(res)
+        })
+    }
     return (
-        <div>Search!</div>
+        <div onClick={onSearch}>Search!</div>
     )
 }
 

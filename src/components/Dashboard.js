@@ -53,15 +53,12 @@ const useStyles = makeStyles(theme => ({
   },
   mediaTitle: {
     fontFamily: 'Barlow',
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     fontWeight: 'bold',
   },
   button: {
-    color: 'white',
-    fontSize: '1.5rem',
+    color: 'white', 
     background: '#3CBBB1',
-    width: '350px',
-    height: '60px',
     marginBottom: '50px',
     margin: 'auto',
     '&:hover': {
@@ -169,19 +166,19 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 600px;
+  height: 25vh;
   color: #f5f5f5;
-  margin-top: -50px;
   width: 100%;
+  padding: 0;
 `
 
 const SchoolText = styled.text`
-  font-size: 4rem;
+  font-size: 3rem;
 `
 
 const TownText = styled.text`
-  font-size: 3rem;
   color: #FFAA04;
+  font-size: 2.5rem;
 `
 
 const ArtSect = styled.div`
@@ -194,7 +191,7 @@ const ArtSect = styled.div`
 const ListingTop = styled.text`
 display flex;
 justify-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: black;
   margin-bottom: 50px;
 `

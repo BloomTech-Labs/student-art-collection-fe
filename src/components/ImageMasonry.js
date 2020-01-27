@@ -86,14 +86,22 @@ const ImageMasonry = () => {
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
-          <h1>Search by..</h1>
-          <h2>Category</h2>
+        <Grid container direction = 'row' alignItems='center' style={{border: '1px black solid', borderRadius:'2em', backgroundColor:'rgba(0,0,0,0.1)', width:'95%', height:'4%', marginLeft:'3%'}}>
+        <Grid item xs={12} sm={4}>
+          <h1 style={{marginLeft: '7%'}}>Search by:</h1>
+        </Grid>
+          <Grid item xs={12} sm={4}>
+          <h3>Category</h3>
           <CategorySelection cat={category} setCat={setCategory}/>
-          <h2>Zipcode</h2>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+          <h3>Zipcode</h3>
           <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></input>
           <SubmitButton>
             <SearchButton cat={category} zip={zipcode}/>
           </SubmitButton>
+          </Grid>
+          </Grid>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

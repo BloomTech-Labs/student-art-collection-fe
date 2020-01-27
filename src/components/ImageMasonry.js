@@ -94,6 +94,8 @@ const ImageMasonry = () => {
           <h1>Search by...</h1>
           <SearchForm />
 
+          {/* <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/> */}
+          <SearchButton />
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

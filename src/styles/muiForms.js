@@ -12,8 +12,8 @@ export const formStyles = makeStyles(theme => ({
     padding: '20px',
   },
   image: {
-    height: '350px',
-    width: '450px',
+    height: '400px',
+    width: '500px',
     borderRadius: '10px',
   },
   link: {

@@ -191,9 +191,10 @@ const ArtSect = styled.div`
 const ListingTop = styled.text`
 display flex;
 justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: black;
   margin-bottom: 25px;
+  font-family: 'Barlow';
 `
 const Lines = styled.text`
   color: #3CBBB1;

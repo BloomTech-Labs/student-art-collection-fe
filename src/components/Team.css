@@ -8,7 +8,7 @@ body {
 	font-size: 10px;
 	line-height: 1.67;
 	color: #444;
-	padding: 60px 0;
+	padding: 0;
 	background-color: #eee;
 }
 
@@ -75,14 +75,14 @@ a:hover {
 
 .member-info h3 {
 	text-transform: uppercase;
-	font-size: 8px;
+	font-size: 20px;
 	font-weight: 400;
 	top: -100px;
 }
 
 .member-info p {
 	font-weight: 300;
-	font-size: 25px;
+	font-size: 15px;
 	bottom: -150px;
 }
 
@@ -140,7 +140,7 @@ a:hover {
 }
 
 .team-overview p {
-	font-size: 22px;
+	font-size: 18px;
 }
 
 .team-overview > a:before {

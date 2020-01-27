@@ -11,15 +11,17 @@ import {
   CardMedia,
   Typography,
   TextField,
-  FormControl,
+  Button,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
-import CategorySelection from './CategorySelection';
-import {SubmitButton} from '../styles/muiButtons'
-import SearchButton from './SearchButton';
+import CategorySelection from './CategorySelection'
+import { SubmitButton } from '../styles/muiButtons'
+import SearchButton from './SearchButton'
+
+import { SearchForm } from './SearchForm'
 
 const GET_ALL_ART = gql`
   query {
@@ -54,12 +56,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const [category, setCategory] = useState('')
+  // const [category, setCategory] = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
-  const [zipcode, setZipcode] = useState('')
-  const [searchData, setSearchData] = useState(null)
+  // const [zipcode, setZipcode] = useState('')
+  // const [searchData, setSearchData] = useState({ category, zipcode })
+
   useEffect(() => {
     if (reload === true) {
       function update() {
@@ -88,16 +91,8 @@ const ImageMasonry = () => {
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
-          <h1>Search by..</h1>
-
-          <h2>Category</h2>
-          <CategorySelection cat={category} setCat={setCategory}/>
-          <h2>Zipcode</h2>
-          <form>
-          <TextField type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></TextField>
-          </form>
-          
-          <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/>
+          <h1>Search by...</h1>
+          <SearchForm />
 
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (

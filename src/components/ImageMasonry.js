@@ -10,6 +10,8 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  TextField,
+  FormControl,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
@@ -57,7 +59,7 @@ const ImageMasonry = () => {
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
   const [zipcode, setZipcode] = useState('')
-  const [searchData, setSearchData] = useState([])
+  const [searchData, setSearchData] = useState(null)
   useEffect(() => {
     if (reload === true) {
       function update() {
@@ -75,7 +77,6 @@ const ImageMasonry = () => {
     return <Spinner />
   }
   if (data) {
-    console.log('search data', searchData)
     return (
       <>
         <TopDash>
@@ -88,13 +89,16 @@ const ImageMasonry = () => {
         </TopDash>
         <ArtSect>
           <h1>Search by..</h1>
+
           <h2>Category</h2>
           <CategorySelection cat={category} setCat={setCategory}/>
           <h2>Zipcode</h2>
-          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></input>
-          <SubmitButton>
-            <SearchButton cat={category} zip={zipcode} setDat={setSearchData}/>
-          </SubmitButton>
+          <form>
+          <TextField type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></TextField>
+          </form>
+          
+          <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/>
+
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

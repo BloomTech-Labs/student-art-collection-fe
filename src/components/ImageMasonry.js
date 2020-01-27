@@ -160,10 +160,10 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 550px;
+  height: 600px;
   color: #f5f5f5;
   width: 100%;
-  margin-top: -100px;
+  margin-top: -120px;
   padding: 0;
   font-size: 3rem;
 `

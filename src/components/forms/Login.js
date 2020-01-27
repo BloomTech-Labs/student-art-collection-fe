@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import firebaseApp from '../auth/firebaseApp'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, useMediaQuery } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 // import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const history = useHistory()
   const classes = formStyles()
+  const breakpoint = useMediaQuery('(min-width: 1700px)')
 
   const onSubmit = async e => {
     e.preventDefault()
@@ -96,9 +97,10 @@ const Login = () => {
             </Grid>
           </Grid>
         </Grid>
+        {breakpoint ? 
         <Grid item>
           <img src={loginart} alt='art graffiti' className={classes.image} />
-        </Grid>
+        </Grid> : null}
       </Grid>
     </ContainerDiv>
   )

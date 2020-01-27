@@ -16,6 +16,8 @@ import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
 import CategorySelection from './CategorySelection';
+import {SubmitButton} from '../styles/muiButtons'
+import SearchButton from './SearchButton';
 
 const GET_ALL_ART = gql`
   query {
@@ -31,36 +33,6 @@ const GET_ALL_ART = gql`
     }
   }
 `
-// const GET_FILTERED_ART = gql`
-//   query filter(filter {zipcode: {$eg: String} category: {$eg: String} }) {
-//     filter(filter {zipcode: {eg: $eg} category: {eg: $eg} }) {
-//       price
-//       sold
-//       title
-//       artist_name
-//       school {
-//         school_name
-//         zipcode
-//       }
-//       images {
-//         image_url
-//       }
-//       category {
-//         category
-//       }
-//     }
-//   }
-// `
-
-// const GET_CATEGORIES = gql`
-//   query {
-//     allCategories {
-//       id
-//       category
-//     }
-//   }
-// `
-
 
 const useStyles = makeStyles(theme => ({
   cardSize: {
@@ -80,11 +52,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const {category, setCategory} = useState('')
+  const [category, setCategory] = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
-
+  const [zipcode, setZipcode] = useState('')
+  const [searchData, setSearchData] = useState([])
   useEffect(() => {
     if (reload === true) {
       function update() {
@@ -110,7 +83,14 @@ const ImageMasonry = () => {
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
+          <h1>Search by..</h1>
+          <h2>Category</h2>
           <CategorySelection cat={category} setCat={setCategory}/>
+          <h2>Zipcode</h2>
+          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></input>
+          <SubmitButton>
+            <SearchButton cat={category} zip={zipcode}/>
+          </SubmitButton>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

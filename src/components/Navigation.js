@@ -59,7 +59,7 @@ const Navigation = props => {
             </Link>
           </Grid>
           <Grid item>
-            <Grid container spacing={5}>
+            <Grid container spacing={6}>
               <Grid item>
                 <Button
                   component={Link}
@@ -68,6 +68,15 @@ const Navigation = props => {
                   onClick={() => setReload(true)}
                 >
                   Browse
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  component={Link}
+                  to='/team'
+                  className={classes.button}
+                >
+                  About
                 </Button>
               </Grid>
               {authenticated === true ? (

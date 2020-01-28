@@ -20,7 +20,7 @@ export const theme = createMuiTheme({
       fontFamily: ['Barlow', 'sans-serif'].join(','),
     },
     button: {
-      fontFamily: ['Nunito', 'sans-serif'].join(','),
+      fontFamily: ['Avenir', 'sans-serif'].join(','),
       fontSize: '1rem',
     },
   },

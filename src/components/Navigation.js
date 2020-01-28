@@ -44,7 +44,7 @@ const Navigation = props => {
 
   return (
     <HideOnScroll {...props}>
-    <AppBar className={classes.appbar} position='sticky'>
+      <AppBar className={classes.appbar} position='sticky'>
         <Grid
           container
           alignItems='center'
@@ -57,7 +57,12 @@ const Navigation = props => {
             </Link>
           </Grid>
           <Grid item>
-            <Grid container spacing={6}>
+            {/*
+            //? this might be a better spot for the search component
+            */}
+          </Grid>
+          <Grid item>
+            <Grid container spacing={5}>
               <Grid item>
                 <Button
                   component={Link}
@@ -127,7 +132,6 @@ const Navigation = props => {
           </Grid>
         </Grid>
       </AppBar>
-      
     </HideOnScroll>
   )
 }

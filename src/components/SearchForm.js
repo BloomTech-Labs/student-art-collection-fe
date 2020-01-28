@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { TextField } from '@material-ui/core'
+import { Card, Grid, TextField } from '@material-ui/core'
 import CategorySelection from './CategorySelection'
 import { SubmitButton } from '../styles/muiButtons'
 
-export const SearchForm = () => {
+const SearchForm = () => {
   const [cat, setCat] = useState('')
   const [zip, setZip] = useState('')
   const history = useHistory()
@@ -23,9 +23,27 @@ export const SearchForm = () => {
 
   return (
     <form onSubmit={e => handleSubmit(e)}>
-      <CategorySelection cat={cat} setCat={setCat} />
-      <TextField value={zip} onChange={e => setZip(e.target.value)} />
-      <SubmitButton type='submit'>Submit</SubmitButton>
+      <Card style={{ padding: '20px' }}>
+        <Grid container alignItems='center' justify='center' spacing={5}>
+          <Grid item>
+            <CategorySelection cat={cat} setCat={setCat} />
+          </Grid>
+          <Grid item>
+            <TextField
+              variant='outlined'
+              size='small'
+              label='zip code'
+              value={zip}
+              onChange={e => setZip(e.target.value)}
+            />
+          </Grid>
+          <Grid item>
+            <SubmitButton type='submit'>Search</SubmitButton>
+          </Grid>
+        </Grid>
+      </Card>
     </form>
   )
 }
+
+export default SearchForm

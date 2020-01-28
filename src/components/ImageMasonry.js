@@ -15,11 +15,8 @@ import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
-import CategorySelection from './CategorySelection';
-import {SubmitButton} from '../styles/muiButtons'
-import SearchButton from './SearchButton';
-import SearchIcon from '@material-ui/icons/Search';
-import { fade } from '@material-ui/core/styles';
+import CategorySelection from './CategorySelection'
+import SearchIcon from '@material-ui/icons/Search'
 
 const GET_ALL_ART = gql`
   query {
@@ -50,21 +47,6 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Barlow',
     fontSize: '1.5rem',
     fontWeight: 'bold',
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
   },
 }))
 

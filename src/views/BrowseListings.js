@@ -1,27 +1,70 @@
-import React from 'react'
-import { ImageMasonry } from '../components'
+import React, { useEffect, useContext } from 'react'
+import { gql } from 'apollo-boost'
+import { useQuery } from 'react-apollo'
 import { Grid } from '@material-ui/core'
-import styled from 'styled-components'
+import {
+  ErrorMessage,
+  Spinner,
+  ReloadContext,
+  ImageMasonry,
+} from '../components'
 
-//todo heading should be all caps i.e. text-transform: uppercase
+const GET_ALL_ART = gql`
+  query {
+    allArts {
+      id
+      title
+      school {
+        school_name
+      }
+      images {
+        image_url
+      }
+    }
+  }
+`
 
 const BrowseListings = () => {
-  return (
-    <ContainerDiv>
-      <Grid container direction='column'>
-        <Grid item component='header'>
-          <Grid container direction='column' spacing={5}></Grid>
-        </Grid>
-        <Grid item>
-          <ImageMasonry />
-        </Grid>
-      </Grid>
-    </ContainerDiv>
-  )
-}
+  const { reload, setReload, setArtId } = useContext(ReloadContext)
+  const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
 
-const ContainerDiv = styled.div`
-  margin-top: 100px;
-`
+  useEffect(() => {
+    if (reload === true) {
+      function update() {
+        return refetch()
+      }
+      update()
+      setReload(false)
+    }
+  })
+
+  if (error) {
+    return (
+      <Grid container direction='column' alignItems='center' spacing={5}>
+        <Grid item>Quotes</Grid>
+        <Grid item>Search</Grid>
+        <ErrorMessage />
+      </Grid>
+    )
+  }
+  if (loading) {
+    return (
+      <Grid container direction='column' alignItems='center' spacing={5}>
+        <Grid item>Quotes</Grid>
+        <Grid item>Search</Grid>
+        <Spinner />
+      </Grid>
+    )
+  }
+  if (data) {
+    return (
+      <Grid container direction='column' alignItems='center' spacing={5}>
+        <Grid item>Quotes</Grid>
+        <Grid item>Search</Grid>
+        <ImageMasonry data={data} />
+      </Grid>
+    )
+  }
+}
 
 export default BrowseListings

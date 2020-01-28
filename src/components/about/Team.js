@@ -1,15 +1,31 @@
 import React from 'react'
-// import { CardMedia, Card, CardActionArea } from '@material-ui/core'
-// import FoxArt from '../images/unsplash-art-1.jpg'
-// import styled from 'styled-components'
 import './Team.css'
+import Modal from "react-responsive-modal";
 
-const Team = () => {
+const styles = {
+	textAlign: "center"
+};
+
+class Team extends React.Component {
+	state = {
+		open: false
+	}
+
+	onOpenModal = () => {
+		this.setState({ open: true });
+	};
+	
+	onCloseModal = () => {
+		this.setState({ open: false });
+	};		
+	
+	render (){
+		const { open } = this.state;
     return (
         <>
+		
 <section>
 	<div className='container'>
-
     <div className="pull-left col-md-4 sm-text-center">
 				<div className='team-overview'>
 					<h2>Meet Our Team</h2>
@@ -58,10 +74,20 @@ const Team = () => {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-ULVE1AR4Y-32e4313617ec-512' alt='Web Developer' />
 								<div className="member-info">
-									<h3>dAVE Inden</h3>
+									<h3 onClick={this.onOpenModal}>dAVE Inden</h3>
 									<p>Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
+								<div style={styles}>
+								<Modal open={open} onClose={this.onCloseModal}>
+        <h2>Simple centered modal</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+            pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+            hendrerit risus, sed porttitor quam.
+        </p>
+        </Modal>
+		</div>
 							</div>
 						</div>
 						
@@ -186,6 +212,7 @@ const Team = () => {
 
         </>
     )
+}
 }
 
 export default Team

@@ -11,6 +11,7 @@ import {
   Typography,
   makeStyles,
   Button,
+  Container,
 } from '@material-ui/core'
 import styled from 'styled-components'
 import ReloadContext from '../components/ReloadContext'
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   cardWrap: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '10px'
+    padding: '10px',
   },
   mediaTitle: {
     fontFamily: 'Barlow',
@@ -57,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
   },
   button: {
-    color: 'white', 
+    color: 'white',
     background: '#3CBBB1',
     marginBottom: '25px',
     margin: 'auto',
@@ -95,9 +96,15 @@ const Dashboard = props => {
     return (
       <>
         <TopDash>
-          <SchoolText>Welcome, {data.schoolBySchoolId.school_name}</SchoolText>
-          <TownText>{data.schoolBySchoolId.city} <Lines>||</Lines> Grades 9-12</TownText>
-
+          <Container style={{ width: '100%', backgroundColor: '#000' }}>
+            <SchoolText>
+              Welcome, {data.schoolBySchoolId.school_name}
+            </SchoolText>
+            <br />
+            <TownText>
+              {data.schoolBySchoolId.city} <Lines>||</Lines> Grades 9-12
+            </TownText>
+          </Container>
           {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
         </TopDash>
 
@@ -166,10 +173,11 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 25vh;
+  height: 30vh;
   color: #f5f5f5;
   width: 100%;
-  padding: 0;
+  padding-top: 200px;
+  margin-top: -200px;
 `
 
 const SchoolText = styled.text`
@@ -177,7 +185,7 @@ const SchoolText = styled.text`
 `
 
 const TownText = styled.text`
-  color: #FFAA04;
+  color: #ffaa04;
   font-size: 2.5rem;
 `
 
@@ -197,7 +205,7 @@ justify-content: center;
   font-family: 'Barlow';
 `
 const Lines = styled.text`
-  color: #3CBBB1;
+  color: #3cbbb1;
 `
 
 export default Dashboard

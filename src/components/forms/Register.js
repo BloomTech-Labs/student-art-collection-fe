@@ -6,7 +6,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { Grid, Typography, Container, useMediaQuery } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
-import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
+import registerart from '../../images/robert-keane-rlbG0p_nQOU-unsplash.jpg'
 import styled from 'styled-components'
 
 const REGISTER_USER = gql`
@@ -197,7 +197,7 @@ const Register = () => {
             </Grid>
             <Grid item>
               <Typography style={{ fontSize: '1.25rem' }}>
-                Already a member? Sign in{' '}
+                Already a Member? Sign In{' '}
                 <Link to='/login' className={classes.link}>
                   Here
                 </Link>
@@ -207,7 +207,7 @@ const Register = () => {
         </Grid>
         {breakpoint ? 
         <Grid item>
-          <img src={pineapple} alt='blue pineapple' className={classes.image} />
+          <img src={registerart} alt='art pattern on wall' className={classes.image} />
         </Grid> : null}
       </Grid>
     </Container>

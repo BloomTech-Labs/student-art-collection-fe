@@ -18,6 +18,8 @@ import styled from 'styled-components'
 import CategorySelection from './CategorySelection';
 import {SubmitButton} from '../styles/muiButtons'
 import SearchButton from './SearchButton';
+import SearchIcon from '@material-ui/icons/Search';
+import { fade } from '@material-ui/core/styles';
 
 const GET_ALL_ART = gql`
   query {
@@ -48,6 +50,21 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Barlow',
     fontSize: '1.5rem',
     fontWeight: 'bold',
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
   },
 }))
 
@@ -86,17 +103,18 @@ const ImageMasonry = () => {
           <Author>-Thomas Merton</Author>
         </TopDash>
         <ArtSect>
-        <Grid container direction = 'row' alignItems='center' style={{border: '1px black solid', borderRadius:'2em', backgroundColor:'rgba(0,0,0,0.1)', width:'95%', height:'4%', marginLeft:'3%'}}>
+        <Grid container direction = 'row' alignItems='center' style={{ width:'50%', height:'4%', marginLeft:'25%', marginTop:'-5%', marginBottom: '2%'}}>
         <Grid item xs={12} sm={4}>
-          <h1 style={{marginLeft: '7%'}}>Search by:</h1>
+          <h2 style={{marginLeft: '7%'}}>Search by:</h2>
         </Grid>
-          <Grid item xs={12} sm={4}>
-          <h3>Category</h3>
+          <Grid item xs={12} sm={4} style={{marginLeft:'-5%'}}>
+          {/* <h3>Category</h3> */}
           <CategorySelection cat={category} setCat={setCategory}/>
           </Grid>
           <Grid item xs={12} sm={4}>
-          <h3>Zipcode</h3>
-          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)}></input>
+          {/* <h3>Zipcode</h3> */}
+          <SearchIcon />
+          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="Search by zipcode…"></input>
           <SubmitButton>
             <SearchButton cat={category} zip={zipcode}/>
           </SubmitButton>

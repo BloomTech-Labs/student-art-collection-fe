@@ -10,6 +10,8 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  TextField,
+  InputAdornment
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
@@ -48,6 +50,11 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.5rem',
     fontWeight: 'bold',
   },
+  MuiSelect: {
+    marginTop: '8px',
+    marginBottom: '8px'
+  },
+
 }))
 
 const ImageMasonry = () => {
@@ -95,8 +102,13 @@ const ImageMasonry = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
           {/* <h3>Zipcode</h3> */}
-          <SearchIcon />
-          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="zipcode" style={{marginBottom:'5%'}}></input>
+          <TextField variant ='outlined' type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="ZIP Code" style={{marginBottom:'5%'}} InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" marginTop='5px'>
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}></TextField>
           {/* <SubmitButton>
             <SearchButton cat={category} zip={zipcode}/>
           </SubmitButton> */}

@@ -3,7 +3,8 @@ import './Team.css'
 import Modal from "react-responsive-modal";
 
 const styles = {
-	textAlign: "center"
+	textAlign: "center",
+	
 };
 
 class Team extends React.Component {
@@ -80,13 +81,16 @@ class Team extends React.Component {
 								</div>
 								<div style={styles}>
 								<Modal open={open} onClose={this.onCloseModal}>
-        <h2>Simple centered modal</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-            hendrerit risus, sed porttitor quam.
-        </p>
-        </Modal>
+								<h2>Dave Inden</h2>
+								<h3> Full Stack Web Developer</h3>
+								<p>Dave is a software developer with lots of experience in Support departments and understands the importance of how focusing on the user experience means remembering that actual human beings will be using the thing being built. Outside of work dAVE loves spending time with his family, making coffee, and cheering for the San Francisco Giants baseball team.</p>
+
+								<h3>Contact</h3>
+								<a href='https://www.linkedin.com/in/davidinden/'>LinkedIn</a>
+								<a href='https://www.daveinden.com/'>Personal Website</a>
+								<a href='https://github.com/daveskull81'>GitHub</a>
+								
+								</Modal>
 		</div>
 							</div>
 						</div>

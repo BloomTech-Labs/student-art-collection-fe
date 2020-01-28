@@ -17,8 +17,6 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     textDecoration: 'none',
-    // color: '#000',
-    padding: '10px',
   },
   button: {
     color: '#fff',
@@ -26,7 +24,6 @@ const useStyles = makeStyles(theme => ({
   },
   appbar: {
     background: '#000',
-    // height: '8%',
   },
 }))
 

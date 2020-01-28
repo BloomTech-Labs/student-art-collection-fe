@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
 //todo remove data checks
-import { DataCheck } from './DataCheck'
+import { DataCheck } from '../components/DataCheck'
 
 const SEARCH_ART = gql`
   query searchArt($zipcode: String, $category: String) {

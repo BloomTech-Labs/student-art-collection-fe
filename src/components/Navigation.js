@@ -56,7 +56,7 @@ const Navigation = props => {
               <img src={logo} alt='Student Artco' />
             </Link>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             {/*
             //? this might be a better spot for the search component
             */}
@@ -130,7 +130,7 @@ const Navigation = props => {
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        {/* </Grid> */}
       </AppBar>
     </HideOnScroll>
   )

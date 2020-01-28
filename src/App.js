@@ -20,6 +20,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import { Toolbar } from '@material-ui/core'
 import { theme } from './styles/theme'
 import { AppContainer } from './styles/muiAppContainer'
+import Team from './components/about/Team'
 
 function App(props) {
   const [reload, setReload] = useState(false)

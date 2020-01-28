@@ -181,6 +181,15 @@ a:hover {
 	.sm-text-center {
 		text-align: center;
 	}
+	.flex-center{
+		margin-top: -64%;
+	}
+	.member-info h3 {
+		font-size: 6px;
+	}
+	.member-info p {
+		font-size: 5px;
+	}
 }
 
 @media only screen and (max-width : 550px) {
@@ -201,12 +210,26 @@ a:hover {
 	}
 	.team-overview {
 		padding: 15px;
+		width: 100%;
 	}
-	
+	.flex-center{
+		margin-top: 0%;
+		width: 65%;
+	}
+	.member-info h3 {
+		font-size: 5px;
+	}
+	.member-info p {
+		font-size: 5px;
+	}
+
 }
 
 @media only screen and (max-width : 399px) {
 	.team-members ul > div {
 		width: 48%;
+	}
+	.team-overview{
+		width: 95%;
 	}
 }

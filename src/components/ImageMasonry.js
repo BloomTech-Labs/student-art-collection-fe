@@ -10,6 +10,7 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  Container
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
@@ -72,11 +73,18 @@ const ImageMasonry = () => {
   if (data) {
     return (
       <>
-        <TopDash>
-          <Quote>"Art enables us to find ourselves and lose ourselves at the same time."</Quote>
-          <br />
-          <Author>-Thomas Merton</Author>
-        </TopDash>
+        
+          <TopDash>
+          <Container style={{ width: '100%', backgroundColor: '#000' }}>
+            <Quote>
+              "Art enables us to find ourselves and lose ourselves at the same
+              time."
+            </Quote>
+            <br />
+            <Author>-Thomas Merton</Author>
+            </Container>
+          </TopDash>
+        
         <ArtSect>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
@@ -127,11 +135,11 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 25vh;
+  height: 30vh;
   color: #f5f5f5;
   width: 100%;
-  margin-top: -100px;
-  padding: 0;
+  margin-top: -300px;
+  padding-top: 200px;
 `
 
 const ArtSect = styled.div`
@@ -142,7 +150,7 @@ const ArtSect = styled.div`
 `
 
 const Author = styled.text`
-  color: #FFAA04;
+  color: #ffaa04;
   font-size: 2.5rem;
 `
 

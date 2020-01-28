@@ -114,10 +114,10 @@ const ImageMasonry = () => {
           <Grid item xs={12} sm={4}>
           {/* <h3>Zipcode</h3> */}
           <SearchIcon />
-          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="Search by zipcode…"></input>
-          <SubmitButton>
+          <input type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="zipcode" style={{marginBottom:'5%'}}></input>
+          {/* <SubmitButton>
             <SearchButton cat={category} zip={zipcode}/>
-          </SubmitButton>
+          </SubmitButton> */}
           </Grid>
           </Grid>
           <Grid container spacing={4} className={classes.cardWrap}>

@@ -12,7 +12,7 @@ import {
   Typography,
   TextField,
   InputAdornment,
-  Container
+  Container,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
@@ -53,9 +53,8 @@ const useStyles = makeStyles(theme => ({
   },
   MuiSelect: {
     marginTop: '8px',
-    marginBottom: '8px'
+    marginBottom: '8px',
   },
-
 }))
 
 const ImageMasonry = () => {
@@ -84,8 +83,7 @@ const ImageMasonry = () => {
   if (data) {
     return (
       <>
-        
-          <TopDash>
+        <TopDash>
           <Container style={{ width: '100%', backgroundColor: '#000' }}>
             <Quote>
               "Art enables us to find ourselves and lose ourselves at the same
@@ -93,31 +91,52 @@ const ImageMasonry = () => {
             </Quote>
             <br />
             <Author>-Thomas Merton</Author>
-            </Container>
-          </TopDash>
+          </Container>
+        </TopDash>
         <ArtSect>
-        <Grid container direction = 'row' alignItems='center' style={{ width:'50%', height:'4%', marginLeft:'25%', marginTop:'-5%', marginBottom: '2%'}}>
-        <Grid item xs={12} sm={4}>
-          <h2 style={{marginLeft: '7%'}}>Search by:</h2>
-        </Grid>
-          <Grid item xs={12} sm={4} style={{marginLeft:'-5%'}}>
-          {/* <h3>Category</h3> */}
-          <CategorySelection cat={category} setCat={setCategory}/>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-          {/* <h3>Zipcode</h3> */}
-          <TextField variant ='outlined' type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="ZIP Code" style={{marginBottom:'5%'}} InputProps={{
-          startAdornment: (
-            <InputAdornment position="start" marginTop='5px'>
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}></TextField>
-          {/* <SubmitButton>
+          <Container style={{ marginTop: '20px' }}>
+            <Grid
+              container
+              direction='row'
+              alignItems='center'
+              style={{
+                width: '50%',
+                height: '4%',
+                marginLeft: '25%',
+                marginTop: '-5%',
+                marginBottom: '2%',
+              }}
+            >
+              <Grid item xs={12} sm={4}>
+                <h2 style={{ fontFamily: 'Barlow' }}>Search by:</h2>
+              </Grid>
+              <Grid item xs={12} sm={4} style={{ marginLeft: '-5%' }}>
+                {/* <h3>Category</h3> */}
+                <CategorySelection cat={category} setCat={setCategory} />
+              </Grid>
+              <Grid item xs={12} sm={4} style={{ marginTop: '2%' }}>
+                {/* <h3>Zipcode</h3> */}
+                <TextField
+                  variant='outlined'
+                  type='text'
+                  value={zipcode}
+                  onChange={e => setZipcode(e.target.value)}
+                  placeholder='ZIP Code'
+                  style={{ marginBottom: '5%' }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position='start' marginTop='5px'>
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                ></TextField>
+                {/* <SubmitButton>
             <SearchButton cat={category} zip={zipcode}/>
           </SubmitButton> */}
-          </Grid>
-          </Grid>
+              </Grid>
+            </Grid>
+          </Container>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

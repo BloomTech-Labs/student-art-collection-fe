@@ -4,7 +4,7 @@ import { makeStyles, Grid, Typography } from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
-    marginTop: '-50px',
+    marginTop: '-40px',
     marginBottom: '50px',
     padding: theme.spacing(5),
     background: '#000',

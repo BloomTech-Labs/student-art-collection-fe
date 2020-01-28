@@ -1,36 +1,25 @@
 import React, { useState } from 'react'
-import { useLazyQuery } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import { useHistory } from 'react-router-dom'
 import { TextField } from '@material-ui/core'
 import CategorySelection from './CategorySelection'
 import { SubmitButton } from '../styles/muiButtons'
 
-const SEARCH_ART = gql`
-  query($zipcode: String) {
-    filter(filter: { zipcode: { eq: $zipcode } }) {
-      id
-    }
-  }
-`
-
 export const SearchForm = () => {
   const [cat, setCat] = useState('')
   const [zip, setZip] = useState('')
-  const [search, setSearch] = useState({ cat, zip })
-  // const [searchArt, { error, loading, data }] = useLazyQuery(SEARCH_ART)
+  const history = useHistory()
 
   const handleSubmit = e => {
-    e.preventDefault()
-    setSearch({
-      ...search,
-      cat,
-      zip,
-    })
-  }
+    //? set state...
+    setCat(cat)
+    setZip(zip)
 
-  // console.log(`category >>>`, cat)
-  // console.log(`zip code >>>`, zip)
-  console.log(`search by >>>`, search)
+    //? create a newSearch object...
+    const newSearch = { cat, zip }
+
+    //? send that object to the results page to get queried...
+    history.push('/results', { newSearch })
+  }
 
   return (
     <form onSubmit={e => handleSubmit(e)}>

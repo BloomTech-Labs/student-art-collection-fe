@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useQuery } from 'react-apollo'
 import { gql } from 'apollo-boost'
-
-//todo remove data checks
-import { DataCheck } from '../components/DataCheck'
+import { Grid } from '@material-ui/core'
+import {
+  ErrorMessage,
+  Spinner,
+  ReloadContext,
+  ImageMasonry,
+} from '../components'
 
 const SEARCH_ART = gql`
   query searchArt($zipcode: String, $category: String) {
@@ -29,25 +33,53 @@ const SEARCH_ART = gql`
 
 const SearchResults = ({ location }) => {
   const { cat, zip } = location.state.newSearch
-  const { error, loading, data } = useQuery(SEARCH_ART, {
+  const { reload, setReload, setArtId } = useContext(ReloadContext)
+  const { error, loading, data, refetch } = useQuery(SEARCH_ART, {
     variables: { zipcode: zip, category: cat },
   })
+
+  useEffect(() => {
+    if (reload === true) {
+      function update() {
+        return refetch()
+      }
+      update()
+      setReload(false)
+    }
+  })
+
   if (error) {
     return (
-      <>
-        <DataCheck data={error} />
-        <h1>Error</h1>
-      </>
+      <Grid container direction='column' alignItems='center' spacing={5}>
+        <Grid item>
+          <ErrorMessage />
+        </Grid>
+      </Grid>
     )
   }
   if (loading) {
-    return <h1>Loading</h1>
+    return (
+      <Grid container direction='column' alignItems='center' spacing={5}>
+        <Grid item>
+          <Spinner />
+        </Grid>
+      </Grid>
+    )
   }
   if (data) {
+    console.log(`data >>>`, data)
     return (
-      <>
-        <DataCheck data={data} />
-      </>
+      <Grid
+        container
+        direction='column'
+        alignItems='center'
+        spacing={5}
+        style={{ marginTop: '50px' }}
+      >
+        <Grid item>
+          <ImageMasonry art={data.filter} />
+        </Grid>
+      </Grid>
     )
   }
 }

@@ -79,7 +79,7 @@ const BrowseListings = () => {
             <SearchForm />
           </Grid>
           <Grid item>
-            <ImageMasonry data={data} />
+            <ImageMasonry art={data.allArts} />
           </Grid>
         </Grid>
       </>

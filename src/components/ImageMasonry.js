@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ImageMasonry = ({ data }) => {
+const ImageMasonry = ({ art }) => {
   const classes = useStyles()
 
   return (
@@ -24,7 +24,7 @@ const ImageMasonry = ({ data }) => {
         justify='center'
         className={classes.displayWidth}
       >
-        {data.allArts.map(art => (
+        {art.map(art => (
           <Grid item key={art.id} className={classes.card}>
             <ImageCard art={art} />
           </Grid>

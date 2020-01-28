@@ -38,7 +38,7 @@ const Navigation = props => {
       .auth()
       .signOut()
       .then(() => {
-        history.push('/login')
+        history.push('/browse')
       })
   }
 

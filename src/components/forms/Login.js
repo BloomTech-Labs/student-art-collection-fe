@@ -4,7 +4,6 @@ import { Link, useHistory } from 'react-router-dom'
 import { Grid, Typography, useMediaQuery, Container } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
-// import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
 import loginart from '../../images/mr-tt-xb0wLfZH9Zo-unsplash.jpg'
 import styled from 'styled-components'
 

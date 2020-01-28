@@ -7,6 +7,7 @@ import { Grid, Typography, Container, useMediaQuery } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
+import styled from 'styled-components'
 
 const REGISTER_USER = gql`
   mutation addSchool(
@@ -69,7 +70,8 @@ const Register = () => {
   }
 
   return (
-    <Container style={{ marginTop: '175px', marginBottom: '100px' }}>
+    <ContainerDiv>
+    <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
       <Grid
         container
         alignItems='center'
@@ -82,7 +84,6 @@ const Register = () => {
               <Typography
                 component='h2'
                 variant='h2'
-                style={{ fontSize: '2.5rem' }}
                 gutterBottom
               >
                 Welcome to Student ArtCo!
@@ -210,7 +211,16 @@ const Register = () => {
         </Grid> : null}
       </Grid>
     </Container>
+    </ContainerDiv>
   )
 }
+
+const ContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #266863
+`
 
 export default Register

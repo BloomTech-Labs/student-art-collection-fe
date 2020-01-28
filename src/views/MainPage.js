@@ -77,7 +77,7 @@ const MainPage = () => {
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
                             {breakpoint ? 
-                            <Typography variant="h2" style={{ fontSize: '4rem' }}>
+                            <Typography variant="h2" style={{ fontSize: '3rem' }}>
                                 Welcome to Student Artco
                             </Typography>
                              : <Typography variant="h2" style={{ fontSize: '2rem' }}>
@@ -86,16 +86,16 @@ const MainPage = () => {
                         </Grid>
                         <Grid item xs={12}>
                         {breakpoint ? 
-                            <Typography variant="h2" style={{ fontSize: '4rem' }}>
-                                Support Your Local School's Today!
+                            <Typography variant="h2" style={{ fontSize: '3rem' }}>
+                                Support Your Local Schools Today!
                             </Typography>
                              : <Typography variant="h2" style={{ fontSize: '2rem' }}>
-                             Support Your Local School's Today!
+                             Support Your Local Schools Today!
                          </Typography>}
                         </Grid>
                         <Grid item xs={12}>
                         {breakpoint ? 
-                            <Typography variant="h2" style={{ fontSize: '4rem' }}>
+                            <Typography variant="h2" style={{ fontSize: '3rem' }}>
                                 I am...
                             </Typography>
                              : <Typography variant="h2" style={{ fontSize: '2rem' }}>
@@ -127,7 +127,7 @@ const MainPage = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='h4' style={{ marginTop: '30px '}}>
+                            <Typography variant='h4' style={{ marginTop: '20px '}}>
                                 As easy as 1, 2, 3!
                             </Typography>
                         </Grid>

@@ -9,6 +9,7 @@ import ArtInfo from './ArtInfo'
 import EditConsole from './EditConsole'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
+import SearchResults from './SearchResults'
 
 export {
   Register,
@@ -22,4 +23,5 @@ export {
   EditConsole,
   Spinner,
   ErrorMessage,
+  SearchResults,
 }

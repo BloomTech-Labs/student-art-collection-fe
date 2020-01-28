@@ -197,7 +197,7 @@ const Register = () => {
             </Grid>
             <Grid item>
               <Typography style={{ fontSize: '1.25rem' }}>
-                Already a member? Sign in{' '}
+                Already a Member? Sign In{' '}
                 <Link to='/login' className={classes.link}>
                   Here
                 </Link>

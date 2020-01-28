@@ -5,8 +5,6 @@ import { gql } from 'apollo-boost'
 //todo remove data checks
 import { DataCheck } from './DataCheck'
 
-//todo including 'category' is causing this to fail
-//todo an issue with the resolver...???
 const SEARCH_ART = gql`
   query searchArt($zipcode: String, $category: String) {
     filter(filter: { zipcode: { eq: $zipcode }, category: { eq: $category } }) {

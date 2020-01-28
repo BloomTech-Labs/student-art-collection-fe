@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Container, ThemeProvider } from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/core'
 import { AuthProvider } from './components/auth/Auth'
 import { ReloadProvider } from './components/ReloadContext'
 import PrivateRoute from './components/auth/PrivateRoute'
 import Dashboard from './components/Dashboard'
-import { Register, Login, Navigation, EditSubmission } from './components'
+import {
+  Register,
+  Login,
+  Navigation,
+  EditSubmission,
+  SearchResults,
+} from './components'
 import Submission from './components/forms/Submission'
 import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
 import ScrollTop from './components/ScrollTop'
@@ -33,6 +39,7 @@ function App(props) {
                 <Route path='/register' component={Register} />
                 <Route path='/browse' component={BrowseListings} />
                 <Route path='/artwork/:id' component={SinglePage} />
+                <Route path='/results' component={SearchResults} />
                 {/* <Route
             <ThemeProvider theme={theme}>
               <Navigation />

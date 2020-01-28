@@ -10,16 +10,19 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  TextField,
-  InputAdornment,
-  Container,
+  Container
+  // TextField,
+  // Button,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
-import CategorySelection from './CategorySelection'
-import SearchIcon from '@material-ui/icons/Search'
+// import CategorySelection from './CategorySelection'
+// import { SubmitButton } from '../styles/muiButtons'
+// import SearchButton from './SearchButton'
+
+import { SearchForm } from './SearchForm'
 
 const GET_ALL_ART = gql`
   query {
@@ -58,12 +61,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ImageMasonry = () => {
-  const [category, setCategory] = useState('')
+  // const [category, setCategory] = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
-  const [zipcode, setZipcode] = useState('')
-  const [searchData, setSearchData] = useState([])
+  // const [zipcode, setZipcode] = useState('')
+  // const [searchData, setSearchData] = useState({ category, zipcode })
+
   useEffect(() => {
     if (reload === true) {
       function update() {
@@ -94,49 +98,11 @@ const ImageMasonry = () => {
           </Container>
         </TopDash>
         <ArtSect>
-          <Container style={{ marginTop: '20px' }}>
-            <Grid
-              container
-              direction='row'
-              alignItems='center'
-              style={{
-                width: '50%',
-                height: '4%',
-                marginLeft: '25%',
-                marginTop: '-5%',
-                marginBottom: '2%',
-              }}
-            >
-              <Grid item xs={12} sm={4}>
-                <h2 style={{ fontFamily: 'Barlow' }}>Search by:</h2>
-              </Grid>
-              <Grid item xs={12} sm={4} style={{ marginLeft: '-5%' }}>
-                {/* <h3>Category</h3> */}
-                <CategorySelection cat={category} setCat={setCategory} />
-              </Grid>
-              <Grid item xs={12} sm={4} style={{ marginTop: '2%' }}>
-                {/* <h3>Zipcode</h3> */}
-                <TextField
-                  variant='outlined'
-                  type='text'
-                  value={zipcode}
-                  onChange={e => setZipcode(e.target.value)}
-                  placeholder='ZIP Code'
-                  style={{ marginBottom: '5%' }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start' marginTop='5px'>
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                ></TextField>
-                {/* <SubmitButton>
-            <SearchButton cat={category} zip={zipcode}/>
-          </SubmitButton> */}
-              </Grid>
-            </Grid>
-          </Container>
+          <h1>Search by...</h1>
+          <SearchForm />
+
+          {/* <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/> */}
+          {/* <SearchButton /> */}
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

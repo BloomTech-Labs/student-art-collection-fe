@@ -5,15 +5,15 @@ import { AuthProvider } from './components/auth/Auth'
 import { ReloadProvider } from './components/ReloadContext'
 import PrivateRoute from './components/auth/PrivateRoute'
 import Dashboard from './components/Dashboard'
-import {
-  Register,
-  Login,
-  Navigation,
-  EditSubmission,
-  SearchResults,
-} from './components'
+import { Register, Login, Navigation, EditSubmission } from './components'
 import Submission from './components/forms/Submission'
-import { BrowseListings, MainPage, SinglePage, AdminSingleView } from './views'
+import {
+  BrowseListings,
+  MainPage,
+  SinglePage,
+  AdminSingleView,
+  SearchResults,
+} from './views'
 import ScrollTop from './components/ScrollTop'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'

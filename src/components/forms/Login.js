@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import firebaseApp from '../auth/firebaseApp'
 import { Link, useHistory } from 'react-router-dom'
-import { Grid, Typography, useMediaQuery } from '@material-ui/core'
+import { Grid, Typography, useMediaQuery, Container } from '@material-ui/core'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
 // import pineapple from '../../images/davisco-rhUU1pemhQ0-unsplash 1.png'
@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const history = useHistory()
   const classes = formStyles()
-  const breakpoint = useMediaQuery('(min-width: 1700px)')
+  const breakpoint = useMediaQuery('(min-width: 1200px)')
 
   const onSubmit = async e => {
     e.preventDefault()
@@ -25,17 +25,17 @@ const Login = () => {
 
   return (
     <ContainerDiv>
+      <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
       <Grid
         container
         alignItems='center'
         justify='space-around'
         className={classes.root}
-        style={{ width: '65%', height: '60%', marginTop: '200px' }}
       >
         <Grid item>
           <Grid container direction='column' alignItems='center' spacing={5}>
             <Grid item>
-              <Typography component='h2' variant='h2'>
+              <Typography variant='h2'>
                 Login to Student ArtCo
               </Typography>
             </Grid>
@@ -102,6 +102,7 @@ const Login = () => {
           <img src={loginart} alt='art graffiti' className={classes.image} />
         </Grid> : null}
       </Grid>
+      </Container>
     </ContainerDiv>
   )
 }
@@ -111,6 +112,7 @@ const ContainerDiv = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100%;
+  background-color: #266863
 `
 
 export default Login

@@ -3,7 +3,8 @@ import { Link, useHistory } from 'react-router-dom'
 import { Grid, Button, AppBar, makeStyles } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
 import { AuthContext } from './auth/Auth'
-import logo from '../images/logo1.png'
+// import logo from '../images/logo1.png'
+import logo from '../images/ArtcoWhiteLogo.png'
 import HideOnScroll from './HideOnScroll'
 import ReloadContext from './ReloadContext'
 // import ScrollTop from './ScrollTop'
@@ -16,8 +17,6 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     textDecoration: 'none',
-    // color: '#000',
-    padding: '10px',
   },
   button: {
     color: '#fff',
@@ -25,7 +24,6 @@ const useStyles = makeStyles(theme => ({
   },
   appbar: {
     background: '#000',
-    // height: '8%',
   },
 }))
 
@@ -40,7 +38,7 @@ const Navigation = props => {
       .auth()
       .signOut()
       .then(() => {
-        history.push('/login')
+        history.push('/browse')
       })
   }
 

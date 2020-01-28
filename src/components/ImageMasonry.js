@@ -50,9 +50,14 @@ const useStyles = makeStyles(theme => ({
   },
   mediaTitle: {
     fontFamily: 'Barlow',
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     fontWeight: 'bold',
   },
+  MuiSelect: {
+    marginTop: '8px',
+    marginBottom: '8px'
+  },
+
 }))
 
 const ImageMasonry = () => {
@@ -82,14 +87,17 @@ const ImageMasonry = () => {
   if (data) {
     return (
       <>
-        <TopDash>
-          <Quote>
-            "Art enables us to find ourselves and lose ourselves at the same
-            time."
-          </Quote>
-          <br />
-          <Author>-Thomas Merton</Author>
-        </TopDash>
+        
+          <TopDash>
+          <Container style={{ width: '100%', backgroundColor: '#000' }}>
+            <Quote>
+              "Art enables us to find ourselves and lose ourselves at the same
+              time."
+            </Quote>
+            <br />
+            <Author>-Thomas Merton</Author>
+            </Container>
+          </TopDash>
         <ArtSect>
           <h1>Search by...</h1>
           <SearchForm />
@@ -145,28 +153,28 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 600px;
+  height: 30vh;
   color: #f5f5f5;
   width: 100%;
-  margin-top: -120px;
-  padding: 0;
-  font-size: 3rem;
+  margin-top: -300px;
+  padding-top: 200px;
 `
 
 const ArtSect = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 const Author = styled.text`
   color: #ffaa04;
+  font-size: 2.5rem;
 `
 
 const Quote = styled.text`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-top: 10px;
+  font-size: 2.5rem;
 `
 
 export default ImageMasonry

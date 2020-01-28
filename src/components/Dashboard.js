@@ -11,6 +11,7 @@ import {
   Typography,
   makeStyles,
   Button,
+  Container,
 } from '@material-ui/core'
 import styled from 'styled-components'
 import ReloadContext from '../components/ReloadContext'
@@ -49,20 +50,17 @@ const useStyles = makeStyles(theme => ({
   cardWrap: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '10px'
+    padding: '10px',
   },
   mediaTitle: {
     fontFamily: 'Barlow',
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     fontWeight: 'bold',
   },
   button: {
     color: 'white',
-    fontSize: '1.5rem',
     background: '#3CBBB1',
-    width: '350px',
-    height: '60px',
-    marginBottom: '50px',
+    marginBottom: '25px',
     margin: 'auto',
     '&:hover': {
       backgroundColor: '#318B84',
@@ -98,9 +96,15 @@ const Dashboard = props => {
     return (
       <>
         <TopDash>
-          <SchoolText>Welcome, {data.schoolBySchoolId.school_name}</SchoolText>
-          <TownText>{data.schoolBySchoolId.city} <Lines>||</Lines> Grades 9-12</TownText>
-
+          <Container style={{ width: '100%', backgroundColor: '#000' }}>
+            <SchoolText>
+              Welcome, {data.schoolBySchoolId.school_name}
+            </SchoolText>
+            <br />
+            <TownText>
+              {data.schoolBySchoolId.city} <Lines>||</Lines> Grades 9-12
+            </TownText>
+          </Container>
           {/* For a future release canvas we should add the edit profile button with a component that allows the school to do so and maybe add the grades to the database if we think it could be useful */}
         </TopDash>
 
@@ -169,37 +173,39 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 600px;
+  height: 30vh;
   color: #f5f5f5;
-  margin-top: -50px;
   width: 100%;
+  padding-top: 200px;
+  margin-top: -200px;
 `
 
 const SchoolText = styled.text`
-  font-size: 4rem;
+  font-size: 3rem;
 `
 
 const TownText = styled.text`
-  font-size: 3rem;
-  color: #FFAA04;
+  color: #ffaa04;
+  font-size: 2.5rem;
 `
 
 const ArtSect = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 25px;
 `
 
 const ListingTop = styled.text`
 display flex;
 justify-content: center;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: black;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
+  font-family: 'Barlow';
 `
 const Lines = styled.text`
-  color: #3CBBB1;
+  color: #3cbbb1;
 `
 
 export default Dashboard

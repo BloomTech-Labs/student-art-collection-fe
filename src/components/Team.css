@@ -42,7 +42,7 @@ a:hover {
 	margin: 15px;
 }
 .member-details img {
-	transform: rotate(45deg) translate(0, 15px) scale(1.2);
+	transform: rotate(45deg) translate(0, 0px) scale(1.4);
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -75,14 +75,14 @@ a:hover {
 
 .member-info h3 {
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 10px;
 	font-weight: 400;
 	top: -100px;
 }
 
 .member-info p {
 	font-weight: 300;
-	font-size: 15px;
+	font-size: 8.5px;
 	bottom: -150px;
 }
 
@@ -125,7 +125,7 @@ a:hover {
     padding-right: 15px;
     width: 30%;
     margin-left: 4%;
-    margin-top: 5%;
+	margin-top: 5%;
 }
 .team-overview h2 {
 	text-transform: uppercase;
@@ -161,7 +161,7 @@ a:hover {
 	flex-direction: row;
 	justify-content: center;
     align-items: center;
-    margin-top: -42%;
+    margin-top: -37%;
 	margin-left: 29%;
 	margin-right: 24%;
 }

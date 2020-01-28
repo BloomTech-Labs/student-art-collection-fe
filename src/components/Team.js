@@ -39,9 +39,9 @@ const Team = () => {
 							<br></br>
 							</ul>
 							<br></br>
-							Our team is compromised of Full Stack Web Developers, Mobile Developers,iOS Developers and a UX Designer. 
+							{/* Our team is compromised of Full Stack Web Developers, Mobile Developers,iOS Developers and a UX Designer. 
 							<br></br>
-							<br></br>
+							<br></br> */}
 							Click on any team member to learn more!
 
                         </div>

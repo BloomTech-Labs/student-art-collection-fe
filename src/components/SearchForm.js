@@ -4,7 +4,7 @@ import { TextField } from '@material-ui/core'
 import CategorySelection from './CategorySelection'
 import { SubmitButton } from '../styles/muiButtons'
 
-export const SearchForm = () => {
+const SearchForm = () => {
   const [cat, setCat] = useState('')
   const [zip, setZip] = useState('')
   const history = useHistory()
@@ -29,3 +29,5 @@ export const SearchForm = () => {
     </form>
   )
 }
+
+export default SearchForm

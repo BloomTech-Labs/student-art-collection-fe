@@ -10,16 +10,16 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  TextField,
-  Button,
+  // TextField,
+  // Button,
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
-import CategorySelection from './CategorySelection'
-import { SubmitButton } from '../styles/muiButtons'
-import SearchButton from './SearchButton'
+// import CategorySelection from './CategorySelection'
+// import { SubmitButton } from '../styles/muiButtons'
+// import SearchButton from './SearchButton'
 
 import { SearchForm } from './SearchForm'
 
@@ -95,7 +95,7 @@ const ImageMasonry = () => {
           <SearchForm />
 
           {/* <SearchButton type="submit" cat={category} zip={zipcode} setDat={setSearchData}/> */}
-          <SearchButton />
+          {/* <SearchButton /> */}
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

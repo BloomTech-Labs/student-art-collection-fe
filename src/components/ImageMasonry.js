@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
@@ -10,12 +10,16 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  TextField,
+  InputAdornment
   Container
 } from '@material-ui/core'
 import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import styled from 'styled-components'
+import CategorySelection from './CategorySelection'
+import SearchIcon from '@material-ui/icons/Search'
 
 const GET_ALL_ART = gql`
   query {
@@ -47,13 +51,20 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.25rem',
     fontWeight: 'bold',
   },
+  MuiSelect: {
+    marginTop: '8px',
+    marginBottom: '8px'
+  },
+
 }))
 
 const ImageMasonry = () => {
+  const [category, setCategory] = useState('')
   const { reload, setReload, setArtId } = useContext(ReloadContext)
   const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
   const classes = useStyles()
-
+  const [zipcode, setZipcode] = useState('')
+  const [searchData, setSearchData] = useState([])
   useEffect(() => {
     if (reload === true) {
       function update() {
@@ -84,8 +95,29 @@ const ImageMasonry = () => {
             <Author>-Thomas Merton</Author>
             </Container>
           </TopDash>
-        
         <ArtSect>
+        <Grid container direction = 'row' alignItems='center' style={{ width:'50%', height:'4%', marginLeft:'25%', marginTop:'-5%', marginBottom: '2%'}}>
+        <Grid item xs={12} sm={4}>
+          <h2 style={{marginLeft: '7%'}}>Search by:</h2>
+        </Grid>
+          <Grid item xs={12} sm={4} style={{marginLeft:'-5%'}}>
+          {/* <h3>Category</h3> */}
+          <CategorySelection cat={category} setCat={setCategory}/>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+          {/* <h3>Zipcode</h3> */}
+          <TextField variant ='outlined' type="text" value={zipcode} onChange={e => setZipcode(e.target.value)} placeholder="ZIP Code" style={{marginBottom:'5%'}} InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" marginTop='5px'>
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}></TextField>
+          {/* <SubmitButton>
+            <SearchButton cat={category} zip={zipcode}/>
+          </SubmitButton> */}
+          </Grid>
+          </Grid>
           <Grid container spacing={4} className={classes.cardWrap}>
             {data.allArts.map(art => (
               <Grid item key={art.id}>

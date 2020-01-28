@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
   mediaTitle: {
     fontFamily: 'Barlow',
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     fontWeight: 'bold',
   },
   MuiSelect: {
@@ -163,28 +163,28 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 600px;
+  height: 25vh;
   color: #f5f5f5;
   width: 100%;
-  margin-top: -120px;
+  margin-top: -100px;
   padding: 0;
-  font-size: 3rem;
 `
 
 const ArtSect = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 const Author = styled.text`
-  color: #ffaa04;
+  color: #FFAA04;
+  font-size: 2.5rem;
 `
 
 const Quote = styled.text`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-top: 10px;
+  font-size: 2.5rem;
 `
 
 export default ImageMasonry

@@ -233,3 +233,48 @@ a:hover {
 		width: 95%;
 	}
 }
+
+@media only screen and (min-width : 1395px) {
+	.flex-center {
+		margin-top: -40%;
+	}
+	.team-overview{
+		width: 25%;
+	}
+	.member-info h3 {
+		font-size: 12px;
+	}
+	.member-info p {
+		font-size: 9px;
+	}
+}
+
+@media only screen and (min-width : 1487px) {
+	.flex-center {
+		margin-top: -30%;
+	}
+	.team-overview{
+		width: 25%;
+	}
+	.member-info h3 {
+		font-size: 13px;
+	}
+	.member-info p {
+		font-size: 10px;
+	}
+}
+
+@media only screen and (min-width : 1675px) {
+	.flex-center {
+		margin-top: -22%;
+	}
+	.team-overview{
+		width: 25%;
+	}
+	.member-info h3 {
+		font-size: 13px;
+	}
+	.member-info p {
+		font-size: 10px;
+	}
+}

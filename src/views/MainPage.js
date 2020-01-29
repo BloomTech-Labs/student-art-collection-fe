@@ -77,38 +77,38 @@ const MainPage = () => {
                     <Grid className={classes.welcomeMessageContainerStyles} container spacing={3} alignItems='center' justify='space-evenly'>
                         <Grid item xs={12}>
                             {breakpoint ? 
-                            <Typography variant="h2" style={{ fontSize: '3rem' }}>
+                            <Typography variant="h2">
                                 Welcome to Student Artco
                             </Typography>
-                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
+                             : <Typography variant="h2">
                              Welcome to Student Artco
                          </Typography>}
                         </Grid>
                         <Grid item xs={12}>
                         {breakpoint ? 
-                            <Typography variant="h2" style={{ fontSize: '3rem' }}>
+                            <Typography variant="h2">
                                 Support Your Local Schools Today!
                             </Typography>
-                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
+                             : <Typography variant="h2">
                              Support Your Local Schools Today!
                          </Typography>}
                         </Grid>
                         <Grid item xs={12}>
                         {breakpoint ? 
-                            <Typography variant="h2" style={{ fontSize: '3rem' }}>
+                            <Typography variant="h2">
                                 I am...
                             </Typography>
-                             : <Typography variant="h2" style={{ fontSize: '2rem' }}>
+                             : <Typography variant="h2">
                              I am...
                          </Typography>}
                         </Grid>
                         <Grid onClick={lookingArtClickhandler} className={classes.welcomeLinkContainerStyles} item xs={4}>
-                            <Typography variant='p' style={{ fontSize: '1.25' }}>
+                            <Typography component='p'>
                                 Looking for Art
                             </Typography>
                         </Grid>
                         <Grid onClick={adminClickHandler} className={classes.welcomeLinkContainerStyles} item xs={4}>
-                            <Typography variant='p' style={{ fontSize: '1.25' }}>
+                            <Typography component='p'>
                                 An Administrator
                             </Typography>
                         </Grid>
@@ -122,7 +122,7 @@ const MainPage = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='p' style={{ fontSize: '1.25rem', lineHeight: '1.5rem' }}>
+                            <Typography component='p' style={{ lineHeight: '1.5rem' }}>
                                 Student ArtCo is a platform that facilitates fund-raising for your school's art program by helping to sell art made by students. School art programs are typically underfunded and research shows that students create their best work when it is more than just an assignment. We provide a place where local communities and beyond can visit to see art created by students and purchase it to support their art programs. Using the latest technology, we host examples of your student's artwork and make it available for purchase to a wide audience. We aim to inspire young artists and provide them with unique possibilities for sharing their creativity. 
                             </Typography>
                         </Grid>
@@ -135,7 +135,7 @@ const MainPage = () => {
                             <img src={one} alt='the number one' />
                         </Grid>
                         <Grid className={classes.howToItem} item xs={12} md={4}>
-                            <Typography variant='p' style={{ fontSize: '1.25rem' }}>
+                            <Typography component='p'>
                                 Start here or with one of our mobile apps
                             </Typography>
                         </Grid>
@@ -146,7 +146,7 @@ const MainPage = () => {
                             <img src={two} alt='the number two' />
                         </Grid>
                         <Grid className={classes.howToItem} item xs={12} md={4}>
-                            <Typography variant='p' style={{ fontSize: '1.25rem' }}>
+                            <Typography component='p'>
                                 Enter your school's information
                             </Typography>
                         </Grid>
@@ -157,7 +157,7 @@ const MainPage = () => {
                             <img src={three} alt='the number three' />
                         </Grid>
                         <Grid className={classes.howToItem} item xs={12} md={4}>
-                            <Typography variant='p' style={{ fontSize: '1.25rem' }}>
+                            <Typography component='p'>
                                 Start supporting your community!
                             </Typography>
                         </Grid>
@@ -174,7 +174,7 @@ const MainPage = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant='p' style={{ lineHeight: '1.5rem' }}>
+                            <Typography component='p' style={{ lineHeight: '1.5rem' }}>
                                 Joining our platform is easy and within a few minutes you can have art listings up to share with your community and anyone online. All you need is pictures of the artwork to show it off and we can help with the rest. We provide a unique link for every piece of artwork that you can share with anyone. We have mobile apps available for both Android and iOS that allow you to manage your listings from anywhere. Others can use the apps to browse the available artwork and contact you to inquire about purchasing and making a donation.
                             </Typography>
                         </Grid>
@@ -184,7 +184,7 @@ const MainPage = () => {
                     <Grid container spacing={3} justify='center'>
                         <Grid item xs={12}>
                             <footer className={classes.footer}>
-                                <p>&copy; 2020</p>
+                                <Typography component='p'>&copy; 2020</Typography>
                             </footer>
                         </Grid>
                     </Grid>

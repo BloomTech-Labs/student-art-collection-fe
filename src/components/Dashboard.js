@@ -173,7 +173,7 @@ const TopDash = styled.div`
   text-align: center;
   font-family: 'Barlow';
   background-color: #000;
-  height: 30vh;
+  height: 25vh;
   color: #f5f5f5;
   width: 100%;
   padding-top: 200px;
@@ -181,12 +181,12 @@ const TopDash = styled.div`
 `
 
 const SchoolText = styled.text`
-  font-size: 3rem;
+  font-size: 2.5rem;
 `
 
 const TownText = styled.text`
   color: #ffaa04;
-  font-size: 2.5rem;
+  font-size: 2rem;
 `
 
 const ArtSect = styled.div`
@@ -199,7 +199,7 @@ const ArtSect = styled.div`
 const ListingTop = styled.text`
 display flex;
 justify-content: center;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: black;
   margin-bottom: 25px;
   font-family: 'Barlow';

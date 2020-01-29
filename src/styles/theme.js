@@ -22,5 +22,8 @@ export const theme = createMuiTheme({
       fontFamily: ['Avenir', 'sans-serif'].join(','),
       fontSize: '1rem',
     },
+    h6: {
+      
+    }
   },
 })

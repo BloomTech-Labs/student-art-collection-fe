@@ -40,6 +40,7 @@ const Contact = props => {
   const [sendMail, { data, loading, error }] = useMutation(SEND_MAIL)
 
   const onSubmit = e => {
+    console.log('clicked!')
     e.preventDefault()
     sendMail({ variables: { sendto, name, fromUser, subject, message } }).then(
       () => {
@@ -63,7 +64,7 @@ const Contact = props => {
         </Typography>
       </Grid>
       <Grid item>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={e => onSubmit(e)}>
           <Grid container direction='column' alignItems='center' spacing={3}>
             <Grid item>
               <TextField
@@ -121,7 +122,7 @@ const Contact = props => {
               />
             </Grid>
             <Grid item>
-              <SubmitButton>Submit</SubmitButton>
+              <SubmitButton type='submit'>Submit</SubmitButton>
             </Grid>
           </Grid>
         </form>

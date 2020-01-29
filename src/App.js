@@ -20,6 +20,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import { Toolbar } from '@material-ui/core'
 import { theme } from './styles/theme'
 import { AppContainer } from './styles/muiAppContainer'
+import Team from './components/about/Team'
 
 function App(props) {
   const [reload, setReload] = useState(false)
@@ -39,6 +40,7 @@ function App(props) {
                 <Route path='/register' component={Register} />
                 <Route path='/browse' component={BrowseListings} />
                 <Route path='/artwork/:id' component={SinglePage} />
+                <Route path='/team' component={Team} />
                 <Route path='/results' component={SearchResults} />
                 {/* <Route
             <ThemeProvider theme={theme}>

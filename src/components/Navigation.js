@@ -56,7 +56,7 @@ const Navigation = props => {
               <img src={logo} alt='Student Artco' />
             </Link>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             {/*
             //? this might be a better spot for the search component
             */}
@@ -71,6 +71,15 @@ const Navigation = props => {
                   onClick={() => setReload(true)}
                 >
                   Browse
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  component={Link}
+                  to='/team'
+                  className={classes.button}
+                >
+                  About
                 </Button>
               </Grid>
               {authenticated === true ? (
@@ -121,7 +130,7 @@ const Navigation = props => {
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        {/* </Grid> */}
       </AppBar>
     </HideOnScroll>
   )

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import {
   Card,
   CardContent,
-  Container,
   IconButton,
   Grid,
   Typography,
@@ -12,7 +11,6 @@ import { BackButton } from '../styles/muiButtons'
 
 const ErrorMessage = () => {
   return (
-    // <Container style={{ backgroundColor: 'orange' }}>
     <Card>
       <CardContent>
         <Grid container alignItems='center' justify='space-between'>
@@ -24,16 +22,15 @@ const ErrorMessage = () => {
               to='/'
             />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={8}>
             <Typography variant='body1' component='h2'>
               We're sorry. Something's gone wrong.
             </Typography>
           </Grid>
-          <Grid item xs={3} />
+          <Grid item xs={1} />
         </Grid>
       </CardContent>
     </Card>
-    // </Container>
   )
 }
 

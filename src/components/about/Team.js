@@ -90,11 +90,14 @@ class Team extends React.Component {
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-ULVE1AR4Y-32e4313617ec-512' alt='Web Developer' />
 								<div className="member-info">
 									<h3 onClick={this.onOpenModal('one')}>dAVE Inden</h3>
+									
 									<p>Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
 								<div style={styles}>
 								<Modal open={one} onClose={this.onCloseModal} >
+								{console.log(this.state)}
+								{console.log('onclose',this.onCloseModal)}
 								<h2>Dave Inden</h2>
 								<h3> Full Stack Web Developer</h3>
 								<br></br>

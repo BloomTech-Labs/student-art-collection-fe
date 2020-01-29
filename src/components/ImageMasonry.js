@@ -4,11 +4,12 @@ import ImageCard from './ImageCard'
 
 const useStyles = makeStyles(theme => ({
   displayWidth: {
-    maxWidth: '60%',
+    maxWidth: '80%',
     margin: '0 auto',
   },
   card: {
     maxWidth: '800px',
+    maxheight: '800px'
   },
 }))
 

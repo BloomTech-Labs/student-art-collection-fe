@@ -1,14 +1,17 @@
 import React from 'react'
-import { makeStyles, Grid, Typography } from '@material-ui/core'
+import { makeStyles, Grid, Typography, Container } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
-    marginTop: '-40px',
+    marginTop: '-200px',
     marginBottom: '50px',
-    padding: theme.spacing(5),
+    paddingTop: '200px',
+    padding: '10px',
     background: '#000',
     color: '#f5f5f5',
+    height: '30vh',
+    overflowY: 'hidden'
   },
 }))
 
@@ -18,11 +21,11 @@ export const BrowseQuote = () => {
   return (
     <Grid container justify='center' className={classes.container}>
       <Grid item>
-        <Typography variant='h3'>
+        <Typography style={{ fontSize: '2.5rem' }}>
           "Art enables us to find ourselves and lose ourselves at the same
           time."
         </Typography>
-        <Typography variant='body1'>- Thomas Merton</Typography>
+        <Typography variant='body1' style={{ color: 'orange', fontSize: '2rem' }}>-Thomas Merton</Typography>
       </Grid>
     </Grid>
   )

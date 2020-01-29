@@ -292,6 +292,20 @@ a:hover {
 	.member-info p {
 		font-size: 10px;
 	}
+
+	.styles_modal__gNwvD p{
+		font-size: 15px;
+	}
+
+	.styles_modal__gNwvD h2{
+		font-size: 20px;
+	}
+	.styles_modal__gNwvD h3{
+		font-size: 12px;
+	}
+	.styles_modal__gNwvD a{
+		font-size: 12px;
+	}
 }
 
 .styles_modal__gNwvD {

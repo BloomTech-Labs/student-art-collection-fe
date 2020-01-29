@@ -1,13 +1,22 @@
 import React, { useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { useQuery } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import { Grid } from '@material-ui/core'
+import { 
+  Grid, 
+  Typography,
+  Container,
+  Card,
+  CardContent,
+  IconButton 
+} from '@material-ui/core'
 import {
   ErrorMessage,
   Spinner,
   ReloadContext,
   ImageMasonry,
 } from '../components'
+import { BackButton } from '../styles/muiButtons';
 
 const SEARCH_ART = gql`
   query searchArt($zipcode: String, $category: String) {
@@ -68,19 +77,47 @@ const SearchResults = ({ location }) => {
   }
   if (data) {
     console.log(`data >>>`, data)
-    return (
+    console.log(`filter >>>`, data.filter)
+    if (data.filter.length === 0) {
+      return (
+        <Container style={{marginTop: '50px'}}>
+        <Card>
+          <CardContent>
+            <Grid container alignItems='center' justify='space-between'>
+              <Grid item xs={3}>
+                <IconButton
+                  size='small'
+                  children={<BackButton />}
+                  component={Link}
+                  to='/browse'
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant='body1' component='h2'>
+                  No results found, please try again!
+                </Typography>
+              </Grid>
+              <Grid item xs={3}></Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Container>
+      )
+    } else {
+      return (
       <Grid
-        container
-        direction='column'
-        alignItems='center'
-        spacing={5}
-        style={{ marginTop: '50px' }}
-      >
-        <Grid item>
-          <ImageMasonry art={data.filter} />
+          container
+          direction='column'
+          alignItems='center'
+          spacing={5}
+          style={{ marginTop: '50px' }}
+        >
+          <Grid item>
+            <ImageMasonry art={data.filter} />
+          </Grid>
         </Grid>
-      </Grid>
-    )
+      )
+    }
   }
 }
 

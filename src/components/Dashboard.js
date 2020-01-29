@@ -52,11 +52,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     padding: '10px',
   },
-  mediaTitle: {
-    fontFamily: 'Barlow',
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-  },
   button: {
     color: 'white',
     background: '#3CBBB1',
@@ -139,15 +134,11 @@ const Dashboard = props => {
                       }
                     />
                     <CardContent>
-                      <Typography className={classes.mediaTitle}>
+                      <Typography variant={'h5'}>
                         Title:{' '}
                         {listings.title === '' ? 'Untitled' : listings.title}
                       </Typography>
-                      <Typography
-                        className={classes.mediaTitle}
-                        variant={'h6'}
-                        component='p'
-                      >
+                      <Typography variant={'h5'}>
                         Artist:{' '}
                         {listings.artist_name === ''
                           ? 'Untitled'

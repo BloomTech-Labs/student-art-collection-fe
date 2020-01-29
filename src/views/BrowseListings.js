@@ -16,6 +16,7 @@ const GET_ALL_ART = gql`
     allArts {
       id
       title
+      artist_name
       school {
         school_name
       }

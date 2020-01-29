@@ -7,24 +7,26 @@ export const theme = createMuiTheme({
       fontFamily: ['Barlow', 'sans-serif'].join(','),
       fontSize: '2.5rem',
     },
-    p: {
+    body1: {
       fontFamily: ['Barlow', 'sans-serif'].join(','),
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
     },
     h3: {
       fontFamily: ['Barlow', 'sans-serif'].join(','),
       fontSize: '1.75rem',
     },
     h4: {
+      fontFamily: ['Barlow', 'sans-serif'].join(','),
       fontSize: '1.75rem',
     },
-    h5: {},
+    h5: {
+      fontFamily: ['Barlow', 'sans-serif'].join(','),
+      fontSize: '1.5rem',
+    },
     button: {
       fontFamily: ['Avenir', 'sans-serif'].join(','),
       fontSize: '1rem',
     },
-    h6: {
-      
-    }
+    h6: {},
   },
 })

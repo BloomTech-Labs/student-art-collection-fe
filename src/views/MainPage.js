@@ -122,7 +122,7 @@ const MainPage = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component='p' style={{ lineHeight: '1.5rem' }}>
+                            <Typography component='p' variant='body1' style={{ lineHeight: '1.5rem' }}>
                                 Student ArtCo is a platform that facilitates fund-raising for your school's art program by helping to sell art made by students. School art programs are typically underfunded and research shows that students create their best work when it is more than just an assignment. We provide a place where local communities and beyond can visit to see art created by students and purchase it to support their art programs. Using the latest technology, we host examples of your student's artwork and make it available for purchase to a wide audience. We aim to inspire young artists and provide them with unique possibilities for sharing their creativity. 
                             </Typography>
                         </Grid>

@@ -52,11 +52,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     padding: '10px',
   },
-  // mediaTitle: {
-  //   fontFamily: 'Barlow',
-  //   fontSize: '1.25rem',
-  //   fontWeight: 'bold',
-  // },
   button: {
     color: 'white',
     background: '#3CBBB1',

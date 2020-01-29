@@ -278,3 +278,18 @@ a:hover {
 		font-size: 10px;
 	}
 }
+
+@media only screen and (min-width : 2000px) {
+	.flex-center {
+		margin-top: -15%;
+	}
+	.team-overview{
+		width: 25%;
+	}
+	.member-info h3 {
+		font-size: 13px;
+	}
+	.member-info p {
+		font-size: 10px;
+	}
+}

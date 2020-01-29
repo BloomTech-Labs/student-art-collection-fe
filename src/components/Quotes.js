@@ -4,14 +4,10 @@ import { makeStyles, Grid, Typography, Container } from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
-    marginTop: '-200px',
     marginBottom: '50px',
-    paddingTop: '200px',
-    padding: '10px',
+    padding: '50px',
     background: '#000',
     color: '#f5f5f5',
-    height: '30vh',
-    overflowY: 'hidden'
   },
 }))
 

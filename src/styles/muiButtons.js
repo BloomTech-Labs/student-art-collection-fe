@@ -4,11 +4,19 @@ import { theme } from './theme'
 
 export const BackButton = withStyles({
   root: {
-    padding: theme.spacing(1.5),
-    backgroundColor: '#3CBBB1',
+    height: '50px',
+    width: '50px',
+    padding: theme.spacing(1),
+    border: '1px solid rgba(0, 0, 0, .2)',
     borderRadius: '50%',
+    boxShadow: '1px 1px 1px rgba(0, 0, 0, .3)',
+    backgroundColor: '#3CBBB1',
+    fontSize: '50px', //? doesn't seem to be necessary in Chrome on Windows, but was having issues with the icon randomly disappearing - this appears to fix that
     '&:hover': {
       backgroundColor: '#23A298',
+    },
+    '&:active': {
+      boxShadow: 'none',
     },
   },
 })(ArrowBackIcon)

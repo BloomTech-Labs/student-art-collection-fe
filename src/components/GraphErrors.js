@@ -12,28 +12,28 @@ import { BackButton } from '../styles/muiButtons'
 
 const ErrorMessage = () => {
   return (
-    <Container>
-      <Card>
-        <CardContent>
-          <Grid container alignItems='center' justify='space-between'>
-            <Grid item xs={3}>
-              <IconButton
-                size='small'
-                children={<BackButton />}
-                component={Link}
-                to='/'
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <Typography variant='body1' component='h2'>
-                We're sorry. Something's gone wrong.
-              </Typography>
-            </Grid>
-            <Grid item xs={3}></Grid>
+    // <Container style={{ backgroundColor: 'orange' }}>
+    <Card>
+      <CardContent>
+        <Grid container alignItems='center' justify='space-between'>
+          <Grid item xs={3}>
+            <IconButton
+              size='small'
+              children={<BackButton />}
+              component={Link}
+              to='/'
+            />
           </Grid>
-        </CardContent>
-      </Card>
-    </Container>
+          <Grid item xs={3}>
+            <Typography variant='body1' component='h2'>
+              We're sorry. Something's gone wrong.
+            </Typography>
+          </Grid>
+          <Grid item xs={3} />
+        </Grid>
+      </CardContent>
+    </Card>
+    // </Container>
   )
 }
 

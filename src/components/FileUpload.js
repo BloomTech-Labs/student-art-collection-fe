@@ -16,12 +16,12 @@ const FileUpload = props => {
     isDragReject,
   } = useDropzone({
     accept: 'image/jpeg, image/png',
-    multiple: false,
+    multiple: true,
     onDrop: onDrop,
   })
 
   const files = acceptedFiles.map(file => <li key={file.path}>{file.name}</li>)
-
+  console.log('files >>>', files)
   return (
     <div className='container'>
       <Container

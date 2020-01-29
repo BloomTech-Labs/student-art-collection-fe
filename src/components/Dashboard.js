@@ -176,8 +176,6 @@ const TopDash = styled.div`
   height: 25vh;
   color: #f5f5f5;
   width: 100%;
-  padding-top: 200px;
-  margin-top: -200px;
 `
 
 const SchoolText = styled.text`

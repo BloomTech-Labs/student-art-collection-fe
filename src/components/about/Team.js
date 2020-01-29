@@ -7,12 +7,27 @@ const styles = {
 };
 
 class Team extends React.Component {
-	state = {
+	constructor(props){
+		super(props)
+	this.state = {
+		one: false,
+		two: false,
+		three: false,
+		four: false,
+		five: false,
+		six: false,
+		seven: false,
+		eight: false,
+		nine: false,
+		ten: false,
+		eleven: false,
 		open: false
-	}
 
-	onOpenModal = () => {
-		this.setState({ open: true });
+	}
+}
+
+	onOpenModal = modal => e => {
+		this.setState(prevState => ({ [modal]: !prevState[modal] }))
 	};
 	
 	onCloseModal = () => {
@@ -20,7 +35,7 @@ class Team extends React.Component {
 	};		
 	
 	render (){
-		const { open } = this.state;
+		const { one, two, three, four, five, six, seven, eight, nine, ten, eleven } = this.state;
     return (
         <>
 		
@@ -74,12 +89,12 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-ULVE1AR4Y-32e4313617ec-512' alt='Web Developer' />
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>dAVE Inden</h3>
+									<h3 onClick={this.onOpenModal('one')}>dAVE Inden</h3>
 									<p>Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={one} onClose={this.onCloseModal} >
 								<h2>Dave Inden</h2>
 								<h3> Full Stack Web Developer</h3>
 								<br></br>
@@ -100,24 +115,12 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-UFX4PAND7-053ac23153cf-512' alt='Web Developer' />
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Mackenzie Weber</h3>
+									<h3 onClick={this.onOpenModal('two')}>Mackenzie Weber</h3>
 									<p>Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
-							</div>
-						</div>
-						
-						<div className="member-details">
-							<div>
-								<img src='https://avatars1.githubusercontent.com/u/40191456?s=400&v=4' alt='Web Developer'/>
-								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Jason Loomis</h3>
-									<p>Full Stack</p>
-                                    <p>Web Developer</p>
-								</div>
-
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={two} onClose={this.onCloseModal} >
 								<h2>Mackenzie Weber</h2>
 								<h3> Full Stack Web Developer</h3>
 								<br></br>
@@ -126,7 +129,35 @@ class Team extends React.Component {
 								<h3>Contact</h3>
 								<a href='https://www.linkedin.com/in/mackenzie-weber-a1906a186/'>LinkedIn</a>
 								<br></br>
+								
 								<a href='https://github.com/MWeberLambdaweb19'>GitHub</a>
+								</Modal>
+		</div>
+							</div>
+						</div>
+						
+						<div className="member-details">
+							<div>
+								<img src='https://avatars1.githubusercontent.com/u/40191456?s=400&v=4' alt='Web Developer'/>
+								<div className="member-info">
+									<h3 onClick={this.onOpenModal('three')}>Jason Loomis</h3>
+									<p>Full Stack</p>
+                                    <p>Web Developer</p>
+								</div>
+
+								<div style={styles}>
+								<Modal open={three} onClose={this.onCloseModal} >
+								<h2>Jason Loomis</h2>
+								<h3> Full Stack Web Developer</h3>
+								<br></br>
+								<p>Jason has a background in customer service and photography. He accidentally came to love building websites as a result of needing one for his photos. When Jason doesn't have a camera in hand, or a keyboard under, he's probably reading or convincing himself the Red Wings are in a rebuilding phase.</p>
+								<br></br>
+								<h3>Contact</h3>
+								<a href='https://www.linkedin.com/in/jason-r-loomis'>LinkedIn</a>
+								<br></br>
+								<a href='jrloomis.com'>Personal Website</a>
+								<br></br>
+								<a href='https://github.com/jrloom'>GitHub</a>
 								</Modal>
 							</div>
 							</div>
@@ -138,12 +169,12 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-ULV0CMZRS-3848f2627a12-512' alt='Web Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Grissobel Payonk</h3>
+									<h3 onClick={this.onOpenModal('four')}>Grissobel Payonk</h3>
 									<p>Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={four} onClose={this.onCloseModal} >
 								<h2>Grissobel Payonk</h2>
 								<h3> Full Stack Web Developer</h3>
 								<br></br>
@@ -164,13 +195,13 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-ULXK90YSJ-dceca3c6a285-512' alt='Web Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Ian Schwartz</h3>
+									<h3 onClick={this.onOpenModal('five')}>Ian Schwartz</h3>
 									<p>Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
 
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={five} onClose={this.onCloseModal} >
 								<h2>Ian Schwartz</h2>
 								<h3> Full Stack Web Developer</h3>
 								<br></br>
@@ -190,13 +221,13 @@ class Team extends React.Component {
 							<div>
 								<img src="https://ca.slack-edge.com/T4JUEB3ME-UDTA6SESD-f9033663ba71-512" alt='Web Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Ami Scott</h3>
+									<h3 onClick={this.onOpenModal('six')}>Ami Scott</h3>
 									<p>Team Lead-Full Stack</p>
                                     <p>Web Developer</p>
 								</div>
 
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={six} onClose={this.onCloseModal} >
 								<h2>Ami Scott</h2>
 								<h3> Team Lead/Full Stack Web Developer</h3>
 								<br></br>
@@ -219,11 +250,11 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-UFK58KV38-e62a8bb2adc8-512' alt='iOS Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Mitchell Budge</h3>
+									<h3 onClick={this.onOpenModal('seven')}>Mitchell Budge</h3>
 									<p>iOS Developer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={seven} onClose={this.onCloseModal} >
 								<h2>Mitchell Budge</h2>
 								<h3> iOS Developer</h3>
 								<br></br>
@@ -244,11 +275,11 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-UFAGBFNRK-f6066cbb23b3-512' alt='Mobile Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Vivek Vishwanath</h3>
+									<h3 onClick={this.onOpenModal('eight')}>Vivek Vishwanath</h3>
 									<p>Software Developer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={eight} onClose={this.onCloseModal} >
 								<h2>Vivek Vishwanath</h2>
 								<h3> Software Developer</h3>
 								<br></br>
@@ -268,11 +299,11 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-UE26GM3NC-35a35c655340-512' alt='Mobile Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Brandon Lively</h3>
+									<h3 onClick={this.onOpenModal('nine')}>Brandon Lively</h3>
 									<p>Mobile Developer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={nine} onClose={this.onCloseModal} >
 								<h2>Brandon Lively</h2>
 								<h3> Mobile Developer</h3>
 								<br></br>
@@ -294,11 +325,11 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-UL6GJCZ6Y-b607c4f87820-512' alt='iOS Developer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Alexandra Rhodes</h3>
+									<h3 onClick={this.onOpenModal('ten')}>Alexandra Rhodes</h3>
                                     <p>iOS Developer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={ten} onClose={this.onCloseModal} >
 								<h2>Alexandra Rhodes</h2>
 								<h3> iOS Developer</h3>
 								<br></br>
@@ -319,11 +350,11 @@ class Team extends React.Component {
 							<div>
 								<img src='https://ca.slack-edge.com/T4JUEB3ME-UEXB31TAP-2b07e714ffb3-512' alt='UI Designer'/>
 								<div className="member-info">
-									<h3 onClick={this.onOpenModal}>Imani Russ</h3>
+									<h3 onClick={this.onOpenModal('eleven')}>Imani Russ</h3>
 									<p>UI Designer</p>
 								</div>
 								<div style={styles}>
-								<Modal open={open} onClose={this.onCloseModal} >
+								<Modal open={eleven} onClose={this.onCloseModal} >
 								<h2>Imani Russ</h2>
 								<h3> UX Designer</h3>
 								<br></br>

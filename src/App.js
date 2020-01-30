@@ -13,6 +13,7 @@ import {
   SinglePage,
   AdminSingleView,
   SearchResults,
+  UserProfile,
 } from './views'
 import ScrollTop from './components/ScrollTop'
 import Fab from '@material-ui/core/Fab'
@@ -58,6 +59,7 @@ function App(props) {
                 {/* Example PrivateRoute usage */}
                 {/* <PrivateRoute path='<PATH_FOR_ROUTE>' component={'<COMPONENT_FOR_ROUTE>'} /> */}
                 <PrivateRoute path='/admin/dashboard' component={Dashboard} />
+                <Route path='/admin/profile' component={UserProfile} />
                 {/*
                  //? adding the id variable in order to avoid using the firebase
                  //? uid for the newArt mutation

@@ -317,5 +317,4 @@ a:hover {
 html {
 	width: calc(100% + 0px);
 	position: static;
-	overflow: hidden;
 }

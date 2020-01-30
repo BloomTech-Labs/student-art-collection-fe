@@ -16,6 +16,7 @@ const GET_ALL_ART = gql`
     allArts {
       id
       title
+      artist_name
       school {
         school_name
       }
@@ -44,13 +45,12 @@ const BrowseListings = () => {
     return (
       <>
         <BrowseQuote />
-        <Grid container direction='column' alignItems='center' spacing={5}>
-          <Grid item>
-            <SearchForm />
-          </Grid>
-          <Grid item>
+        <Grid container justify='center'>
+          <Grid item xs={3} />
+          <Grid item xs={6}>
             <ErrorMessage />
           </Grid>
+          <Grid item xs={3} />
         </Grid>
       </>
     )
@@ -59,13 +59,12 @@ const BrowseListings = () => {
     return (
       <>
         <BrowseQuote />
-        <Grid container direction='column' alignItems='center' spacing={5}>
-          <Grid item>
-            <SearchForm />
-          </Grid>
-          <Grid item>
+        <Grid container justify='center'>
+          <Grid item xs={3} />
+          <Grid item xs={6}>
             <Spinner />
           </Grid>
+          <Grid item xs={3} />
         </Grid>
       </>
     )

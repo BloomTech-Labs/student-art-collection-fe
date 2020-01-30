@@ -9,11 +9,11 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
   },
   space: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
   },
 }))
 
-const ArtInfo = ({info}) => {
+const ArtInfo = ({ info }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>

@@ -17,10 +17,10 @@ const CategorySelection = ({ cat, setCat }) => {
   const { error, loading, data } = useQuery(CATEGORIES)
 
   if (error) {
-    return <ErrorMessage />
+    return <>Failed to load categories</>
   }
   if (loading) {
-    return <Spinner />
+    return <>Loading Categories...</>
   }
   if (data) {
     return (
@@ -48,7 +48,5 @@ const styles = {
     margin: 15,
   },
 }
-
-
 
 export default CategorySelection

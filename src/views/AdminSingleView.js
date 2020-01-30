@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery, useMutation } from 'react-apollo'
 import ReloadContext from '../components/ReloadContext'
@@ -48,9 +48,12 @@ const DELETE_ART = gql`
 `
 
 const AdminSingleView = props => {
-  const {setReload} = useContext(ReloadContext)
+  const { setReload } = useContext(ReloadContext)
   const id = props.match.params.id
-  const { error, loading, data } = useQuery(GET_ART, {variables: {id}, fetchPolicy: "no-cache"})
+  const { error, loading, data } = useQuery(GET_ART, {
+    variables: { id },
+    fetchPolicy: 'no-cache',
+  })
   const [deleteArt] = useMutation(DELETE_ART)
 
   // KEEPING THESE UNTIL CONFIRMED WORKING ON STAGING/PRODUCTION
@@ -81,7 +84,6 @@ const AdminSingleView = props => {
     props.history.push(`/admin/artwork/${id}/edit`)
   }
 
-
   if (error) {
     console.log('error', error)
     return <ErrorMessage />
@@ -91,26 +93,26 @@ const AdminSingleView = props => {
   }
   if (data) {
     return (
-        <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
-          <Card>
-            <CardActions>
-              <IconButton
-                size='small'
-                children={<BackButton />}
-                onClick={() => props.history.goBack()}
-                />
-            </CardActions>
-            <CardContent>
-              <ImageCarousel info={data.art.images} />
-            </CardContent>
-            <CardContent>
-              <ArtInfo info={data.art} />
-            </CardContent>
-            <CardActions>
-              <EditConsole handleEdit={handleEdit} handleDelete={handleDelete} />
-            </CardActions>
-          </Card>
-        </Container>
+      <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
+        <Card>
+          <CardActions>
+            <IconButton
+              size='small'
+              children={<BackButton />}
+              onClick={() => props.history.goBack()}
+            />
+          </CardActions>
+          <CardContent>
+            <ImageCarousel info={data.art.images} />
+          </CardContent>
+          <CardContent>
+            <ArtInfo info={data.art} />
+          </CardContent>
+          <CardActions>
+            <EditConsole handleEdit={handleEdit} handleDelete={handleDelete} />
+          </CardActions>
+        </Card>
+      </Container>
     )
   }
 }

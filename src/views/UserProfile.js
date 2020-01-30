@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
 import { makeStyles, Card, Grid, Typography } from '@material-ui/core'
@@ -27,7 +27,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const UserProfile = () => {
+const UserProfile = props => {
+  console.log(`profile props >>>`, props)
+
   const { error, loading, data } = useQuery(GET_SCHOOL_INFO)
   const classes = useStyles()
 

@@ -7,6 +7,7 @@ import { SubmitButton } from '../../styles/muiButtons'
 
 const UPDATE_SCHOOL = gql`
   mutation updateSchool(
+    # $id: ID!
     $school_name: String!
     $email: String!
     $address: String!
@@ -14,6 +15,7 @@ const UPDATE_SCHOOL = gql`
     $zipcode: String!
   ) {
     updateSchool(
+      id: 1
       school_name: $school_name
       email: $email
       address: $address
@@ -44,9 +46,9 @@ const EditProfile = ({ school }) => {
     setUpdate({ ...update, [e.target.name]: e.target.value })
 
   const onSubmit = e => {
-    e.preventDefault()
+    // e.preventDefault()
     const variables = { ...update }
-    console.log(`variables >>>`, variables)
+    // console.log(`variables >>>`, variables)
     updateSchool({
       variables,
     })

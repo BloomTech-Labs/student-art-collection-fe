@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const UserProfile = props => {
+const UserProfile = () => {
   const classes = useStyles()
   const { schoolInfo } = useContext(SchoolContext)
   const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {
@@ -60,7 +60,7 @@ const UserProfile = props => {
           <Card>
             <Grid container direction='column' spacing={5}>
               <Grid item>
-                <EditProfile school={school} />
+                <EditProfile school={school} id={schoolInfo.id} />
               </Grid>
             </Grid>
           </Card>

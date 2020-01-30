@@ -57,9 +57,10 @@ const Submission = props => {
   const [title, setTitle] = useState('')
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
   const [description, setDescription] = useState('')
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState([])
   const history = useHistory()
   const classes = formStyles()
+  const [imageURL, setImageURL] = useState('')
 
   const [submitArt] = useMutation(SUBMISSION)
 
@@ -71,30 +72,42 @@ const Submission = props => {
 
   const onSubmit = async e => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    axios
-      .post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-        formData
-      )
-      .then(res => {
-        const variables = {
-          category,
-          price: Number(price),
-          artist_name: artistName,
-          description,
-          title,
-          school_id: id,
-          image_url: res.data.secure_url,
-        }
-        submitArt({ variables: variables })
-      })
-      .then(() => {
-        setReload(true)
-        history.push('/admin/dashboard')
-      })
+    await file.forEach(async item => {
+      const formData = new FormData()
+      formData.append('file', item)
+      formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+      await axios
+        .post(
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+          formData
+        )
+        .then(res => {
+          console.log(res.data.secure_url)
+          console.log('prior to send', imageURL)
+          console.log('setImageURL', setImageURL)
+          setImageURL(...imageURL, 'res.data.secure_url')
+          console.log('after send', imageURL)
+          // const variables = {
+          //   category,
+          //   price: Number(price),
+          //   artist_name: artistName,
+          //   description,
+          //   title,
+          //   school_id: id,
+          //   image_url: res.data.secure_url,
+          // }
+          // submitArt({ variables: variables })
+        })
+        // .then(() => {
+        //   setReload(true)
+        //   history.push('/admin/dashboard')
+        // })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+   await console.log('at the end of it all', imageURL)
+
   }
 
   return (
@@ -116,7 +129,8 @@ const Submission = props => {
                   spacing={4}
                 >
                   <Grid item>
-                    <FileUpload setFile={setFile} />
+                    <FileUpload setFile={setFile} file={file}/>
+                    {file.map(file => <li key={file.path}>{file.name}</li>)}
                   </Grid>
                   <Grid item>
                     <TextField
@@ -127,7 +141,7 @@ const Submission = props => {
                       variant='outlined'
                       size='small'
                       className={classes.message}
-                      required
+                      //required
                       value={artistName}
                       onChange={e => setArtistName(e.target.value)}
                     />
@@ -141,7 +155,7 @@ const Submission = props => {
                       variant='outlined'
                       size='small'
                       className={classes.message}
-                      required
+                      //required
                       value={title}
                       onChange={e => setTitle(e.target.value)}
                     />
@@ -151,11 +165,11 @@ const Submission = props => {
                       label='Price'
                       name='price'
                       placeholder='1.00'
-                      type='text'
+                      type='number'
                       variant='outlined'
                       size='small'
                       className={classes.message}
-                      required
+                      //required
                       value={price}
                       onChange={e => setPrice(e.target.value)}
                     />
@@ -174,7 +188,7 @@ const Submission = props => {
                       multiline
                       rows={8}
                       className={classes.message}
-                      required
+                      //required
                       value={description}
                       onChange={e => setDescription(e.target.value)}
                     />

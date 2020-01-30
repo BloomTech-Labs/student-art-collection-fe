@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
 import { makeStyles, Card, Grid, Typography } from '@material-ui/core'
 import { EditProfile, ErrorMessage, Spinner } from '../components'
+import { SchoolContext } from '../context/SchoolContext'
 
 const GET_SCHOOL_INFO = gql`
-  query {
-    school(id: 1) {
+  query school($id: ID!) {
+    school(id: $id) {
       school_name
       email
       address
@@ -28,10 +29,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const UserProfile = props => {
-  console.log(`profile props >>>`, props)
-
-  const { error, loading, data } = useQuery(GET_SCHOOL_INFO)
   const classes = useStyles()
+  const { schoolInfo } = useContext(SchoolContext)
+  const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {
+    variables: { id: schoolInfo.id },
+  })
 
   if (error) {
     return <ErrorMessage />

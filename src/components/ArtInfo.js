@@ -21,15 +21,18 @@ const ArtInfo = ({ info }) => {
   return (
     <div className={classes.root}>
       <Grid container alignItems='center' justify='space-between'>
-        <Grid item className={classes.space}>
+        <Grid item className={classes.space} xs='12' >
           <Typography variant='h5'>
             Title: {info.title === '' ? 'Untitled' : info.title}
           </Typography>
           <Typography variant='h5' component='h5'>
             Artist: {info.artist_name}
           </Typography>
-          <Typography variant='h5'>{info.category.category}</Typography>
+          <Typography variant='h5'>
+            Category: {info.category.category}
+            </Typography>
           <Typography variant='h5' className={classes.lineBreak}>
+            Description: <br />
             {info.description === ''
               ? 'No description available'
               : info.description}

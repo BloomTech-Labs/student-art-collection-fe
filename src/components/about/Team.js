@@ -46,12 +46,14 @@ class Team extends React.Component {
 					<h2>Meet Our Team</h2>
 					<p>
                         <div>
-							<p>
-                            Here at Student ArtCo our Mission is to bridge the gap between students and their surrounding communities by having students and the community interact with each other through students' work.
+							{/* <p>
+                            Here at Student ArtCo our mission is to bridge the gap between students and their surrounding communities by having students and the community interact with each other through students' work.
 							</p>
-							<br></br>
+							<br></br> */}
 							<p>
-							During eight weeks Lambda Students build new features in existing products or, like in our case, we build everything from scratch. During this process the team sets out goals and deadlines to deliver those features to users. If you're interested in our code you'll find the links below!
+							Over the course of eight weeks, Lambda School students particpate in a program called Labs. This in-house apprenticeship tries to simulate or recreate what it's like to work at a company in a software development role. <br />
+							<br />
+							Throughout this process students work in cross-discipline teams to add new features to existing products or, like in our case, build an entirely new application from scratch. During this time the team sets out goals and works in a real development environment, complete with product and engineering managers and release canvas reviews. If you're interested in our code, check out the links below!
 							</p>
 							<br></br>
 							<ul>
@@ -73,7 +75,7 @@ class Team extends React.Component {
 							{/* Our team is compromised of Full Stack Web Developers, Mobile Developers,iOS Developers and a UX Designer. 
 							<br></br>
 							<br></br> */}
-							Click on any team member to learn more!
+							Click on the name of any team member to learn more!
 
                         </div>
                     </p>

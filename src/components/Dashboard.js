@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core'
 import styled from 'styled-components'
 import ReloadContext from '../components/ReloadContext'
+import { SchoolContext } from '../context/SchoolContext'
 
 const GET_SCHOOL_INFO = gql`
   query schoolBySchoolId($schoolId: ID!) {
@@ -65,6 +66,7 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = props => {
   const { reload, setReload } = useContext(ReloadContext)
+  const { setSchoolInfo } = useContext(SchoolContext)
   const schoolId = props.schoolId
   const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {
     variables: { schoolId },
@@ -80,6 +82,16 @@ const Dashboard = props => {
       setReload(false)
     }
   })
+
+  useEffect(() => {
+    if (data) {
+      const school = data.schoolBySchoolId
+      setSchoolInfo({
+        id: school.id,
+        school_name: school.school_name,
+      })
+    }
+  }, [data, setSchoolInfo])
 
   if (error) {
     return <div> Error Loading Dashboard...</div>

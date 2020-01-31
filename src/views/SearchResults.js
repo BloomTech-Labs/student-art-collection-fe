@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useQuery } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { 
@@ -46,6 +46,7 @@ const SearchResults = ({ location }) => {
   const { error, loading, data, refetch } = useQuery(SEARCH_ART, {
     variables: { zipcode: zip, category: cat },
   })
+  const history = useHistory()
 
   useEffect(() => {
     if (reload === true) {
@@ -105,6 +106,8 @@ const SearchResults = ({ location }) => {
       )
     } else {
       return (
+        <>
+        
       <Grid
           container
           direction='column'
@@ -113,9 +116,17 @@ const SearchResults = ({ location }) => {
           style={{ marginTop: '50px' }}
         >
           <Grid item>
+          <IconButton
+              size='small'
+              children={<BackButton />}
+              onClick={() => history.goBack()}
+            />
+          </Grid>
+          <Grid item>
             <ImageMasonry art={data.filter} />
           </Grid>
         </Grid>
+        </>
       )
     }
   }

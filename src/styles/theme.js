@@ -17,11 +17,12 @@ export const theme = createMuiTheme({
     },
     h4: {
       fontFamily: ['Barlow', 'sans-serif'].join(','),
-      fontSize: '1.75rem',
+      fontSize: '1.5rem',
     },
     h5: {
       fontFamily: ['Barlow', 'sans-serif'].join(','),
       fontSize: '1.5rem',
+      lineHeight: '2.5rem'
     },
     button: {
       fontFamily: ['Avenir', 'sans-serif'].join(','),

@@ -5,11 +5,7 @@ import { Button, Grid } from '@material-ui/core'
 export const NavbarAuth = ({ classes, setReload, signOut }) => {
   return (
     <>
-      <Grid item>
-        <Button component={Link} to='/admin/profile' className={classes.button}>
-          Profile
-        </Button>
-      </Grid>
+      
       <Grid item>
         <Button
           component={Link}
@@ -27,6 +23,11 @@ export const NavbarAuth = ({ classes, setReload, signOut }) => {
           className={classes.button}
         >
           Dashboard
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button component={Link} to='/admin/profile' className={classes.button}>
+          Profile
         </Button>
       </Grid>
       <Grid item>

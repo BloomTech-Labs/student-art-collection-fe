@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
   space: {
     padding: theme.spacing(3),
   },
+  lineBreak: {
+    whiteSpace: 'pre-line'
+  },
 }))
 
 const ArtInfo = ({ info }) => {
@@ -26,7 +29,7 @@ const ArtInfo = ({ info }) => {
             Artist: {info.artist_name}
           </Typography>
           <Typography variant='h3'>{info.category.category}</Typography>
-          <Typography variant='h3'>
+          <Typography variant='h3' className={classes.lineBreak}>
             {info.description === ''
               ? 'No description available'
               : info.description}

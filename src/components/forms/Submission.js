@@ -20,7 +20,7 @@ const SUBMISSION = gql`
   mutation addArt(
     $category: ID!
     $school_id: ID!
-    $image_url: String!
+    $image_url: [String!]!
     $title: String
     $description: String
     $artist_name: String
@@ -60,7 +60,7 @@ const Submission = props => {
   const [file, setFile] = useState([])
   const history = useHistory()
   const classes = formStyles()
-  const [imageURL, setImageURL] = useState('')
+  const [imageLink, setImageLink] = useState([])
 
   const [submitArt] = useMutation(SUBMISSION)
 
@@ -70,44 +70,52 @@ const Submission = props => {
   //? ...not use the firebase uid
   const id = props.match.params.id
 
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault()
-    await file.forEach(async item => {
+    const cloudImage = new Promise((resolve, reject) => 
+    {
+      file.forEach(item => {
       const formData = new FormData()
       formData.append('file', item)
       formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-      await axios
+      axios
         .post(
           `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
           formData
         )
         .then(res => {
-          console.log(res.data.secure_url)
-          console.log('prior to send', imageURL)
-          console.log('setImageURL', setImageURL)
-          setImageURL(...imageURL, 'res.data.secure_url')
-          console.log('after send', imageURL)
-          // const variables = {
-          //   category,
-          //   price: Number(price),
-          //   artist_name: artistName,
-          //   description,
-          //   title,
-          //   school_id: id,
-          //   image_url: res.data.secure_url,
-          // }
-          // submitArt({ variables: variables })
+          // await setImageLink((prevState) => {
+          //   console.log('previous state', Array.isArray(prevState))
+          //   console.log('taken in', res.data.secure_url)
+          //   return [...prevState, res.data.secure_url]
+          // })
+          const newLink = res.data.secure_url
+          setImageLink([...imageLink, newLink])
         })
         // .then(() => {
-        //   setReload(true)
+          //   setReload(true)
         //   history.push('/admin/dashboard')
         // })
         .catch(err => {
           console.log(err)
+          reject();
         })
     })
-   await console.log('at the end of it all', imageURL)
-
+    resolve();
+  })
+  cloudImage.then(() => {
+    const variables = {
+      category,
+      price: price,
+      artist_name: artistName,
+      description,
+      title,
+      school_id: id,
+      image_url: imageLink,
+    }
+    console.log('args', variables)
+    submitArt({ variables: variables })
+    })
   }
 
   return (
@@ -121,7 +129,7 @@ const Submission = props => {
               </Typography>
             </Grid>
             <Grid item>
-              <form onSubmit={onSubmit}>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <Grid
                   container
                   direction='column'

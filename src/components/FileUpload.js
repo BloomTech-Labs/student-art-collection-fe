@@ -1,28 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import styled from 'styled-components'
 
 const FileUpload = props => {
   const onDrop = uploads => {
-    props.setFile(props.file.concat(uploads))
+    props.setFile(props.file.concat(uploads)) 
+    setFiles(uploads.map(file => {
+      console.log('file', file)
+      return Object.assign(file, {
+      preview: URL.createObjectURL(file)
+  
+    })}));
+
   }
-
-
-function FileUpload(props) {
   const [files, setFiles] = useState([]);
-  // const onDrop = files => {
-  //   props.setFile(files[0])
-  // }
+
   const {getRootProps, 
     getInputProps,
     isDragActive,
     isDragAccept,
-    isDragReject
+    isDragReject, 
   } = useDropzone({
     accept: 'image/jpeg, image/png',
     multiple: true,
-    onDrop: onDrop,
+    onDrop: onDrop
   })
+
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img
+          src={file.preview}
+          style={img}
+        alt = 'pic'/>
+      </div>
+    </div>
+  ));
+
+  useEffect(() => () => {
+    files.forEach(file => URL.revokeObjectURL(file.preview));
+  }, [files]);
+
 
   return (
     <div className='container'>
@@ -31,9 +49,14 @@ function FileUpload(props) {
         <input {...getInputProps()} />
         <p>Drag 'n' drop a file here, or click to select a file</p>
       </Container>
-    </div>
+
+      <aside style={thumbsContainer}>
+        {thumbs}
+      </aside>
+    </div>  
   );
-}}
+}
+
 export default FileUpload
 
 

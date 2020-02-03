@@ -126,6 +126,7 @@ a:hover {
     width: 30%;
     margin-left: 4%;
 	margin-top: 5%;
+	font-family: Barlow;
 }
 .team-overview h2 {
 	text-transform: uppercase;
@@ -140,7 +141,8 @@ a:hover {
 }
 
 .team-overview p {
-	font-size: 15px;
+	font-size: 1.25rem;
+	line-height: 1.5rem;
 }
 
 .team-overview > a:before {

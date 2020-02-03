@@ -142,8 +142,8 @@ const EditForm = props => {
     return (
       <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
         <Paper elevation={0} className={classes.root}>
-          <Paper elevation={3} className={classes.paper}>
-            <Grid container direction='column' alignItems='center' spacing={4}>
+          <Paper elevation={3} className={classes.paper} style={{ width: '450px' }}>
+            <Grid container direction='column' alignItems='center' spacing={4}> 
               <Grid item>
                 <Typography variant='h2' component='h2' gutterBottom>
                   Update an Art Listing

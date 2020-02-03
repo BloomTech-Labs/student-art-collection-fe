@@ -1,29 +1,31 @@
-import React, {useEffect} from 'react'
-import { useDropzone } from 'react-dropzone'
+import React, {useEffect, useState} from 'react'
+import {useDropzone} from 'react-dropzone'
 import styled from 'styled-components'
-import Previews from './ImagePreview'
 
-const FileUpload = props => {
-  const onDrop = files => {
-    props.setFile(files[0])
-  }
 
-  const {
-    acceptedFiles,
-    getRootProps,
+
+function FileUpload(props) {
+  const [files, setFiles] = useState([]);
+  // const onDrop = files => {
+  //   props.setFile(files[0])
+  // }
+  const {getRootProps, 
     getInputProps,
     isDragActive,
     isDragAccept,
-    isDragReject,
+    isDragReject
   } = useDropzone({
     accept: 'image/jpeg, image/png',
-    multiple: false,
-    onDrop: onDrop,
-  })
+    multiple: true,
+    onDrop: acceptedFiles => {
+      setFiles(acceptedFiles.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })));
+    }
+  });
 
-  const files = acceptedFiles.map(file => <li key={file.path}>{file.name}</li> )
-
-
+  // <li key={file.path}>{file.name}</li>
+  
   const thumbs = files.map(file => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
@@ -36,27 +38,26 @@ const FileUpload = props => {
   ));
 
   useEffect(() => () => {
-    // Make sure to revoke the data uris to avoid memory leaks
     files.forEach(file => URL.revokeObjectURL(file.preview));
   }, [files]);
 
   return (
     <div className='container'>
-      <Container
-        {...getRootProps({ isDragActive, isDragAccept, isDragReject })}
-      >
+    <Container
+      {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop a file here, or click to select a file</p>
-      </Container>
-
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      
       <aside style={thumbsContainer}>
         {thumbs}
       </aside>
-
-      <ul>{files}</ul>
+      {/* <ul>{files}</ul> */}
+    </Container>
     </div>
-  )
+  );
 }
+export default FileUpload
+
 
 const getColor = props => {
   if (props.isDragAccept) {
@@ -87,8 +88,6 @@ const Container = styled.div`
   outline: none;
   transition: border 0.24s ease-in-out;
 `
-
-
 
 const thumbsContainer = {
   display: 'flex',
@@ -121,4 +120,3 @@ const img = {
   height: '100%'
 };
 
-export default FileUpload

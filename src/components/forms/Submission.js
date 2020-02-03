@@ -71,52 +71,88 @@ const Submission = props => {
   const id = props.match.params.id
 
   const onSubmit = e => {
-    e.preventDefault()
-    const cloudImage = new Promise((resolve, reject) => 
-    {
-      file.forEach(item => {
-      const formData = new FormData()
-      formData.append('file', item)
-      formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-      axios
+    e.preventDefault();
+    Promise.all(file.map(item => {
+      const formData = new FormData();
+      formData.append('file', item);
+      formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+      return axios
         .post(
           `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
           formData
         )
-        .then(res => {
-          // await setImageLink((prevState) => {
-          //   console.log('previous state', Array.isArray(prevState))
-          //   console.log('taken in', res.data.secure_url)
-          //   return [...prevState, res.data.secure_url]
-          // })
-          const newLink = res.data.secure_url
-          setImageLink([...imageLink, newLink])
+        .then(res => res.data.secure_url);
+    }))
+      .then(imageLink => {
+        // if you need to persist imageLinks to state for use outside of this request
+        setImageLink(imageLink);
+        const variables = {
+          category,
+          price: Number(price),
+          artist_name: artistName,
+          description,
+          title,
+          school_id: id,
+          image_url: imageLink,
+        };
+        console.log('args', variables);
+        submitArt({ variables: variables })
+        .then(() => {
+          setReload(true)
+          history.push('/admin/dashboard')
         })
-        // .then(() => {
-          //   setReload(true)
-        //   history.push('/admin/dashboard')
-        // })
-        .catch(err => {
-          console.log(err)
-          reject();
-        })
-    })
-    resolve();
-  })
-  cloudImage.then(() => {
-    const variables = {
-      category,
-      price: price,
-      artist_name: artistName,
-      description,
-      title,
-      school_id: id,
-      image_url: imageLink,
-    }
-    console.log('args', variables)
-    submitArt({ variables: variables })
-    })
-  }
+      })
+      .catch(err => console.log(err));
+  };
+  
+  
+
+  // const onSubmit = e => {
+  //   e.preventDefault()
+
+  //   file.forEach(item => {
+  //   const formData = new FormData()
+  //   formData.append('file', item)
+  //   formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+  //   axios
+  //     .post(
+  //       `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+  //       formData
+  //     )
+  //     .then(res => {
+  //       // await setImageLink((prevState) => {
+  //       //   console.log('previous state', Array.isArray(prevState))
+  //       //   console.log('taken in', res.data.secure_url)
+  //       //   return [...prevState, res.data.secure_url]
+  //       // })
+  //       const newLink = res.data.secure_url
+  //       console.log('res data', res.data)
+  //       console.log('this is imageLinks state', imageLink)
+  //       console.log('link from cloudinary', newLink)
+  //       setImageLink(imageLink => [...imageLink, newLink])
+  //     })
+  //     // .then(() => {
+  //       //   setReload(true)
+  //     //   history.push('/admin/dashboard')
+  //     // })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // })
+  // // cloudImage.then(() => {
+  // //   const variables = {
+  // //     category,
+  // //     price: price,
+  // //     artist_name: artistName,
+  // //     description,
+  // //     title,
+  // //     school_id: id,
+  // //     image_url: imageLink,
+  // //   }
+  // //   console.log('args', variables)
+  // //   submitArt({ variables: variables })
+  // //   })
+  // }
 
   return (
     <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
@@ -149,7 +185,7 @@ const Submission = props => {
                       variant='outlined'
                       size='small'
                       className={classes.message}
-                      //required
+                      required
                       value={artistName}
                       onChange={e => setArtistName(e.target.value)}
                     />
@@ -163,7 +199,7 @@ const Submission = props => {
                       variant='outlined'
                       size='small'
                       className={classes.message}
-                      //required
+                      required
                       value={title}
                       onChange={e => setTitle(e.target.value)}
                     />
@@ -177,7 +213,7 @@ const Submission = props => {
                       variant='outlined'
                       size='small'
                       className={classes.message}
-                      //required
+                      required
                       value={price}
                       onChange={e => setPrice(e.target.value)}
                     />
@@ -196,7 +232,7 @@ const Submission = props => {
                       multiline
                       rows={8}
                       className={classes.message}
-                      //required
+                      required
                       value={description}
                       onChange={e => setDescription(e.target.value)}
                     />

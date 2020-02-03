@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import styled from 'styled-components'
 
 const FileUpload = props => {
-  const onDrop = files => {
-    props.setFile(files[0])
+  const onDrop = uploads => {
+    props.setFile(props.file.concat(uploads))
   }
 
   const {
@@ -16,11 +16,9 @@ const FileUpload = props => {
     isDragReject,
   } = useDropzone({
     accept: 'image/jpeg, image/png',
-    multiple: false,
+    multiple: true,
     onDrop: onDrop,
   })
-
-  const files = acceptedFiles.map(file => <li key={file.path}>{file.name}</li>)
 
   return (
     <div className='container'>
@@ -30,7 +28,6 @@ const FileUpload = props => {
         <input {...getInputProps()} />
         <p>Drag 'n' drop a file here, or click to select a file</p>
       </Container>
-      <ul>{files}</ul>
     </div>
   )
 }

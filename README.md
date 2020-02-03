@@ -1,13 +1,15 @@
-# Student ArtCo
+<h1 align="center">
+    Student ArtCo Frontend
+</h1>
 
-You can find the deployed project at [Student ArtCo](https://studentartco.netlify.com/).
+You can find the deployed project at [Student ArtCo](https://www.studentartco.com/).
 
 ## Contributors
 
 |                                       [Ami Scott](https://github.com/Memitaru)                                        |                                       [dAVE Inden](https://github.com/daveskull81)                                        |                                       [Jason Loomis](https://github.com/jrloom)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
-|                      [<img src="https://avatars1.githubusercontent.com/u/43873460?s=460&v=4" width = "200" />](https://github.com/Memitaru)                       |                      [<img src="https://avatars1.githubusercontent.com/u/3360264?s=460&v=4" width = "200" />](https://github.com/daveskull81)                       |                      [<img src="https://media.licdn.com/dms/image/C4E03AQGlvn65v10N_A/profile-displayphoto-shrink_200_200/0?e=1582156800&v=beta&t=yg9kB-YWn0tG2MsDu_f3af626N4hIKf6uUeBCanmzAk" width = "200" />](https://github.com/jrloom)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Memitaru)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/daveskull81)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |
+|                      [<img src="https://avatars1.githubusercontent.com/u/43873460?s=460&v=4" width = "200" />](https://github.com/Memitaru)                       |                      [<img src="https://avatars1.githubusercontent.com/u/3360264?s=460&v=4" width = "200" />](https://github.com/daveskull81)                       |                      [<img src="https://avatars1.githubusercontent.com/u/40191456?s=400&v=4" width = "200" />](https://github.com/jrloom)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Memitaru)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/daveskull81)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jrloom)            |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ami-scott/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/davidinden/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/jason-r-loomis) |
 
 
@@ -89,19 +91,22 @@ In order for the app to function correctly, the user must set up their own envir
     * REACT_APP_FIREBASE_MESSAGING_SENDER_ID - Info found from Firebase App Config for your Firebase project
     * REACT_APP_FIREBASE_APP_ID - Info found from Firebase App Config for your Firebase project
     * REACT_APP_FIREBASE_MEASUREMENT_ID - Info found from Firebase App Config for your Firebase project
+    * REACT_APP_UPLOAD_PRESET - Unique value assigned by Cloudinary
+    * REACT_APP_CLOUD_NAME - Cloud name found in Cloudinary account
 
-# Content Licenses
+<!-- Commenting Content Licenses section below as it is not needed at this time. Leaving in place in case it is needed for future updates -->
+<!-- # Content Licenses
 
 For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             | -->
 
 # Testing
 
-Front end testing done with React Testing Libarary. Backend testing was done with Jest.
+Front end testing done with React Testing Libarary. Backend testing was done with Jest. See below in `Installation Instructions` for command to run the tests.
 
 # Installation Instructions
 
@@ -152,4 +157,6 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](https://github.com/Lambda-School-Labs/student-art-collection-be) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/student-art-collection-be) for details on the backend of our project.  
+Documentation for the Android client can be found [here](https://github.com/Lambda-School-Labs/student-art-collection-android/blob/master/README.md).  
+iOS client documentation is [here](https://github.com/Lambda-School-Labs/student-art-collection-iOS/blob/master/README.md).

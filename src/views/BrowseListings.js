@@ -1,30 +1,89 @@
-import React from 'react'
-import { Navigation, ImageMasonry } from '../components'
-import { Grid, Typography } from '@material-ui/core'
+import React, { useEffect, useContext } from 'react'
+import { gql } from 'apollo-boost'
+import { useQuery } from 'react-apollo'
+import { Grid } from '@material-ui/core'
+import {
+  ErrorMessage,
+  Spinner,
+  ReloadContext,
+  ImageMasonry,
+  SearchForm,
+} from '../components'
+import { BrowseQuote } from '../components/Quotes'
 
-//todo heading should be all caps i.e. text-transform: uppercase
+const GET_ALL_ART = gql`
+  query {
+    allArts {
+      id
+      title
+      artist_name
+      school {
+        school_name
+      }
+      images {
+        image_url
+      }
+    }
+  }
+`
 
 const BrowseListings = () => {
-  return (
-    <Grid container direction='column'>
-      <Grid item component='header'>
-        <Grid container direction='column' spacing={5}>
+  const { reload, setReload, setArtId } = useContext(ReloadContext)
+  const { error, loading, data, refetch } = useQuery(GET_ALL_ART)
+
+  useEffect(() => {
+    if (reload === true) {
+      function update() {
+        return refetch()
+      }
+      update()
+      setReload(false)
+    }
+  })
+
+  if (error) {
+    return (
+      <>
+        <BrowseQuote />
+        <Grid container justify='center'>
+          <Grid item xs={3} />
+          <Grid item xs={6}>
+            <ErrorMessage />
+          </Grid>
+          <Grid item xs={3} />
+        </Grid>
+      </>
+    )
+  }
+  if (loading) {
+    return (
+      <>
+        <BrowseQuote />
+        <Grid container justify='center'>
+          <Grid item xs={3} />
+          <Grid item xs={6}>
+            <Spinner />
+          </Grid>
+          <Grid item xs={3} />
+        </Grid>
+      </>
+    )
+  }
+  if (data) {
+    return (
+      <>
+        <BrowseQuote />
+        <Grid container direction='column' alignItems='center' spacing={5}>
           <Grid item>
-            <Navigation />
+            <SearchForm />
           </Grid>
           <Grid item>
-            <Typography variant='h3' component='h1' gutterBottom>
-              Browse beautiful art and support
-              <br /> your community!
-            </Typography>
+            <ImageMasonry art={data.allArts} />
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item>
-        <ImageMasonry />
-      </Grid>
-    </Grid>
-  )
+      </>
+    )
+  }
 }
 
 export default BrowseListings

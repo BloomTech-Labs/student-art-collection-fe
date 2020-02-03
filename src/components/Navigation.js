@@ -1,39 +1,79 @@
-import React from 'react'
-// import { Link } from 'react-router-dom'
-import { Grid, Button } from '@material-ui/core'
+import React, { useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { Grid, Button, AppBar, makeStyles } from '@material-ui/core'
+import firebaseApp from './auth/firebaseApp'
+import { AuthContext } from './auth/Auth'
+import { NavbarNonAuth } from './NavbarNonAuth'
+import { NavbarAuth } from './NavbarAuth'
+// import logo from '../images/logo1.png'
+import logo from '../images/ArtcoWhiteLogo.png'
+import HideOnScroll from './HideOnScroll'
+import ReloadContext from './ReloadContext'
+// import ScrollTop from './ScrollTop'
+// import Fab from '@material-ui/core/Fab';
+// import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-//todo uncomment { Link } import and <Link> when router is set up
-//todo add to='...' in <Link>
-//todo customize buttons to not use all caps - i.e. text-transform: none
-//todo possibly pull out buttons into separate style file
-//todo colors & fonts
+const useStyles = makeStyles(theme => ({
+  space: {
+    padding: theme.spacing(),
+  },
+  logo: {
+    textDecoration: 'none',
+  },
+  button: {
+    color: '#fff',
+    borderColor: '#fff',
+  },
+  appbar: {
+    background: '#000',
+  },
+}))
 
-const Navigation = () => {
+const Navigation = props => {
+  const { setReload } = useContext(ReloadContext)
+  const classes = useStyles()
+  const history = useHistory()
+  const { authenticated } = useContext(AuthContext)
+
+  const signOut = () => {
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push('/browse')
+      })
+  }
+
   return (
-    <Grid container justify='space-between'>
-      <Grid item>Logo</Grid>
-      <Grid item>
-        <Grid container spacing={5}>
+    <HideOnScroll {...props}>
+      <AppBar className={classes.appbar} position='sticky'>
+        <Grid
+          container
+          alignItems='center'
+          justify='space-between'
+          className={classes.space}
+        >
           <Grid item>
-            {/* <Link> */}
-            <Button>Browse</Button>
-            {/* </Link> */}
+            <Link to='/' className={classes.logo}>
+              <img src={logo} alt='Student Artco' />
+            </Link>
           </Grid>
           <Grid item>
-            {/* <Link> */}
-            <Button>Sign In</Button>
-            {/* </Link> */}
-          </Grid>
-          <Grid item>
-            {/* <Link> */}
-            <Button variant='contained' disableElevation>
-              Join
-            </Button>
-            {/* </Link> */}
+            <Grid container spacing={5}>
+              {authenticated === false ? (
+                <NavbarNonAuth classes={classes} setReload={setReload} />
+              ) : (
+                <NavbarAuth
+                  classes={classes}
+                  setReload={setReload}
+                  signOut={signOut}
+                />
+              )}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </AppBar>
+    </HideOnScroll>
   )
 }
 

@@ -8,22 +8,24 @@ import {
   Collapse,
   Container,
   Button,
-  makeStyles,
+  IconButton,
 } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import { Contact, ArtInfo, ImageCarousel, Navigation } from '../components'
+import { BackButton } from '../styles/muiButtons'
+import { formStyles } from '../styles/muiForms'
+import {
+  Contact,
+  ArtInfo,
+  ImageCarousel,
+  Spinner,
+  ErrorMessage,
+} from '../components'
 
-//todo art(id: ) needs to take in the id set into state by the user clicking on an
-//todo artwork on the browse page
 //todo image carousel
-//todo functional back button
 
 const GET_ART = gql`
-  query art {
-    art(id: 1) {
-      id
-      school_id
+  query art($id: ID!) {
+    art(id: $id) {
       price
       sold
       title
@@ -31,6 +33,7 @@ const GET_ART = gql`
       description
       date_posted
       school {
+        school_id
         school_name
         email
         address
@@ -47,61 +50,59 @@ const GET_ART = gql`
   }
 `
 
-const useStyles = makeStyles(theme => ({
-  expand: {
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-}))
-
-const SinglePage = () => {
-  const { error, loading, data } = useQuery(GET_ART)
+const SinglePage = props => {
+  const id = props.match.params.id
+  // const id = props.match.params.id //? probably not the best way to do this...
+  const { error, loading, data } = useQuery(GET_ART, {
+    variables: { id },
+    fetchPolicy: 'no-cache',
+  })
   const [expanded, setExpanded] = useState(false)
-  const classes = useStyles()
+  const classes = formStyles()
 
   if (error) {
-    return <div>Error...</div>
+    console.log('error', error)
+    console.error('error', error)
+    return <ErrorMessage />
   }
   if (loading) {
-    return <div>Loading...</div>
+    return <Spinner />
   }
   if (data) {
-    // console.log(`singlepage data >>>`, data)
     return (
-      <>
-        <Navigation />
-        <Container>
-          <Card>
-            <CardActions>
-              <ArrowBackIcon />
-            </CardActions>
+      <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
+        <Card>
+          <CardActions>
+            <IconButton
+              size='small'
+              children={<BackButton />}
+              onClick={() => props.history.goBack()}
+            />
+          </CardActions>
+          <CardContent>
+            <ImageCarousel info={data.art.images} />
+          </CardContent>
+          <CardContent>
+            <ArtInfo info={data.art} />
+          </CardContent>
+          <CardActions>
+            <Button
+              onClick={() => setExpanded(!expanded)}
+              aria-expanded={expanded}
+              aria-label='Contact school about purchasing'
+              className={classes.expand}
+              endIcon={<ExpandMoreIcon />}
+            >
+              Contact school about purchasing
+            </Button>
+          </CardActions>
+          <Collapse in={expanded} timeout='auto' unmountOnExit>
             <CardContent>
-              <ImageCarousel info={data.art.images} />
+              <Contact info={data.art.school} />
             </CardContent>
-            <CardContent>
-              <ArtInfo info={data.art} />
-            </CardContent>
-            <CardActions>
-              <Button
-                endIcon={<ExpandMoreIcon />}
-                className={classes.expand}
-                onClick={() => setExpanded(!expanded)}
-                aria-expanded={expanded}
-                aria-label='Contact school about purchasing'
-              >
-                Contact school about purchasing
-              </Button>
-            </CardActions>
-            <Collapse in={expanded} timeout='auto' unmountOnExit>
-              <CardContent>
-                <Contact info={data.art.school} />
-              </CardContent>
-            </Collapse>
-          </Card>
-        </Container>
-      </>
+          </Collapse>
+        </Card>
+      </Container>
     )
   }
 }

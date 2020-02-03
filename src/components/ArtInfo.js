@@ -9,36 +9,41 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
   },
   space: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
+  },
+  lineBreak: {
+    whiteSpace: 'pre-line'
   },
 }))
 
 const ArtInfo = ({ info }) => {
   const classes = useStyles()
-
   return (
     <div className={classes.root}>
       <Grid container alignItems='center' justify='space-between'>
-        <Grid item className={classes.space}>
-          <Typography variant='h5' component='h1'>
-            {info.title === '' ? 'Untitled' : info.title}
+        <Grid item className={classes.space} xs='12' >
+          <Typography variant='h5'>
+            Title: {info.title === '' ? 'Untitled' : info.title}
           </Typography>
-          <Typography variant='body1' component='h2'>
+          <Typography variant='h5' component='h5'>
             Artist: {info.artist_name}
           </Typography>
-          <Typography variant='body2'>{info.category.category}</Typography>
-          <Typography variant='body2'>
+          <Typography variant='h5'>
+            Category: {info.category.category}
+            </Typography>
+          <Typography variant='h5' className={classes.lineBreak}>
+            Description: <br />
             {info.description === ''
               ? 'No description available'
               : info.description}
           </Typography>
         </Grid>
         <Grid item className={classes.space}>
-          <Typography variant='body1'>
+          <Typography variant='h5'>
             Suggested donation to {info.school.school_name}: ${info.price}.00
           </Typography>
-          <Typography variant='subtitle2'>
-            {info.sold === false ? 'Available' : 'Not Available'}
+          <Typography variant='h5'>
+            {info.sold === false ? 'Available' : 'Not Available'} for Purchase
           </Typography>
         </Grid>
       </Grid>

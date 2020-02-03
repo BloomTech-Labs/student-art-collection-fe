@@ -1,128 +1,38 @@
 import React from 'react'
-import { gql } from 'apollo-boost'
-import { useQuery } from 'react-apollo'
-import InfoIcon from '@material-ui/icons/Info'
-import {
-  makeStyles,
-  Grid,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardMedia,
-  Typography,
-} from '@material-ui/core'
-
-//todo clicking image takes user to the artwork's page
-//todo maybe tweak the text overlay
-//todo maybe change the info icon
-
-const GET_ALL_ART = gql`
-  query {
-    allArts {
-      id
-      title
-      artist_name
-      school {
-        school_name
-      }
-      images {
-        image_url
-      }
-    }
-  }
-`
+import { makeStyles, Grid } from '@material-ui/core'
+import ImageCard from './ImageCard'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
+  displayWidth: {
+    maxWidth: '80%',
+    margin: '0 auto',
   },
-  image: {
-    maxHeight: 300,
-    width: 'auto',
-  },
-  actionArea: {
-    maxHeight: 300,
-    width: 'auto',
-  },
-  info: {
-    position: 'relative',
-    top: '-70px',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    color: 'white',
-  },
-  title: {
-    marginLeft: 15,
-  },
-  icon: {
-    color: 'rgba(255,255,255,.5)',
+  card: {
+    maxWidth: '800px',
+    maxheight: '800px'
   },
 }))
 
-const ImageMasonry = () => {
-  const { error, loading, data } = useQuery(GET_ALL_ART)
+const ImageMasonry = ({ art }) => {
   const classes = useStyles()
 
-  if (error) {
-    return <div>Error...</div>
-  }
-  if (loading) {
-    return <div>Loading....</div>
-  }
-  if (data) {
-    return (
-      <main className={classes.root}>
-        <Grid container spacing={3} alignItems='center' justify='center'>
-          {data.allArts.map(art => (
-            <Grid item key={art.id}>
-              <Card>
-                <CardActionArea className={classes.actionArea}>
-                  <CardMedia
-                    component='img'
-                    src={art.images[0].image_url}
-                    alt={art.title === '' ? 'Untitled' : art.title}
-                    title={art.title === '' ? 'Untitled' : art.title}
-                    className={classes.image}
-                  />
-                  <Grid
-                    container
-                    justify='space-between'
-                    className={classes.info}
-                  >
-                    <Grid item>
-                      <Typography
-                        variant='body2'
-                        component='h3'
-                        className={classes.title}
-                      >
-                        <p>
-                          {art.title === '' ? 'Untitled' : art.title}
-                          {/* <br />
-                          &nbsp;by&nbsp;
-                          {art.artist_name === ''
-                            ? 'Artist Name'
-                            : art.artist_name} */}
-                        </p>
-                        <p>
-                          {art.school === ''
-                            ? 'School Name Needed'
-                            : art.school.school_name}
-                        </p>
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <CardActions>
-                        <InfoIcon className={classes.icon} />
-                      </CardActions>
-                    </Grid>
-                  </Grid>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </main>
-    )
-  }
+  return (
+    <Grid item>
+      <Grid
+        container
+        spacing={5}
+        alignItems='center'
+        justify='center'
+        className={classes.displayWidth}
+      >
+        {art.map(art => (
+          <Grid item key={art.id} className={classes.card}>
+            <ImageCard art={art} />
+          </Grid>
+        ))}
+      </Grid>
+    </Grid>
+  )
 }
 
 export default ImageMasonry

@@ -20,7 +20,7 @@ const SUBMISSION = gql`
   mutation addArt(
     $category: ID!
     $school_id: ID!
-    $image_url: String!
+    $image_url: [String!]!
     $title: String
     $description: String
     $artist_name: String
@@ -57,9 +57,10 @@ const Submission = props => {
   const [title, setTitle] = useState('')
   // const [sold, setSold] = useState(''); *should include this when updating item, plan is to use radio for check-mark to verify if sold or not (boolean)
   const [description, setDescription] = useState('')
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState([])
   const history = useHistory()
   const classes = formStyles()
+  const [imageLink, setImageLink] = useState([])
 
   const [submitArt] = useMutation(SUBMISSION)
 
@@ -69,17 +70,22 @@ const Submission = props => {
   //? ...not use the firebase uid
   const id = props.match.params.id
 
-  const onSubmit = async e => {
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
-    axios
-      .post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-        formData
-      )
-      .then(res => {
+  const onSubmit = e => {
+    e.preventDefault();
+    Promise.all(file.map(item => {
+      const formData = new FormData();
+      formData.append('file', item);
+      formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
+      return axios
+        .post(
+          `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+          formData
+        )
+        .then(res => res.data.secure_url);
+    }))
+      .then(imageLink => {
+        // if you need to persist imageLinks to state for use outside of this request
+        setImageLink(imageLink);
         const variables = {
           category,
           price: Number(price),
@@ -87,20 +93,71 @@ const Submission = props => {
           description,
           title,
           school_id: id,
-          image_url: res.data.secure_url,
-        }
+          image_url: imageLink,
+        };
+        console.log('args', variables);
         submitArt({ variables: variables })
+        .then(() => {
+          setReload(true)
+          history.push('/admin/dashboard')
+        })
       })
-      .then(() => {
-        setReload(true)
-        history.push('/admin/dashboard')
-      })
-  }
+      .catch(err => console.log(err));
+  };
+  
+  
+
+  // const onSubmit = e => {
+  //   e.preventDefault()
+
+  //   file.forEach(item => {
+  //   const formData = new FormData()
+  //   formData.append('file', item)
+  //   formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET)
+  //   axios
+  //     .post(
+  //       `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
+  //       formData
+  //     )
+  //     .then(res => {
+  //       // await setImageLink((prevState) => {
+  //       //   console.log('previous state', Array.isArray(prevState))
+  //       //   console.log('taken in', res.data.secure_url)
+  //       //   return [...prevState, res.data.secure_url]
+  //       // })
+  //       const newLink = res.data.secure_url
+  //       console.log('res data', res.data)
+  //       console.log('this is imageLinks state', imageLink)
+  //       console.log('link from cloudinary', newLink)
+  //       setImageLink(imageLink => [...imageLink, newLink])
+  //     })
+  //     // .then(() => {
+  //       //   setReload(true)
+  //     //   history.push('/admin/dashboard')
+  //     // })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // })
+  // // cloudImage.then(() => {
+  // //   const variables = {
+  // //     category,
+  // //     price: price,
+  // //     artist_name: artistName,
+  // //     description,
+  // //     title,
+  // //     school_id: id,
+  // //     image_url: imageLink,
+  // //   }
+  // //   console.log('args', variables)
+  // //   submitArt({ variables: variables })
+  // //   })
+  // }
 
   return (
     <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
       <Paper elevation={0} className={classes.root}>
-        <Paper elevation={3} className={classes.paper}>
+        <Paper elevation={3} className={classes.paper} style={{ width: '450px' }}>
           <Grid container direction='column' alignItems='center' spacing={4}>
             <Grid item>
               <Typography variant='h2' component='h2'>
@@ -108,7 +165,7 @@ const Submission = props => {
               </Typography>
             </Grid>
             <Grid item>
-              <form onSubmit={onSubmit}>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <Grid
                   container
                   direction='column'
@@ -116,7 +173,8 @@ const Submission = props => {
                   spacing={4}
                 >
                   <Grid item>
-                    <FileUpload setFile={setFile} />
+                    <FileUpload setFile={setFile} file={file}/>
+                    {file.map(file => <li key={file.path}>{file.name}</li>)}
                   </Grid>
                   <Grid item>
                     <TextField
@@ -151,7 +209,7 @@ const Submission = props => {
                       label='Price'
                       name='price'
                       placeholder='1.00'
-                      type='text'
+                      type='number'
                       variant='outlined'
                       size='small'
                       className={classes.message}

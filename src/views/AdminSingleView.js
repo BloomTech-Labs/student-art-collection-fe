@@ -103,7 +103,7 @@ const AdminSingleView = props => {
             />
           </CardActions>
           <CardContent>
-            <ImageCarousel info={data.art.images} />
+            <ImageCarousel info={data.art} />
           </CardContent>
           <CardContent>
             <ArtInfo info={data.art} />

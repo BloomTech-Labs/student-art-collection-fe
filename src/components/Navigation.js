@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom'
 import { Grid, Button, AppBar, makeStyles } from '@material-ui/core'
 import firebaseApp from './auth/firebaseApp'
 import { AuthContext } from './auth/Auth'
+import { NavbarNonAuth } from './NavbarNonAuth'
+import { NavbarAuth } from './NavbarAuth'
 // import logo from '../images/logo1.png'
 import logo from '../images/ArtcoWhiteLogo.png'
 import HideOnScroll from './HideOnScroll'
@@ -57,80 +59,19 @@ const Navigation = props => {
             </Link>
           </Grid>
           <Grid item>
-            {/*
-            //? this might be a better spot for the search component
-            */}
-          </Grid>
-          <Grid item>
             <Grid container spacing={5}>
-              <Grid item>
-                <Button
-                  component={Link}
-                  to='/browse'
-                  className={classes.button}
-                  onClick={() => setReload(true)}
-                >
-                  Browse
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  component={Link}
-                  to='/team'
-                  className={classes.button}
-                >
-                  About
-                </Button>
-              </Grid>
-              {authenticated === true ? (
-                <Grid item>
-                  <Button
-                    component={Link}
-                    to='/admin/dashboard'
-                    className={classes.button}
-                  >
-                    Dashboard
-                  </Button>
-                </Grid>
-              ) : null}
-              <Grid item>
-                {authenticated === true ? (
-                  <Button
-                    onClick={signOut}
-                    variant='outlined'
-                    className={classes.button}
-                  >
-                    Sign Out
-                  </Button>
-                ) : (
-                  <Button
-                    component={Link}
-                    to='/login'
-                    className={classes.button}
-                  >
-                    Sign In
-                  </Button>
-                )}
-              </Grid>
-              <Grid item>
-                {authenticated === true ? (
-                  <Button disabled />
-                ) : (
-                  <Button
-                    component={Link}
-                    to='/register'
-                    variant='outlined'
-                    disableElevation
-                    className={classes.button}
-                  >
-                    Join
-                  </Button>
-                )}
-                <Button disabled />
-              </Grid>
+              {authenticated === false ? (
+                <NavbarNonAuth classes={classes} setReload={setReload} />
+              ) : (
+                <NavbarAuth
+                  classes={classes}
+                  setReload={setReload}
+                  signOut={signOut}
+                />
+              )}
             </Grid>
           </Grid>
-        </Grid> 
+        </Grid>
       </AppBar>
     </HideOnScroll>
   )

@@ -11,6 +11,7 @@ import Spinner from './GraphLoading'
 import ErrorMessage from './GraphErrors'
 import ReloadContext from './ReloadContext'
 import SearchForm from './SearchForm'
+import EditProfile from './forms/EditProfile'
 
 export {
   Register,
@@ -26,4 +27,5 @@ export {
   ErrorMessage,
   ReloadContext,
   SearchForm,
+  EditProfile,
 }

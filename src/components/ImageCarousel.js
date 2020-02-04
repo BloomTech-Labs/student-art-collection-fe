@@ -3,10 +3,13 @@ import { makeStyles, Grid } from '@material-ui/core'
 import Carousel from '@brainhubeu/react-carousel'
 import '@brainhubeu/react-carousel/lib/style.css'
 import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons'
+
 const useStyles = makeStyles(theme => ({
   img: {
     maxHeight: 600,
-    width: 'auto',
+    width: 'auto', 
+    [theme.breakpoints.down('lg')] : {maxHeight: 300},
+    [theme.breakpoints.down('sm')] : {maxHeight: 150}
   },
 }))
 
@@ -14,7 +17,7 @@ const ImageCarousel = ({ info }) => {
   console.log(info)
   const classes = useStyles()
   const slides = info.images.map(img => {
-    return <img key={img.id} src={img.image_url} />
+    return <img key={img.id} src={img.image_url} className={classes.img} />
   })
   console.log('slides', slides)
   return (
@@ -31,15 +34,15 @@ const ImageCarousel = ({ info }) => {
           // slidesPerPage={1}
           // slidesPerScroll={1}
           // itemWidth={1000}
-          offset={100}
+          // offset={100}
           slides={slides}
-          centered
+          // centered
           infinite
         />
       ) : (
         <Grid container justify='center'>
           <Grid item>
-            <img src={info.images[0].image_url} />
+            <img src={info.images[0].image_url} className={classes.img} />
           </Grid>
         </Grid>
       )}

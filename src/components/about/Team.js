@@ -156,7 +156,7 @@ class Team extends React.Component {
 								<h3>Contact</h3>
 								<a href='https://www.linkedin.com/in/jason-r-loomis'>LinkedIn</a>
 								<br></br>
-								<a href='jrloomis.com'>Personal Website</a>
+								<a href='https://jrloomis.com'>Personal Website</a>
 								<br></br>
 								<a href='https://github.com/jrloom'>GitHub</a>
 								</Modal>
@@ -184,7 +184,7 @@ class Team extends React.Component {
 								<h3>Contact</h3>
 								<a href='https://www.linkedin.com/in/gspayonk/'>LinkedIn</a>
 								<br></br>
-								<a href='grispayonk.com'>Personal Website</a>
+								<a href='https://grispayonk.com'>Personal Website</a>
 								<br></br>
 								<a href='https://github.com/gspayonk'>GitHub</a>
 								</Modal>

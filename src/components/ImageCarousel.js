@@ -8,8 +8,8 @@ const useStyles = makeStyles(theme => ({
   img: {
     maxHeight: 600,
     width: 'auto', 
-    [theme.breakpoints.down('lg')] : {maxHeight: 300},
-    [theme.breakpoints.down('sm')] : {maxHeight: 150}
+    [theme.breakpoints.down('lg')] : {maxHeight: 500},
+    [theme.breakpoints.down('sm')] : {maxHeight: 225}
   },
 }))
 

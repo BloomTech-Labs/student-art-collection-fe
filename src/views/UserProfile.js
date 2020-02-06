@@ -32,7 +32,6 @@ const UserProfile = () => {
   const classes = useStyles()
   const { schoolInfo } = useContext(SchoolContext)
   const { reload, setReload } = useContext(ReloadContext)
-  console.log('profile reload', reload)
   const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {
     variables: { id: schoolInfo.id }, fetchPolicy: 'no-cache'
   })

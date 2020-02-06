@@ -29,9 +29,7 @@ export const NavbarAuth = ({ classes, reload, setReload, signOut }) => {
         <Button 
           component={Link} to='/admin/profile' 
           className={classes.button}
-          onClick={() => {
-            console.log('nav reload', reload)
-            setReload(true)}}
+          onClick={() => setReload(true)}
         >
           Profile
         </Button>

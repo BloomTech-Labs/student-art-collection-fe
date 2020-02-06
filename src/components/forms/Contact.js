@@ -33,7 +33,7 @@ const Contact = props => {
   const [sendto] = useState(props.info.email)
   const [name, setName] = useState('')
   const [fromUser, setFromUser] = useState('')
-  const [subject, setSubject] = useState('')
+  const [subject, setSubject] = useState(`Purchasing ${props.artListing.title}`)
   const [message, setMessage] = useState('')
   const classes = formStyles()
 
@@ -101,7 +101,7 @@ const Contact = props => {
                 size='small'
                 type='text'
                 required
-                value={subject}
+                value={props.artListing.title === '' ? 'Purchasing Untitled' : subject}
                 onChange={e => setSubject(e.target.value)}
               />
             </Grid>

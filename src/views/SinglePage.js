@@ -98,7 +98,7 @@ const SinglePage = props => {
           </CardActions>
           <Collapse in={expanded} timeout='auto' unmountOnExit>
             <CardContent>
-              <Contact info={data.art.school} />
+              <Contact info={data.art.school} artListing={data.art} />
             </CardContent>
           </Collapse>
         </Card>

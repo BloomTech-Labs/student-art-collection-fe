@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Grid } from '@material-ui/core'
 
-export const NavbarAuth = ({ classes, setReload, signOut }) => {
+export const NavbarAuth = ({ classes, reload, setReload, signOut }) => {
   return (
     <>
       
@@ -26,7 +26,13 @@ export const NavbarAuth = ({ classes, setReload, signOut }) => {
         </Button>
       </Grid>
       <Grid item>
-        <Button component={Link} to='/admin/profile' className={classes.button}>
+        <Button 
+          component={Link} to='/admin/profile' 
+          className={classes.button}
+          onClick={() => {
+            console.log('nav reload', reload)
+            setReload(true)}}
+        >
           Profile
         </Button>
       </Grid>

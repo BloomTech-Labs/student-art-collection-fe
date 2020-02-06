@@ -66,6 +66,7 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = props => {
   const { reload, setReload } = useContext(ReloadContext)
+  console.log('dashboard reload', reload)
   const { setSchoolInfo } = useContext(SchoolContext)
   const schoolId = props.schoolId
   const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {

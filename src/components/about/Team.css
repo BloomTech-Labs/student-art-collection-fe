@@ -238,7 +238,7 @@ a:hover {
 
 @media only screen and (min-width : 1395px) {
 	.flex-center {
-		margin-top: -40%;
+		margin-top: -45%;
 	}
 	.team-overview{
 		width: 25%;
@@ -253,7 +253,7 @@ a:hover {
 
 @media only screen and (min-width : 1487px) {
 	.flex-center {
-		margin-top: -30%;
+		margin-top: -35%;
 	}
 	.team-overview{
 		width: 25%;
@@ -268,7 +268,7 @@ a:hover {
 
 @media only screen and (min-width : 1675px) {
 	.flex-center {
-		margin-top: -22%;
+		margin-top: -27%;
 	}
 	.team-overview{
 		width: 25%;
@@ -283,7 +283,7 @@ a:hover {
 
 @media only screen and (min-width : 2000px) {
 	.flex-center {
-		margin-top: -15%;
+		margin-top: -20%;
 	}
 	.team-overview{
 		width: 25%;

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo'
 import { makeStyles, Card, Grid, Typography } from '@material-ui/core'
-import { EditProfile, ErrorMessage, Spinner } from '../components'
+import { EditProfile, ErrorMessage, Spinner, ReloadContext } from '../components'
 import { SchoolContext } from '../context/SchoolContext'
 
 const GET_SCHOOL_INFO = gql`
@@ -31,8 +31,19 @@ const useStyles = makeStyles(theme => ({
 const UserProfile = () => {
   const classes = useStyles()
   const { schoolInfo } = useContext(SchoolContext)
-  const { error, loading, data } = useQuery(GET_SCHOOL_INFO, {
-    variables: { id: schoolInfo.id },
+  const { reload, setReload } = useContext(ReloadContext)
+  const { error, loading, data, refetch } = useQuery(GET_SCHOOL_INFO, {
+    variables: { id: schoolInfo.id }, fetchPolicy: 'no-cache'
+  })
+
+  useEffect(() => {
+    if (reload === true) {
+      function update() {
+        return refetch()
+      }
+      update()
+      setReload(false)
+    }
   })
 
   if (error) {

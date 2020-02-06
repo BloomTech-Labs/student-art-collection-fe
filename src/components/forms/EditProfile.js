@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { useMutation } from 'react-apollo'
@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core'
 import NotificationModal from '../NotificationModal'
 import { formStyles, InputField } from '../../styles/muiForms'
 import { SubmitButton } from '../../styles/muiButtons'
+import ReloadContext from '../ReloadContext'
 
 const UPDATE_SCHOOL = gql`
   mutation updateSchool(
@@ -35,6 +36,7 @@ const UPDATE_SCHOOL = gql`
 
 const EditProfile = ({ school, id }) => {
   const classes = formStyles()
+  const {reload, setReload} = useContext(ReloadContext)
   const [updateSchool] = useMutation(UPDATE_SCHOOL)
   const history = useHistory()
   const [open, setOpen] = useState(false)
@@ -60,6 +62,7 @@ const EditProfile = ({ school, id }) => {
 
   const handleClose = () => {
     setOpen(false)
+    setReload(true)
     history.push('/admin/dashboard')
   }
 
